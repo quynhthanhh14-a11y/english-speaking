@@ -2,111 +2,149 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thế Giới Giao Tiếp Anh-Anh Vô Hạn - Luyện Phản Xạ & Nhớ Sâu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vũ Trụ Giao Tiếp Tiếng Anh Vô Hạn - 18 Thế Giới Toàn Diện (IPA Anh-Anh)</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; padding: 25px 15px; background: #f0f2f5; color: #333; }
-        .container { max-width: 920px; margin: auto; background: white; padding: 32px; border-radius: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
-        h2 { text-align: center; margin-top: 0; color: #1a1a1a; }
-        .sub-title { text-align: center; color: #555; font-size: 14px; margin-top: -8px; margin-bottom: 22px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; padding: 20px 12px; background: #f0f2f5; color: #333; margin: 0; }
+        .container { max-width: 980px; margin: auto; background: white; padding: 26px 22px; border-radius: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+        h2 { text-align: center; margin-top: 0; color: #1a1a1a; font-size: 22px; line-height: 1.35; }
+        .sub-title { text-align: center; color: #555; font-size: 13.5px; margin-top: -6px; margin-bottom: 20px; }
         h3 { margin: 0 0 12px 0; font-size: 16px; color: #0056b3; }
-        textarea { width: 100%; box-sizing: border-box; height: 95px; padding: 12px; font-size: 15px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 8px; }
-        button { cursor: pointer; border: none; border-radius: 8px; font-weight: bold; transition: 0.2s; }
+        textarea { width: 100%; box-sizing: border-box; height: 95px; padding: 12px; font-size: 16px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 8px; }
+        button { cursor: pointer; border: none; border-radius: 8px; font-weight: bold; transition: 0.2s; -webkit-tap-highlight-color: transparent; }
         
-        .grid-giai-doan { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-bottom: 15px; }
-        .btn-stage { padding: 13px 14px; background: #f8fbff; border: 2px solid #cfe2ff; color: #084298; text-align: left; font-size: 14px; line-height: 1.4; }
-        .btn-stage:hover { background: #cfe2ff; border-color: #0d6efd; }
-        .btn-stage span { display: block; font-size: 12px; font-weight: normal; color: #555; margin-top: 3px; }
+        .grid-giai-doan { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .btn-stage { padding: 12px 14px; background: #f8fbff; border: 2px solid #cfe2ff; color: #084298; text-align: left; font-size: 13.8px; line-height: 1.4; }
+        .btn-stage:hover, .btn-stage:active { background: #cfe2ff; border-color: #0d6efd; }
+        .btn-stage span { display: block; font-size: 11.8px; font-weight: normal; color: #555; margin-top: 3px; }
         
-        .action-top-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 22px; }
-        .btn-all { width: 100%; padding: 15px; background: linear-gradient(135deg, #0056b3, #007bff); color: white; font-size: 15.5px; box-shadow: 0 4px 12px rgba(0,86,179,0.25); }
+        .action-top-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 10px; margin-bottom: 22px; }
+        @media (max-width: 720px) { .action-top-grid { grid-template-columns: 1fr; } }
+        .btn-all { width: 100%; padding: 15px; background: linear-gradient(135deg, #0056b3, #007bff); color: white; font-size: 15px; box-shadow: 0 4px 12px rgba(0,86,179,0.25); }
         .btn-all:hover { opacity: 0.92; }
-        .btn-srs { width: 100%; padding: 15px; background: #fff3cd; border: 2px solid #ffc107; color: #856404; font-size: 14.5px; }
-        .btn-srs:hover { background: #ffe69c; }
+        .btn-history-main { width: 100%; padding: 15px; background: #e0f2fe; border: 2px solid #38bdf8; color: #0369a1; font-size: 14.5px; }
+        .btn-history-main:hover { background: #bae6fd; }
 
         .divider { border-top: 1px dashed #ccc; margin: 20px 0; padding-top: 15px; }
-        .btn-start { width: 100%; padding: 13px; font-size: 16px; background: #28a745; color: white; }
+        .btn-start { width: 100%; padding: 14px; font-size: 16px; background: #28a745; color: white; }
         .btn-start:hover { background: #218838; }
         
-        #hoc-khu-vuc { display: none; margin-top: 10px; }
+        #hoc-khu-vuc { display: none; margin-top: 8px; }
         .thanh-trang-thai { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
         .info-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         #ten-bai-hoc { background: #e9ecef; color: #333; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
-        #tien-do { font-size: 15px; color: #555; font-weight: bold; }
-        .streak-badge { background: #fff3cd; color: #856404; padding: 5px 12px; border-radius: 20px; font-size: 13.5px; font-weight: bold; border: 1px solid #ffeeba; }
-        .srs-badge { background: #f8d7da; color: #721c24; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; }
-        .btn-reset { padding: 7px 14px; font-size: 13px; background: #6c757d; color: white; }
+        #tien-do { font-size: 14.5px; color: #555; font-weight: bold; }
+        .streak-badge { background: #fff3cd; color: #856404; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; border: 1px solid #ffeeba; }
+        .hist-badge { background: #e0f2fe; color: #0369a1; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; border: 1px solid #bae6fd; }
+        .hist-badge:hover { background: #bae6fd; }
+        .btn-reset { padding: 7px 13px; font-size: 13px; background: #6c757d; color: white; }
         .btn-reset:hover { background: #5a6268; }
 
-        .che-do-bar { display: flex; gap: 10px; margin-bottom: 18px; background: #f8f9fa; padding: 8px; border-radius: 10px; border: 1px solid #e9ecef; flex-wrap: wrap; }
-        .mode-btn { flex: 1; min-width: 160px; padding: 11px 12px; font-size: 14.5px; background: transparent; color: #555; border-radius: 8px; }
+        .che-do-bar { display: flex; gap: 8px; margin-bottom: 16px; background: #f8f9fa; padding: 8px; border-radius: 10px; border: 1px solid #e9ecef; flex-wrap: wrap; }
+        .mode-btn { flex: 1; min-width: 150px; padding: 10px 10px; font-size: 13.8px; background: transparent; color: #555; border-radius: 8px; }
         .mode-btn:hover { background: #e2e6ea; }
         .mode-btn.active { background: #0056b3; color: white; box-shadow: 0 3px 8px rgba(0,86,179,0.3); }
 
-        .box-cau-hoi { background: #f8fbff; border-left: 5px solid #0056b3; padding: 20px; border-radius: 8px; margin-bottom: 18px; transition: 0.2s; }
+        .box-cau-hoi { background: #f8fbff; border-left: 5px solid #0056b3; padding: 18px; border-radius: 8px; margin-bottom: 16px; transition: 0.2s; }
         .box-cau-hoi.hoan-tat { background: #f0fdf4; border-left-color: #16a34a; }
         .top-tags { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
-        .nhan-thu-thach { display: inline-block; background: #e0e7ff; color: #1e40af; font-size: 13px; font-weight: bold; padding: 4px 10px; border-radius: 6px; }
-        .uk-tag { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: bold; padding: 3px 9px; border-radius: 6px; }
-
+        .nhan-thu-thach { display: inline-block; background: #e0e7ff; color: #1e40af; font-size: 12.5px; font-weight: bold; padding: 4px 10px; border-radius: 6px; }
+        
         .voice-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-        #chon-giong-uk { padding: 5px 8px; font-size: 12.5px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; color: #1e293b; max-width: 240px; font-weight: 600; }
-        
+        .uk-tag { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: bold; padding: 3px 9px; border-radius: 6px; }
+        #chon-giong-uk { padding: 5px 8px; font-size: 12.5px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; color: #1e293b; max-width: 235px; font-weight: 600; }
+
         .dong-viet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
-        #cau-hoi { font-size: 24px; font-weight: bold; color: #0056b3; margin: 0; line-height: 1.4; flex: 1; min-width: 220px; }
-        .btn-group-audio { display: flex; gap: 6px; flex-shrink: 0; }
-        .btn-nghe { padding: 9px 14px; background: #17a2b8; color: white; font-size: 13.5px; white-space: nowrap; }
+        #cau-hoi { font-size: 22px; font-weight: bold; color: #0056b3; margin: 0; line-height: 1.4; flex: 1; min-width: 210px; }
+        .btn-group-audio { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
+        .btn-nghe { padding: 9px 13px; background: #17a2b8; color: white; font-size: 13.5px; white-space: nowrap; }
         .btn-nghe:hover { background: #138496; }
-        .btn-cham { padding: 9px 12px; background: #e2e8f0; color: #334155; font-size: 13px; white-space: nowrap; }
+        .btn-cham { padding: 9px 11px; background: #e2e8f0; color: #334155; font-size: 13px; white-space: nowrap; }
         .btn-cham:hover { background: #cbd5e1; }
+        .btn-prev-q { padding: 9px 11px; background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; font-size: 13px; white-space: nowrap; }
+        .btn-prev-q:hover { background: #e2e8f0; }
+        .btn-prev-q:disabled { opacity: 0.45; cursor: not-allowed; }
         
-        #goi-y-box { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #cbd5e1; font-size: 18px; color: #2d3748; line-height: 1.65; display: none; }
-        .ipa-box { font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', 'Segoe UI', sans-serif; font-size: 23px; color: #6b21a8; font-weight: bold; letter-spacing: 0.5px; }
+        .ipa-fixed-wrap { margin-top: 12px; padding: 10px 14px; background: #f3e8ff; border: 1px solid #d8b4fe; border-radius: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .ipa-label { font-size: 12.5px; font-weight: bold; color: #6b21a8; background: #e9d5ff; padding: 3px 8px; border-radius: 5px; white-space: nowrap; }
+        .ipa-box { font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', -apple-system, sans-serif; font-size: 19.5px; color: #581c87; font-weight: bold; letter-spacing: 0.3px; line-height: 1.45; word-break: break-word; }
+
+        #goi-y-box { margin-top: 12px; padding-top: 10px; border-top: 1px dashed #cbd5e1; font-size: 17.5px; color: #2d3748; line-height: 1.6; display: none; }
 
         .memory-card { margin-top: 12px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px; font-size: 13.5px; color: #78350f; line-height: 1.5; }
         .memory-card b { color: #b45309; }
 
-        #o-nhap { width: 100%; box-sizing: border-box; font-size: 22px; padding: 16px; border: 3px solid #ccc; border-radius: 8px; outline: none; transition: 0.2s; }
+        #o-nhap { width: 100%; box-sizing: border-box; font-size: 20px; padding: 15px; border: 3px solid #ccc; border-radius: 8px; outline: none; transition: 0.2s; -webkit-appearance: none; }
         .dung { color: #155724; background-color: #d4edda; border-color: #28a745 !important; }
         .sai { color: #721c24; background-color: #f8d7da; border-color: #dc3545 !important; }
 
-        #banner-enter { display: none; margin-top: 14px; background: #dcfce7; border: 2px solid #4ade80; border-radius: 10px; padding: 13px 18px; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .enter-msg { font-size: 15.5px; font-weight: bold; color: #14532d; }
+        #banner-enter { display: none; margin-top: 14px; background: #dcfce7; border: 2px solid #4ade80; border-radius: 10px; padding: 13px 16px; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .enter-msg { font-size: 15px; font-weight: bold; color: #14532d; }
         .kbd-enter { display: inline-block; background: #fff; border: 1px solid #86efac; border-bottom-width: 3px; padding: 2px 9px; border-radius: 6px; font-family: monospace; color: #15803d; }
-        .btn-next { padding: 10px 18px; background: #16a34a; color: white; font-size: 14.5px; box-shadow: 0 3px 8px rgba(22,163,74,0.3); }
+        .btn-next { padding: 11px 18px; background: #16a34a; color: white; font-size: 14.5px; box-shadow: 0 3px 8px rgba(22,163,74,0.3); }
         .btn-next:hover { background: #15803d; }
 
-        .meo-phim { margin-top: 12px; font-size: 13px; color: #666; text-align: right; }
+        .meo-phim { margin-top: 12px; font-size: 12.5px; color: #666; text-align: right; }
+
+        /* MODAL LỊCH SỬ CÂU ĐÃ HỌC */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 9999; padding: 16px 10px; overflow-y: auto; }
+        .modal-box { max-width: 860px; margin: 12px auto; background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.25); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
+        .modal-title { font-size: 18px; font-weight: bold; color: #0f172a; margin: 0; }
+        .modal-tools { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+        .search-hist { flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 16px; }
+        .btn-close-modal { padding: 8px 14px; background: #e2e8f0; color: #334155; font-size: 13.5px; }
+        .btn-close-modal:hover { background: #cbd5e1; }
+        .btn-clear-hist { padding: 8px 14px; background: #fee2e2; color: #991b1b; font-size: 13.5px; }
+        .btn-clear-hist:hover { background: #fecaca; }
+        .hist-list { max-height: 62vh; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; -webkit-overflow-scrolling: touch; }
+        .hist-item { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; border-radius: 8px; padding: 13px 15px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+        .hist-content { flex: 1; min-width: 220px; }
+        .hist-en { font-size: 16.5px; font-weight: bold; color: #0056b3; margin-bottom: 4px; }
+        .hist-ipa { font-size: 14px; color: #6b21a8; font-weight: bold; margin-bottom: 4px; }
+        .hist-vi { font-size: 14.5px; color: #334155; }
+        .hist-meta { font-size: 11.5px; color: #64748b; margin-top: 6px; }
+        .hist-actions { display: flex; gap: 6px; flex-shrink: 0; }
+        .btn-mini-audio { padding: 7px 11px; background: #17a2b8; color: #fff; font-size: 12.5px; }
+        .btn-mini-retry { padding: 7px 11px; background: #28a745; color: #fff; font-size: 12.5px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>🇬🇧 Thế Giới Giao Tiếp Tiếng Anh Vô Hạn (Chuẩn IPA Anh-Anh) 🇬🇧</h2>
-        <div class="sub-title">Phát âm Anh-Anh (UK) • Lặp lại ngắt quãng nhớ lâu • 10 Chủ đề giao tiếp thực chiến</div>
+        <h2>🇬🇧 Vũ Trụ Giao Tiếp Tiếng Anh Vô Hạn (18 Thế Giới Toàn Diện) 🇬🇧</h2>
+        <div class="sub-title">Từ vựng & Giao tiếp bao la đời sống • Chuẩn IPA Anh-Anh (UK) • Tối ưu giọng đọc trên iPhone</div>
         
         <div id="nhap-du-lieu">
-            <h3>1. Chọn thế giới & tình huống giao tiếp (Tự sinh hàng vạn câu + Ôn lại câu hay sai):</h3>
+            <h3>1. Chọn thế giới từ vựng & tình huống giao tiếp (18 mảng bao quát đời sống thật):</h3>
             <div class="grid-giai-doan">
-                <button class="btn-stage" onclick="batDauVoHan(1)">👶 1. Sơ sinh & Gia đình<span>Cảm giác, đồ vật, yêu cầu sinh hoạt hằng ngày</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(2)">🧒 2. Tuổi thơ & Khám phá<span>Hỏi tại sao, kể chuyện, ước mơ & trường học</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(3)">🎧 3. Thiếu niên & Cảm xúc<span>Tâm lý, bạn bè, hẹn hò & tiếng lóng tự nhiên</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(4)">💼 4. Trưởng thành & Công sở<span>Họp hành, đàm phán, email & xử lý sự cố</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(5)">🌿 5. Trung niên & Bản lĩnh<span>Chiêm nghiệm, quản lý cảm xúc & lời khuyên</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(6)">🍵 6. Tuổi già & Minh triết<span>Ký ức, giá trị sống & sự bình yên</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(7)">✈️ 7. Du lịch, Sân bay & Khách sạn<span>Check-in, hỏi đường, đặt phòng & xử lý trễ chuyến</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(8)">🍽️ 8. Nhà hàng, Cà phê & Mua sắm<span>Gọi món, hỏi giá, đổi trả hàng & thanh toán</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(9)">🏥 9. Sức khỏe, Hiệu thuốc & Khẩn cấp<span>Mô tả triệu chứng, mua thuốc & nhờ giúp đỡ</span></button>
-                <button class="btn-stage" onclick="batDauVoHan(10)">🤝 10. Kết bạn, Giao tiếp xã hội & Hẹn hò<span>Bắt chuyện tự nhiên, khen ngợi & giữ kết nối</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(1)">🐾 1. Động vật & Thế giới hoang dã<span>Tập tính, thú cưng, chim muông, sinh vật biển & côn trùng</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(2)">🌿 2. Thực vật, Hoa cỏ & Rừng cây<span>Cây cối, hoa lá, hạt giống, mùa nở hoa & thiên nhiên</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(3)">🍎 3. Trái cây, Rau củ & Hương vị<span>Tươi ngon, chua ngọt, giòn rụm, đi chợ & chọn đồ tươi</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(4)">🎨 4. Màu sắc, Chất liệu & Sự vật<span>Sắc độ, hình dáng, đồ vật quanh nhà & cảm giác bề mặt</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(5)">⛈️ 5. Hiện tượng tự nhiên & Thời tiết<span>Mưa giông, sương mù, thủy triều, cầu vồng & biến đổi</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(6)">👩‍⚕️ 6. Nghề nghiệp & Vai trò xã hội<span>Đặc thù công việc, kỹ năng nghề, xưởng, phòng khám & bếp</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(7)">☕ 7. Giao tiếp hằng ngày & Hỏi thăm<span>Chào hỏi tự nhiên, hỏi thăm sức khỏe, dạo này thế nào</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(8)">💐 8. Lời khen & Sự ghi nhận tinh tế<span>Khen gu thẩm mỹ, nỗ lực, sự tinh tế & thái độ sống</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(9)">🥂 9. Lời chúc & Động viên chân thành<span>Chúc chặng đường mới, bình an, thi cử, khởi đầu & hồi phục</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(10)">🙅 10. Lời từ chối khéo & Giữ ranh giới<span>Từ chối lời mời, khước từ nhờ vả, hẹn dịp khác nhẹ nhàng</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(11)">💛 11. Lời quan tâm, Hỏi han & An ủi<span>Động viên lúc mệt, lắng nghe, nhắc nghỉ ngơi & sẻ chia</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(12)">⚡ 12. Phản xạ tức thì & Xoay trục<span>Ngắt lời khéo, đổi ý phút chót, hỏi lại cho rõ, hạ nhiệt</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(13)">🗣️ 13. Tranh luận, Phản biện & Thương lượng<span>Nêu điểm nghẽn, đặt điều kiện, nhượng bộ có chừng mực</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(14)">💼 14. Công sở, Dự án & Vận hành<span>Trễ hạn, lệch kỳ vọng, bàn giao & phối hợp liên phòng ban</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(15)">🎭 15. Sáng tạo, Nghệ thuật & Góc nhìn<span>Cảm hứng, chỉnh sửa, gu thẩm mỹ & tư duy phản chiếu</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(16)">🧭 16. Sự nghiệp, Lựa chọn & Bước ngoặt<span>Nghỉ việc, thử sức, cân nhắc rủi ro & tự vấn bản thân</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(17)">🧳 17. Di chuyển, Lạc đường & Dịch vụ<span>Trễ tàu, đổi lịch, khiếu nại dịch vụ & xoay xở nơi lạ</span></button>
+                <button class="btn-stage" onclick="batDauVoHan(18)">🩺 18. Sức khỏe, Thể trạng & Đời sống<span>Mệt mỏi tích tụ, triệu chứng mơ hồ & nhịp sống cân bằng</span></button>
             </div>
             
             <div class="action-top-grid">
-                <button class="btn-all" onclick="batDauVoHan(0)">♾️ BƯỚC VÀO VŨ TRỤ VÔ HẠN (TRỘN TẤT CẢ 10 CHỦ ĐỀ)</button>
-                <button class="btn-srs" id="btn-on-tap-sai" onclick="batDauOnTapCauSai()">🧠 Ôn câu hay sai (0)</button>
+                <button class="btn-all" onclick="batDauVoHan(0)">♾️ VŨ TRỤ VÔ HẠN TOÀN DIỆN (TRỘN TẤT CẢ 18 THẾ GIỚI)</button>
+                <button class="btn-history-main" id="btn-lich-su-top" onclick="moModalLichSu()">📜 Lịch sử đã học (0)</button>
             </div>
 
             <div class="divider">
-                <h3>2. Hoặc dán danh sách câu riêng từ Excel (2 cột Việt - Anh):</h3>
-                <textarea id="du-lieu-excel" placeholder="Ví dụ:&#10;Anh tự hào khi được bên em.    I'm proud to be with you&#10;Cho tôi một ly nước ấm nhé.    Can I have a glass of warm water"></textarea>
+                <h3>2. Hoặc dán danh sách câu riêng từ Excel (2 cột Việt - Anh, tách biệt hoàn toàn):</h3>
+                <textarea id="du-lieu-excel" placeholder="Ví dụ:&#10;Mình đổi ý rồi, để lúc khác nói tiếp nhé.    I've changed my mind, let's pick this up later&#10;Chỗ này chưa khớp lắm, xem lại giúp mình.    This part doesn't quite line up, have another look"></textarea>
                 <button class="btn-start" onclick="batDauTuExcel()">LUYỆN THEO DANH SÁCH TỰ NHẬP</button>
             </div>
         </div>
@@ -119,8 +157,8 @@
                 </div>
                 <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
                     <div class="streak-badge" id="streak-text">🔥 Chuỗi đúng: 0</div>
-                    <div class="srs-badge" id="srs-count-badge" onclick="batDauOnTapCauSai()" title="Bấm để luyện riêng các câu bạn từng gõ nhầm">📌 Cần nhớ: 0</div>
-                    <button class="btn-reset" onclick="nhapLaiTuDau()">Đổi chủ đề / Bài khác</button>
+                    <div class="hist-badge" id="hist-count-badge" onclick="moModalLichSu()" title="Xem lại toàn bộ các câu đã luyện qua">📜 Đã học: 0</div>
+                    <button class="btn-reset" onclick="nhapLaiTuDau()">Đổi thế giới / Bài khác</button>
                 </div>
             </div>
 
@@ -135,7 +173,7 @@
                     <span class="nhan-thu-thach" id="nhan-kieu-bai"></span>
                     <div class="voice-bar">
                         <span class="uk-tag">🇬🇧 Chuẩn IPA Anh–Anh (UK)</span>
-                        <select id="chon-giong-uk" onchange="doiGiongDocUK(this.value)">
+                        <select id="chon-giong-uk" onchange="doiGiongDocUK(this.value)" title="Chọn giọng đọc tiếng Anh chuẩn cho iPhone & Máy tính">
                             <option value="neural_sonia">🇬🇧 Sonia (AI Nữ Anh-Anh tự nhiên)</option>
                             <option value="neural_libby">🇬🇧 Libby (AI Nữ Anh-Anh trẻ)</option>
                             <option value="neural_ryan">🇬🇧 Ryan (AI Nam Anh-Anh chuẩn)</option>
@@ -147,22 +185,46 @@
                 <div class="dong-viet">
                     <div id="cau-hoi"></div>
                     <div class="btn-group-audio">
+                        <button class="btn-prev-q" id="btn-quay-lai-cau-truoc" onclick="quayLaiCauTruoc()" title="Xem / luyện lại câu vừa qua ngay trước đó">⬅️ Câu trước</button>
                         <button class="btn-nghe" onclick="phatAm(dapAnChuan, false)" title="Nghe tốc độ chuẩn Anh-Anh">🔊 Nghe UK</button>
                         <button class="btn-cham" onclick="phatAm(dapAnChuan, true)" title="Nghe đọc chậm rõ từng âm">🐢 Chậm</button>
                     </div>
                 </div>
+
+                <div class="ipa-fixed-wrap" id="ipa-fixed-wrap">
+                    <span class="ipa-label">🗣️ IPA UK</span>
+                    <span class="ipa-box" id="ipa-fixed-text">Đang tải phiên âm...</span>
+                </div>
+
                 <div id="goi-y-box"></div>
                 <div class="memory-card" id="memory-tip-box"></div>
             </div>
 
-            <input type="text" id="o-nhap" placeholder="Nghe phát âm và bắt đầu gõ tiếng Anh (không cần dấu câu)..." autocomplete="off" autocapitalize="off" spellcheck="false">
+            <input type="text" id="o-nhap" placeholder="Nghe phát âm và bắt đầu gõ tiếng Anh (không cần dấu câu)..." autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next">
 
             <div id="banner-enter">
-                <div class="enter-msg">✅ Hoàn thành! Nhấn phím <span class="kbd-enter">Enter</span> để chuyển sang câu tiếp theo</div>
+                <div class="enter-msg">✅ Hoàn thành! Nhấn phím <span class="kbd-enter">Enter</span> hoặc nút bên cạnh để qua câu mới</div>
                 <button class="btn-next" onclick="chuyenSangCauTiepTheo()">⏭️ Câu tiếp theo (Enter)</button>
             </div>
 
-            <div class="meo-phim">💡 <b>Enter</b>: Qua câu tiếp theo | <b>Ctrl + Space</b>: Nghe lại | <b>Alt + S</b>: Nghe chậm</div>
+            <div class="meo-phim">💡 <b>Enter / Return</b>: Qua câu tiếp theo | <b>Ctrl + Space</b>: Nghe lại | <b>Alt + S</b>: Nghe chậm</div>
+        </div>
+    </div>
+
+    <!-- MODAL XEM LẠI LỊCH SỬ CÂU ĐÃ HỌC -->
+    <div class="modal-overlay" id="modal-lich-su" onclick="if(event.target===this) dongModalLichSu()">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-hist-title">📜 Sổ tay Lịch sử các câu đã qua (0 câu)</h3>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn-clear-hist" onclick="xoaToanBoLichSu()">🗑️ Xóa lịch sử</button>
+                    <button class="btn-close-modal" onclick="dongModalLichSu()">✖ Đóng</button>
+                </div>
+            </div>
+            <div class="modal-tools">
+                <input type="text" class="search-hist" id="o-tim-lich-su" placeholder="🔍 Tìm theo từ tiếng Anh hoặc tiếng Việt..." oninput="renderDanhSachLichSu()">
+            </div>
+            <div class="hist-list" id="danh-sach-lich-su-ui"></div>
         </div>
     </div>
 
@@ -170,7 +232,7 @@
         const TU_DIEN_IPA_UK = {
             "i": "aɪ", "you": "juː", "we": "wiː", "they": "ðeɪ", "he": "hiː", "she": "ʃiː", "it": "ɪt",
             "me": "miː", "us": "ʌs", "them": "ðem", "him": "hɪm", "her": "hɜː",
-            "my": "maɪ", "your": "jɔː", "our": "aʊə", "their": "ðeə",
+            "my": "maɪ", "your": "jɔː", "our": "aʊə", "their": "ðeə", "its": "ɪts",
             "a": "ə", "an": "ən", "the": "ðə", "to": "tə", "for": "fɔː", "of": "əv", "from": "frɒm",
             "in": "ɪn", "on": "ɒn", "at": "æt", "with": "wɪð", "by": "baɪ", "about": "əˈbaʊt",
             "and": "ænd", "but": "bʌt", "or": "ɔː", "so": "səʊ", "because": "bɪˈkɒz", "if": "ɪf", "when": "wen",
@@ -183,81 +245,40 @@
             "that's": "ðæts", "what's": "wɒts", "where's": "weəz", "i've": "aɪv", "i'll": "aɪl", "we'll": "wiːl",
             "what": "wɒt", "where": "weə", "why": "waɪ", "who": "huː", "how": "haʊ", "which": "wɪtʃ",
             "this": "ðɪs", "that": "ðæt", "these": "ðiːz", "those": "ðəʊz",
-            "want": "wɒnt", "water": "ˈwɔːtə", "warm": "wɔːm", "hot": "hɒt", "cold": "kəʊld",
-            "glass": "ɡlɑːs", "milk": "mɪlk", "apple": "ˈæpl", "red": "red", "blue": "bluː",
-            "car": "kɑː", "new": "njuː", "toy": "tɔɪ", "bear": "beə", "teddy": "ˈtedi",
-            "mommy": "ˈmɒmi", "mummy": "ˈmʌmi", "daddy": "ˈdædi", "shoe": "ʃuː", "cat": "kæt", "ball": "bɔːl", "bottle": "ˈbɒtl", "book": "bʊk",
-            "touch": "tʌtʃ", "stove": "stəʊv", "run": "rʌn", "too": "tuː", "fast": "fɑːst",
-            "cry": "kraɪ", "anymore": "ˌeniˈmɔː", "throw": "θrəʊ", "toys": "tɔɪz", "around": "əˈraʊnd", "open": "ˈəʊpən", "door": "dɔː",
-            "very": "ˈveri", "dangerous": "ˈdeɪndʒərəs", "fall": "fɔːl", "down": "daʊn", "right": "raɪt", "here": "hɪə", "super": "ˈsuːpə",
-            "feel": "fiːl", "little": "ˈlɪtl", "sleepy": "ˈsliːpi", "hungry": "ˈhʌŋɡri", "tired": "ˈtaɪəd", "thirsty": "ˈθɜːsti",
-            "now": "naʊ", "after": "ˈɑːftə", "playing": "ˈpleɪɪŋ", "outside": "ˌaʊtˈsaɪd", "morning": "ˈmɔːnɪŋ", "before": "bɪˈfɔː", "bedtime": "ˈbedtaɪm",
-            "sky": "skaɪ", "clouds": "klaʊdz", "bird": "bɜːd", "ocean": "ˈəʊʃn", "moon": "muːn",
-            "fly": "flaɪ", "high": "haɪ", "sing": "sɪŋ", "nicely": "ˈnaɪsli", "salty": "ˈsɔːlti", "follow": "ˈfɒləʊ",
-            "today": "təˈdeɪ", "school": "skuːl", "played": "pleɪd", "hide": "haɪd", "seek": "siːk",
-            "drew": "druː", "big": "bɪɡ", "picture": "ˈpɪktʃə", "solved": "sɒlvd", "hard": "hɑːd", "math": "mæθ", "maths": "mæθs", "puzzle": "ˈpʌzl",
-            "shared": "ʃeəd", "lunch": "lʌntʃ", "sang": "sæŋ", "song": "sɒŋ", "best": "best", "friend": "frend", "class": "klɑːs", "teacher": "ˈtiːtʃə",
-            "grow": "ɡrəʊ", "up": "ʌp", "become": "bɪˈkʌm", "astronaut": "ˈæstrənɔːt", "doctor": "ˈdɒktə", "great": "ɡreɪt",
-            "scientist": "ˈsaɪəntɪst", "pilot": "ˈpaɪlət", "artist": "ˈɑːtɪst", "explore": "ɪkˈsplɔː", "universe": "ˈjuːnɪvɜːs",
-            "help": "help", "other": "ˈʌðə", "people": "ˈpiːpl", "build": "bɪld", "cool": "kuːl", "robots": "ˈrəʊbɒts", "world": "wɜːld",
-            "promise": "ˈprɒmɪs", "not": "nɒt", "tell": "tel", "anyone": "ˈeniwʌn", "keep": "kiːp", "secret": "ˈsiːkrət",
-            "finish": "ˈfɪnɪʃ", "homework": "ˈhəʊmwɜːk", "early": "ˈɜːli", "share": "ʃeə", "half": "hɑːf",
-            "lend": "lend", "comic": "ˈkɒmɪk", "play": "pleɪ", "give": "ɡɪv", "hand": "hænd", "wait": "weɪt", "five": "faɪv", "minutes": "ˈmɪnɪts",
-            "honest": "ˈɒnɪst", "bit": "bɪt", "stressed": "strest", "out": "aʊt", "excited": "ɪkˈsaɪtɪd", "pretty": "ˈprɪti", "disappointed": "ˌdɪsəˈpɔɪntɪd",
-            "confused": "kənˈfjuːzd", "relieved": "rɪˈliːvd", "exam": "ɪɡˈzæm", "coming": "ˈkʌmɪŋ", "nobody": "ˈnəʊbədi", "actually": "ˈæktʃuəli", "listens": "ˈlɪsnz",
-            "weekend": "ˌwiːkˈend", "day": "deɪ", "off": "ɒf", "everything": "ˈevriθɪŋ", "happened": "ˈhæpənd",
-            "wanna": "ˈwɒnə", "hang": "hæŋ", "downtown": "ˌdaʊnˈtaʊn", "watch": "wɒtʃ", "movie": "ˈmuːvi", "grab": "ɡræb", "tea": "tiː",
-            "video": "ˈvɪdiəʊ", "games": "ɡeɪmz", "together": "təˈɡeðə", "ride": "raɪd", "bikes": "baɪks", "lake": "leɪk",
-            "crew": "kruː", "saturday": "ˈsætədeɪ", "night": "naɪt", "extra": "ˈekstrə", "rain": "reɪn",
-            "stop": "stɒp", "making": "ˈmeɪkɪŋ", "such": "sʌtʃ", "deal": "diːl", "overthinking": "ˌəʊvəˈθɪŋkɪŋ",
-            "worrying": "ˈwʌriɪŋ", "nothing": "ˈnʌθɪŋ", "blaming": "ˈbleɪmɪŋ", "yourself": "jɔːˈself",
-            "no": "nəʊ", "all": "ɔːl", "totally": "ˈtəʊtəli", "normal": "ˈnɔːml", "gonna": "ˈɡɒnə", "pass": "pɑːs", "soon": "suːn", "fault": "fɔːlt",
-            "let": "let", "double-check": "ˌdʌblˈtʃek", "numbers": "ˈnʌmbəz", "quick": "kwɪk", "chat": "tʃæt", "team": "tiːm",
-            "review": "rɪˈvjuː", "week's": "wiːks", "schedule": "ˈʃedjuːl", "go": "ɡəʊ", "through": "θruː", "contract": "ˈkɒntrækt", "carefully": "ˈkeəfəli",
-            "confirm": "kənˈfɜːm", "manager": "ˈmænɪdʒə", "get": "ɡet", "back": "bæk", "away": "əˈweɪ", "send": "send", "email": "ˈiːmeɪl", "update": "ˈʌpdeɪt",
-            "finalize": "ˈfaɪnəlaɪz", "plan": "plæn", "later": "ˈleɪtə", "call": "kɔːl", "afternoon": "ˌɑːftəˈnuːn",
-            "see": "siː", "point": "pɔɪnt", "terms": "tɜːmz", "budget": "ˈbʌdʒɪt", "customer's": "ˈkʌstəməz", "perspective": "pəˈspektɪv",
-            "given": "ˈɡɪvn", "current": "ˈkʌrənt", "timeline": "ˈtaɪmlaɪn", "considering": "kənˈsɪdərɪŋ", "potential": "pəˈtenʃl", "risks": "rɪsks",
-            "need": "niːd", "safer": "ˈseɪfə", "approach": "əˈprəʊtʃ", "might": "maɪt", "pull": "pʊl", "think": "θɪŋk", "prioritize": "praɪˈɒrɪtaɪz", "quality": "ˈkwɒləti", "first": "fɜːst",
-            "run": "rʌn", "small": "smɔːl", "test": "test", "swamped": "swɒmpt", "project": "ˈprɒdʒekt", "lately": "ˈleɪtli",
-            "focusing": "ˈfəʊkəsɪŋ", "improving": "ɪmˈpruːvɪŋ", "communication": "kəˌmjuːnɪˈkeɪʃn", "skills": "skɪlz",
-            "trying": "ˈtraɪɪŋ", "balance": "ˈbæləns", "work": "wɜːk", "life": "laɪf", "looking": "ˈlʊkɪŋ", "direction": "dəˈrekʃn",
-            "time": "taɪm", "organize": "ˈɔːɡənaɪz", "really": "ˈrɪəli", "appreciate": "əˈpriːʃieɪt", "support": "səˈpɔːt",
-            "every": "ˈevri", "single": "ˈsɪŋɡl", "minute": "ˈmɪnɪt", "counts": "kaʊnts",
-            "thank": "θæŋk", "taking": "ˈteɪkɪŋ", "listen": "ˈlɪsn", "stepping": "ˈstepɪŋ", "sharing": "ˈʃeərɪŋ", "valuable": "ˈvæljuəbl", "experience": "ɪkˈspɪəriəns",
-            "always": "ˈɔːlweɪz", "patient": "ˈpeɪʃnt", "means": "miːnz", "lot": "lɒt", "saved": "seɪvd", "ton": "tʌn", "made": "meɪd", "confident": "ˈkɒnfɪdənt", "biggest": "ˈbɪɡɪst", "problem": "ˈprɒbləm",
-            "older": "ˈəʊldə", "more": "mɔː", "realize": "ˈrɪəlaɪz", "matters": "ˈmætəz", "than": "ðæn",
-            "peace": "piːs", "mind": "maɪnd", "family's": "ˈfæməliz", "health": "helθ", "genuine": "ˈdʒenjuɪn", "relationships": "rɪˈleɪʃnʃɪps",
-            "freedom": "ˈfriːdəm", "self-respect": "ˌself rɪˈspekt", "casual": "ˈkæʒuəl", "compliments": "ˈkɒmplɪmənts", "please": "pliːz", "everyone": "ˈevriwʌn",
-            "winning": "ˈwɪnɪŋ", "pointless": "ˈpɔɪntləs", "arguments": "ˈɑːɡjumənts", "flashy": "ˈflæʃi", "appearances": "əˈpɪərənsɪz",
-            "lose": "luːz", "sleep": "sliːp", "over": "ˈəʊvə", "things": "θɪŋz", "beat": "biːt", "waste": "weɪst", "energy": "ˈenədʒi", "stress": "stres",
-            "beyond": "bɪˈjɒnd", "control": "kənˈtrəʊl", "belong": "bɪˈlɒŋ", "past": "pɑːst", "haven't": "ˈhævnt", "even": "ˈiːvn", "change": "tʃeɪndʒ",
-            "tough": "tʌf", "phase": "feɪz", "similar": "ˈsɪmɪlə", "mistakes": "mɪˈsteɪks", "started": "ˈstɑːtɪd", "scratch": "skrætʃ", "stood": "stʊd", "shoes": "ʃuːz",
-            "takes": "teɪks", "heal": "hiːl", "patience": "ˈpeɪʃns", "real": "rɪəl", "key": "kiː", "failure": "ˈfeɪljə", "just": "dʒʌst", "stone": "stəʊn", "stronger": "ˈstrɒŋɡə",
-            "fulfilled": "fʊlˈfɪld", "smile": "smaɪl", "grateful": "ˈɡreɪtfl", "proud": "praʊd", "simple": "ˈsɪmpl", "moments": "ˈməʊmənts", "family": "ˈfæməli",
-            "dared": "deəd", "live": "lɪv", "dreams": "driːmz", "true": "truː", "friends": "frendz", "walked": "wɔːkt", "beside": "bɪˈsaɪd", "never": "ˈnevə", "gave": "ɡeɪv", "halfway": "ˌhɑːfˈweɪ",
-            "passing": "ˈpɑːsɪŋ", "blink": "blɪŋk", "eye": "aɪ", "shorter": "ˈʃɔːtə", "full": "fʊl", "surprises": "səˈpraɪzɪz", "priceless": "ˈpraɪsləs", "gift": "ɡɪft",
-            "while": "waɪl", "still": "stɪl", "love": "lʌv", "forgive": "fəˈɡɪv", "old": "əʊld", "enjoy": "ɪnˈdʒɔɪ", "peaceful": "ˈpiːsfl", "say": "seɪ", "sincerely": "sɪnˈsɪəli",
-            "age": "eɪdʒ", "used": "juːst", "sit": "sɪt", "window": "ˈwɪndəʊ", "hours": "ˈaʊəz", "write": "raɪt", "thoughts": "θɔːts", "notebook": "ˈnəʊtbʊk",
-            "take": "teɪk", "long": "lɒŋ", "walks": "wɔːks", "reflect": "rɪˈflekt", "stories": "ˈstɔːriz", "elders": "ˈeldəz",
-            "felt": "felt", "lost": "lɒst", "rained": "reɪnd", "facing": "ˈfeɪsɪŋ", "decision": "dɪˈsɪʒn", "needed": "ˈniːdɪd", "quietness": "ˈkwaɪətnəs",
-            "excuse": "ɪkˈskjuːz", "boarding": "ˈbɔːdɪŋ", "gate": "ɡeɪt", "flight": "flaɪt", "london": "ˈlʌndən", "delayed": "dɪˈleɪd",
-            "luggage": "ˈlʌɡɪdʒ", "passport": "ˈpɑːspɔːt", "seat": "siːt", "aisle": "aɪl", "check": "tʃek", "hotel": "həʊˈtel",
-            "booked": "bʊkt", "room": "ruːm", "two": "tuː", "nights": "naɪts", "under": "ˈʌndə", "name": "neɪm", "wifi": "ˈwaɪ faɪ", "password": "ˈpɑːswɜːd",
-            "station": "ˈsteɪʃn", "straight": "streɪt", "ahead": "əˈhed", "turn": "tɜːn", "left": "left", "corner": "ˈkɔːnə",
-            "table": "ˈteɪbl", "menu": "ˈmenjuː", "recommend": "ˌrekəˈmend", "order": "ˈɔːdə", "bill": "bɪl", "card": "kɑːd", "cash": "kæʃ",
-            "much": "mʌtʃ", "cost": "kɒst", "try": "traɪ", "fitting": "ˈfɪtɪŋ", "size": "saɪz", "discount": "ˈdɪskaʊnt",
-            "headache": "ˈhedeɪk", "stomach": "ˈstʌmək", "ache": "eɪk", "fever": "ˈfiːvə", "sore": "sɔː", "throat": "θrəʊt", "pharmacy": "ˈfɑːməsi",
-            "medicine": "ˈmedsn", "allergic": "əˈlɜːdʒɪk", "emergency": "ɪˈmɜːdʒənsi", "hospital": "ˈhɒspɪtl", "ambulance": "ˈæmbjələns",
-            "nice": "naɪs", "meet": "miːt", "come": "kʌm", "hobby": "ˈhɒbi", "coffee": "ˈkɒfi", "sometime": "ˈsʌmtaɪm",
-            "lovely": "ˈlʌvli", "catch": "kætʃ", "grab": "ɡræb", "keep": "kiːp", "single": "ˈsɪŋɡl", "desk": "desk", "opens": "ˈəʊpənz",
-            "located": "ləʊˈkeɪtɪd", "pickup": "ˈpɪkʌp", "online": "ˌɒnˈlaɪn", "app": "æp", "look": "lʊk", "cup": "kʌp",
-            "jacket": "ˈdʒækɪt", "credit": "ˈkredɪt", "slightly": "ˈslaɪtli", "larger": "ˈlɑːdʒə", "local": "ˈləʊkl", "specialty": "ˈspeʃəlti",
-            "light": "laɪt", "dish": "dɪʃ", "quiet": "ˈkwaɪət", "shop": "ʃɒp", "meaningful": "ˈmiːnɪŋfl", "souvenir": "ˌsuːvəˈnɪə",
-            "area": "ˈeəriə", "dinner": "ˈdɪnə", "tonight": "təˈnaɪt", "reasonable": "ˈriːznəbl", "price": "praɪs", "bad": "bæd",
-            "cough": "kɒf", "mild": "maɪld", "since": "sɪns", "last": "lɑːst", "painkillers": "ˈpeɪnkɪləz", "find": "faɪnd",
-            "nearest": "ˈnɪərɪst", "rest": "rest", "been": "biːn", "going": "ˈɡəʊɪŋ", "whenever": "wenˈevə", "free": "friː",
-            "usual": "ˈjuːʒuəl", "spot": "spɒt"
+            "water": "ˈwɔːtə", "warm": "wɔːm", "hot": "hɒt", "cold": "kəʊld", "fast": "fɑːst",
+            "door": "dɔː", "here": "hɪə", "after": "ˈɑːftə", "morning": "ˈmɔːnɪŋ", "afternoon": "ˌɑːftəˈnuːn",
+            "class": "klɑːs", "half": "hɑːf", "pass": "pɑːs", "past": "pɑːst", "ask": "ɑːsk", "last": "lɑːst",
+            "start": "stɑːt", "started": "ˈstɑːtɪd", "hard": "hɑːd", "part": "pɑːt", "car": "kɑː",
+            "work": "wɜːk", "world": "wɜːld", "first": "fɜːst", "turn": "tɜːn", "learn": "lɜːn", "heard": "hɜːd",
+            "worth": "wɜːθ", "early": "ˈɜːli", "burn": "bɜːn", "firm": "fɜːm", "serve": "sɜːv",
+            "go": "ɡəʊ", "no": "nəʊ", "so": "səʊ", "home": "həʊm", "know": "nəʊ", "show": "ʃəʊ", "slow": "sləʊ",
+            "open": "ˈəʊpən", "over": "ˈəʊvə", "only": "ˈəʊnli", "moment": "ˈməʊmənt", "notice": "ˈnəʊtɪs",
+            "stop": "stɒp", "got": "ɡɒt", "lot": "lɒt", "not": "nɒt", "want": "wɒnt", "watch": "wɒtʃ",
+            "off": "ɒf", "long": "lɒŋ", "wrong": "rɒŋ", "honest": "ˈɒnɪst", "possible": "ˈpɒsəbl", "proper": "ˈprɒpə",
+            "point": "pɔɪnt", "choice": "tʃɔɪs", "voice": "vɔɪs", "noise": "nɔɪz", "join": "dʒɔɪn", "avoid": "əˈvɔɪd",
+            "time": "taɪm", "line": "laɪn", "mind": "maɪnd", "find": "faɪnd", "kind": "kaɪnd", "try": "traɪ",
+            "way": "weɪ", "say": "seɪ", "make": "meɪk", "take": "teɪk", "place": "pleɪs", "change": "tʃeɪndʒ", "late": "leɪt",
+            "clear": "klɪə", "near": "nɪə", "idea": "aɪˈdɪə", "real": "rɪəl", "really": "ˈrɪəli", "feel": "fiːl", "keep": "kiːp",
+            "need": "niːd", "mean": "miːn", "seem": "siːm", "leave": "liːv", "speak": "spiːk", "deal": "diːl", "reach": "riːtʃ",
+            "get": "ɡet", "set": "set", "let": "let", "met": "met", "yet": "jet", "tell": "tel", "sell": "sel", "help": "help",
+            "check": "tʃek", "next": "nekst", "sense": "sens", "spent": "spent", "step": "step", "rest": "rest", "test": "test",
+            "back": "bæk", "plan": "plæn", "hand": "hænd", "stand": "stænd", "matter": "ˈmætə", "happen": "ˈhæpən", "manage": "ˈmænɪdʒ",
+            "up": "ʌp", "cut": "kʌt", "run": "rʌn", "just": "dʒʌst", "much": "mʌtʃ", "such": "sʌtʃ", "rushes": "ˈrʌʃɪz", "rush": "rʌʃ",
+            "enough": "ɪˈnʌf", "rough": "rʌf", "tough": "tʌf", "touch": "tʌtʃ", "come": "kʌm", "some": "sʌm", "done": "dʌn",
+            "put": "pʊt", "pull": "pʊl", "push": "pʊʃ", "full": "fʊl", "look": "lʊk", "book": "bʊk", "took": "tʊk", "good": "ɡʊd",
+            "new": "njuː", "view": "vjuː", "few": "fjuː", "through": "θruː", "move": "muːv", "prove": "pruːv", "room": "ruːm",
+            "think": "θɪŋk", "thing": "θɪŋ", "things": "θɪŋz", "thank": "θæŋk", "thanks": "θæŋks", "thought": "θɔːt", "three": "θriː",
+            "there": "ðeə", "then": "ðen", "than": "ðæn", "though": "ðəʊ", "other": "ˈʌðə", "another": "əˈnʌðə", "together": "təˈɡeðə",
+            "measure": "ˈmeʒə", "pleasure": "ˈpleʒə", "decision": "dɪˈsɪʒn", "vision": "ˈvɪʒn", "usual": "ˈjuːʒuəl",
+            "schedule": "ˈʃedjuːl", "station": "ˈsteɪʃn", "situation": "ˌsɪtʃuˈeɪʃn", "conversation": "ˌkɒnvəˈseɪʃn",
+            "already": "ɔːlˈredi", "actually": "ˈæktʃuəli", "probably": "ˈprɒbəbli", "perhaps": "pəˈhæps", "instead": "ɪnˈsted",
+            "anyway": "ˈeniweɪ", "somehow": "ˈsʌmhaʊ", "meanwhile": "ˈmiːnwaɪl", "otherwise": "ˈʌðəwaɪz", "straight": "streɪt",
+            "fox": "fɒks", "owl": "aʊl", "deer": "dɪə", "whale": "weɪl", "dolphin": "ˈdɒlfɪn", "sparrow": "ˈspærəʊ",
+            "orchid": "ˈɔːkɪd", "bamboo": "ˌbæmˈbuː", "lavender": "ˈlævəndə", "fern": "fɜːn", "moss": "mɒs", "root": "ruːt",
+            "mango": "ˈmæŋɡəʊ", "fig": "fɪɡ", "pear": "peə", "plum": "plʌm", "spinach": "ˈspɪnɪtʃ", "garlic": "ˈɡɑːlɪk", "ginger": "ˈdʒɪndʒə",
+            "amber": "ˈæmbə", "ivory": "ˈaɪvəri", "charcoal": "ˈtʃɑːkəʊl", "emerald": "ˈemərəld", "linen": "ˈlɪnɪn", "ceramic": "səˈræmɪk",
+            "mist": "mɪst", "drizzle": "ˈdrɪzl", "breeze": "briːz", "thunder": "ˈθʌndə", "tide": "taɪd", "rainbow": "ˈreɪnbəʊ", "frost": "frɒst",
+            "architect": "ˈɑːkɪtekt", "pharmacist": "ˈfɑːməsɪst", "carpenter": "ˈkɑːpəntə", "translator": "trænsˈleɪtə", "baker": "ˈbeɪkə", "curator": "kjʊəˈreɪtə"
         };
 
         function chuanHoaSangIPAUK(ipaRaw) {
@@ -284,317 +305,456 @@
 
         const BO_SINH_CAU = {
             1: {
-                ten: "👶 1. Sơ sinh & Gia đình",
+                ten: "🐾 1. Động vật & Thế giới hoang dã",
                 khung: [
                     {
-                        v: "Con muốn {1} {2}.",
-                        e: "I want to {1} {2}.",
-                        tip: "<b>Khung lõi:</b> <code>I want to + V(nguyên mẫu)</code> (Tôi muốn làm gì). Người Anh thường nối <i>want to</i> đọc nhanh gọn.",
+                        v: "Loài {1} thường {2}, nhất là khi {3}.",
+                        e: "{1} tend to {2}, especially when {3}.",
+                        tip: "<b>Mô tả tập tính động vật:</b> <code>tend to + V</code> (có xu hướng làm gì). Chú ý danh từ số nhiều không cần <i>the</i> khi nói chung.",
                         slots: [
-                            [["uống", "drink"], ["ăn", "eat"], ["chơi với", "play with"], ["nhìn", "look at"], ["cầm", "hold"]],
-                            [["một chút nước ấm", "some warm water"], ["quả táo đỏ này", "this red apple"], ["chú gấu bông kia", "that teddy bear"], ["chiếc xe đồ chơi mới", "the new toy car"], ["một ly sữa", "a glass of milk"]]
+                            [["Cáo đỏ", "Red foxes"], ["Cú tuyết", "Snowy owls"], ["Cá heo mũi chai", "Bottlenose dolphins"], ["Hươu sao", "Spotted deer"], ["Chim sẻ đồng", "Tree sparrows"], ["Rái cá biển", "Sea otters"]],
+                            [["săn mồi lúc chạng vạng", "hunt at dusk"], ["di chuyển thành từng đàn nhỏ", "travel in small groups"], ["giữ khoảng cách rất cảnh giác", "keep a cautious distance"], ["dùng âm thanh để định vị", "rely on sound to navigate"], ["ẩn mình rất khéo trong bụi rậm", "blend effortlessly into the undergrowth"]],
+                            [["thời tiết chuyển lạnh đột ngột", "the weather turns cold suddenly"], ["mùa sinh sản bắt đầu", "the breeding season begins"], ["nguồn thức ăn trở nên khan hiếm", "food becomes scarce"], ["môi trường xung quanh có tiếng động lạ", "there is an unfamiliar sound nearby"]]
                         ]
                     },
                     {
-                        v: "Mẹ ơi, {1} đang ở đâu thế?",
-                        e: "Mummy, where is {1}?",
-                        tip: "<b>Khung hỏi vị trí:</b> <code>Where is + Danh từ số ít?</code> (Ở Anh dùng <i>Mummy</i> /ˈmʌmi/ thay vì <i>Mommy</i> của Mỹ).",
+                        v: "Con {1} nhà mình cứ hễ {2} là lại {3}.",
+                        e: "Whenever {1} {2}, it immediately {3}.",
+                        tip: "<b>Thú cưng & đời sống:</b> <code>Whenever + S + V</code> (Bất cứ khi nào...).",
                         slots: [
-                            [["bố", "daddy"], ["chiếc giày của con", "my shoe"], ["con mèo nhỏ", "the little cat"], ["quả bóng màu xanh", "the blue ball"], ["bình sữa của con", "my bottle"], ["cuốn sách tranh", "the picture book"]]
-                        ]
-                    },
-                    {
-                        v: "Đừng {1}, {2}!",
-                        e: "Don't {1}, {2}!",
-                        tip: "<b>Mệnh lệnh ngăn cản:</b> <code>Don't + V(nguyên mẫu)</code> + Lý do cảnh báo phía sau.",
-                        slots: [
-                            [["chạm vào cái bếp đó", "touch that stove"], ["chạy nhanh quá", "run too fast"], ["khóc nữa mà", "cry anymore"], ["vứt đồ chơi lung tung", "throw toys around"], ["mở cửa ra", "open the door"]],
-                            [["nguy hiểm lắm đấy", "it's very dangerous"], ["con sẽ bị ngã đấy", "you will fall down"], ["mẹ đang ở ngay đây rồi", "mummy is right here"], ["nóng lắm đấy", "it's super hot"]]
-                        ]
-                    },
-                    {
-                        v: "Con cảm thấy hơi {1} {2}.",
-                        e: "I feel a little {1} {2}.",
-                        tip: "<b>Diễn tả cảm giác nhẹ:</b> <code>I feel a little + Tính từ</code> (Tôi cảm thấy hơi...).",
-                        slots: [
-                            [["buồn ngủ", "sleepy"], ["đói bụng", "hungry"], ["lạnh", "cold"], ["mệt", "tired"], ["khát nước", "thirsty"]],
-                            [["rồi", "now"], ["sau khi chơi ngoài sân", "after playing outside"], ["vào buổi sáng", "in the morning"], ["trước giờ đi ngủ", "before bedtime"]]
+                            [["mèo mướp", "our tabby cat"], ["chó săn lông vàng", "our golden retriever"], ["chú vẹt nhỏ", "our little parrot"], ["con thỏ trắng", "our white rabbit"]],
+                            [["nghe tiếng chìa khóa lạch cạch ngoài cửa", "hears keys rattling at the door"], ["thấy tia nắng chiếu ngang sàn nhà", "spots a patch of sunlight on the floor"], ["ngửi thấy mùi đồ ăn mới nấu", "catches the scent of fresh food"], ["được gãi nhẹ sau tai", "gets scratched behind the ears"]],
+                            [["chạy vội ra đón ngay lập tức", "rushes straight over to greet us"], ["cuộn tròn lại lim dim ngủ", "curls up and dozes off"], ["nghiêng đầu nhìn đầy tò mò", "tilts its head in curiosity"], ["quẫy đuôi mừng rỡ không yên", "wags its tail nonstop"]]
                         ]
                     }
                 ]
             },
             2: {
-                ten: "🧒 2. Tuổi thơ & Khám phá",
+                ten: "🌿 2. Thực vật, Hoa cỏ & Rừng cây",
                 khung: [
                     {
-                        v: "Tại sao {1} lại {2} thế nhỉ?",
-                        e: "Why {1} {2}?",
-                        tip: "<b>Câu hỏi Tại sao:</b> <code>Why + Trợ động từ (is/do/does) + S + ...?</code>",
+                        v: "Giống {1} này ưa {2}, nếu {3} thì sẽ phát triển rất bền.",
+                        e: "This kind of {1} thrives in {2}; if {3}, it grows remarkably well.",
+                        tip: "<b>Chăm sóc & sinh trưởng thực vật:</b> <code>thrive in...</code> (phát triển mạnh trong điều kiện...).",
                         slots: [
-                            [["bầu trời", "is the sky"], ["những đám mây", "do the clouds"], ["con chim kia", "does that bird"], ["nước biển", "is the ocean"], ["mặt trăng", "does the moon"]],
-                            [["có màu xanh", "so blue"], ["bay trên cao", "fly so high"], ["hót hay thế", "sing so nicely"], ["mặn thế", "so salty"], ["đi theo tớ", "follow me"]]
+                            [["hoa oải hương", "lavender"], ["lan hồ điệp", "moth orchid"], ["dương xỉ rừng", "woodland fern"], ["trúc quân tử", "slender bamboo"], ["cây hương thảo", "rosemary"], ["rêu nhung", "velvet moss"]],
+                            [["ánh sáng tán xạ nhẹ", "soft indirect light"], ["đất tơi xốp thoát nước tốt", "well-drained soil"], ["không khí mát và ẩm vừa phải", "cool, mildly humid air"], ["bóng râm dưới tán cây lớn", "dappled shade under taller trees"]],
+                            [["bạn không tưới quá đẫm nước", "you avoid overwatering it"], ["được tỉa bớt lá già định kỳ", "old leaves are trimmed regularly"], ["rễ có đủ không gian thoáng khí", "the roots get plenty of air"], ["đặt tránh gió lùa trực tiếp", "it's kept out of direct draughts"]]
                         ]
                     },
                     {
-                        v: "Hôm nay ở trường, tớ đã {1} cùng với {2}.",
-                        e: "Today at school, I {1} with {2}.",
-                        tip: "<b>Kể chuyện quá khứ:</b> Dùng động từ chia thì <b>Quá khứ đơn (V2/ed)</b> + <code>with + ai đó</code>.",
+                        v: "Sau cơn mưa đêm qua, {1} trong vườn {2}.",
+                        e: "After last night's rain, {1} in the garden {2}.",
+                        tip: "<b>Miêu tả thiên nhiên sinh động:</b> Dùng cụm động từ giàu hình ảnh.",
                         slots: [
-                            [["chơi trốn tìm", "played hide and seek"], ["vẽ một bức tranh lớn", "drew a big picture"], ["giải một bài toán khó", "solved a hard maths puzzle"], ["chia sẻ bữa trưa", "shared my lunch"], ["hát một bài hát mới", "sang a new song"]],
-                            [["bạn thân của tớ", "my best friend"], ["cả lớp", "the whole class"], ["cô giáo", "my teacher"], ["mấy bạn ngồi bàn dưới", "the kids behind me"]]
-                        ]
-                    },
-                    {
-                        v: "Lớn lên tớ muốn trở thành {1} để {2}.",
-                        e: "When I grow up, I want to become {1} to {2}.",
-                        tip: "<b>Cụm động từ:</b> <code>grow up</code> (lớn lên) • <code>to + V</code> ở cuối câu nghĩa là <i>'để làm gì'</i>.",
-                        slots: [
-                            [["một phi hành gia", "an astronaut"], ["một bác sĩ giỏi", "a great doctor"], ["một nhà khoa học", "a scientist"], ["một phi công", "a pilot"], ["một họa sĩ", "an artist"]],
-                            [["khám phá vũ trụ", "explore the universe"], ["giúp đỡ mọi người", "help other people"], ["chế tạo robot", "build cool robots"], ["bay vòng quanh thế giới", "fly around the world"]]
-                        ]
-                    },
-                    {
-                        v: "Tớ hứa là sẽ {1} nếu cậu {2}.",
-                        e: "I promise I will {1} if you {2}.",
-                        tip: "<b>Câu điều kiện loại 1 (Lời hứa):</b> <code>I promise I will + V</code> + <code>if you + V(hiện tại đơn)</code>.",
-                        slots: [
-                            [["không nói cho ai biết", "not tell anyone"], ["giữ bí mật này", "keep this secret"], ["làm xong bài tập sớm", "finish my homework early"], ["chia cho cậu một nửa", "share half of it with you"]],
-                            [["cho tớ mượn cuốn truyện đó", "lend me that comic book"], ["chơi cùng tớ", "play with me"], ["giúp tớ một tay", "give me a hand"], ["đợi tớ năm phút", "wait for me five minutes"]]
+                            [["những chồi non mới nhú", "the fresh shoots"], ["giàn hoa giấy", "the bougainvillea trellis"], ["bụi trà xanh", "the green tea bushes"], ["mấy khóm cúc dại", "the clumps of wild daisies"]],
+                            [["trông xanh mướt và tràn đầy sức sống", "look lush and full of life"], ["tỏa mùi hương thảo mộc rất dễ chịu", "give off a crisp herbal scent"], ["đọng đầy những giọt nước long lanh", "are beaded with tiny raindrops"], ["vươn thẳng lên đón nắng sớm", "stretch straight up toward the morning sun"]]
                         ]
                     }
                 ]
             },
             3: {
-                ten: "🎧 3. Thiếu niên & Cảm xúc",
+                ten: "🍎 3. Trái cây, Rau củ & Hương vị",
                 khung: [
                     {
-                        v: "Thật sự thì tớ cảm thấy {1} vì {2}.",
-                        e: "To be honest, I feel {1} because {2}.",
-                        tip: "<b>Cụm mở đầu tự nhiên:</b> <code>To be honest</code> (Thành thật mà nói) giúp câu nói tự nhiên như người bản xứ.",
+                        v: "Mùa này {1} đang vào độ ngon nhất, {2} nên {3}.",
+                        e: "{1} are at their best this season — {2}, so {3}.",
+                        tip: "<b>Ẩm thực & nông sản:</b> <code>at their best</code> (vào độ ngon/đẹp nhất).",
                         slots: [
-                            [["hơi áp lực", "a bit stressed out"], ["cực kỳ hào hứng", "super excited"], ["khá thất vọng", "pretty disappointed"], ["rối bời", "so confused"], ["nhẹ cả người", "relieved"]],
-                            [["bài kiểm tra sắp tới rồi", "the exam is coming up"], ["chẳng ai chịu lắng nghe tớ cả", "nobody actually listens to me"], ["cuối tuần này được nghỉ", "we have a day off this weekend"], ["mọi thứ diễn ra quá nhanh", "everything happened too fast"]]
+                            [["Xoài cát chín cây", "Tree-ripened mangoes"], ["Lê đường giòn", "Crisp sugar pears"], ["Mận hậu đỏ", "Ripe red plums"], ["Sung tươi", "Fresh figs"], ["Cam sành mọng nước", "Juicy king oranges"]],
+                            [["vị ngọt thanh xen chút chua nhẹ", "sweet with a subtle tang"], ["thịt chắc và thơm lừng tự nhiên", "firm-fleshed and naturally fragrant"], ["mọng nước mà không hề bị gắt", "juicy without being overly sweet"], ["vỏ mỏng và tươi mới hái", "thin-skinned and freshly picked"]],
+                            [["ăn trực tiếp hay làm salad đều hợp", "they work brilliantly fresh or in a salad"], ["chỉ cần ướp lạnh nhẹ là tuyệt", "chilling them slightly makes them spot-on"], ["mua về dùng trong vài ngày là vừa đẹp", "buying enough for a few days is ideal"], ["không cần thêm đường vẫn đậm vị", "they need no extra sugar at all"]]
                         ]
                     },
                     {
-                        v: "Cuối tuần này cậu có muốn {1} {2} không?",
-                        e: "Do you want to {1} {2} this weekend?",
-                        tip: "<b>Rủ rê bạn bè:</b> <code>hang out</code> (đi chơi), <code>grab some tea</code> (đi làm ly trà).",
+                        v: "Khi sơ chế {1}, bạn nên {2} để giữ được {3}.",
+                        e: "When preparing {1}, it helps to {2} so you keep {3}.",
+                        tip: "<b>Bếp núc & rau củ:</b> <code>it helps to + V</code> (nên làm gì thì sẽ có ích).",
                         slots: [
-                            [["đi dạo phố", "hang out downtown"], ["xem một bộ phim mới", "watch a new movie"], ["đi uống trà", "grab some tea"], ["chơi game cùng nhau", "play video games together"], ["đạp xe quanh hồ", "ride bikes around the lake"]],
-                            [["với nhóm bọn tớ", "with our crew"], ["vào tối thứ Bảy", "on Saturday night"], ["sau giờ học thêm", "after extra class"], ["nếu trời không mưa", "if it doesn't rain"]]
-                        ]
-                    },
-                    {
-                        v: "Đừng có {1}, chuyện đó {2} mà.",
-                        e: "Stop {1}, that's {2}.",
-                        tip: "<b>Ngữ pháp:</b> <code>Stop + V-ing</code> (Dừng hẳn việc đang làm) • <code>no big deal</code> (chuyện nhỏ ấy mà).",
-                        slots: [
-                            [["làm quá lên như thế", "making such a big deal out of it"], ["nghĩ nhiều nữa", "overthinking it"], ["lo lắng vô ích", "worrying for nothing"], ["trách bản thân mình", "blaming yourself"]],
-                            [["chẳng có gì to tát đâu", "no big deal at all"], ["hoàn toàn bình thường", "totally normal"], ["sẽ qua nhanh thôi", "going to pass soon"], ["không phải lỗi của cậu", "not your fault"]]
+                            [["cải bó xôi", "fresh spinach"], ["măng tây xanh", "green asparagus"], ["gừng non và tỏi", "young ginger and garlic"], ["cà rốt bao tử", "baby carrots"], ["bông cải xanh", "broccoli florets"]],
+                            [["chần nhanh qua nước sôi rồi ngâm đá", "blanch them briefly and plunge into ice water"], ["xào lửa lớn trong thời gian ngắn", "stir-fry them over high heat quickly"], ["thái lát mỏng vừa ăn", "slice them evenly"], ["rửa nhẹ tay dưới vòi nước mát", "rinse them gently under cool water"]],
+                            [["độ giòn tự nhiên và màu xanh tươi", "their natural crunch and bright colour"], ["trọn vẹn hương thơm tinh dầu", "all their aromatic oils"], ["vị ngọt nguyên bản của rau củ", "the natural sweetness of the veg"], ["dưỡng chất mà không bị nhũn", "nutrients without going soggy"]]
                         ]
                     }
                 ]
             },
             4: {
-                ten: "💼 4. Trưởng thành & Công sở",
+                ten: "🎨 4. Màu sắc, Chất liệu & Sự vật",
                 khung: [
                     {
-                        v: "Để tôi {1} rồi {2} nhé.",
-                        e: "Let me {1} and {2}.",
-                        tip: "<b>Giao tiếp công sở:</b> <code>Let me + V1 and V2</code> • <code>get back to you</code> (phản hồi lại cho bạn).",
+                        v: "Tông màu {1} kết hợp với chất liệu {2} tạo cảm giác {3}.",
+                        e: "Pairing {1} with {2} gives the space {3}.",
+                        tip: "<b>Màu sắc & chất liệu:</b> <code>pair A with B</code> (phối A với B).",
                         slots: [
-                            [["kiểm tra lại số liệu", "double-check the numbers"], ["trao đổi nhanh với nhóm", "have a quick chat with the team"], ["xem lại lịch trình tuần này", "review this week's schedule"], ["đọc kỹ bản hợp đồng", "go through the contract carefully"], ["hỏi lại quản lý", "confirm with my manager"]],
-                            [["báo lại cho bạn ngay", "get back to you right away"], ["gửi email cập nhật cho bạn", "send you an email update"], ["chúng ta sẽ chốt phương án sau", "finalize the plan later"], ["gọi lại cho bạn vào chiều nay", "call you back this afternoon"]]
+                            [["vàng hổ phách trầm", "deep amber"], ["xanh ngọc lục bảo", "emerald green"], ["trắng ngà tự nhiên", "warm ivory"], ["xám than chì", "charcoal grey"], ["xanh rêu nhạt", "muted sage"]],
+                            [["vải lanh thô mộc", "raw linen"], ["gốm men rạn thủ công", "handcrafted crackle ceramic"], ["gỗ sồi tự nhiên", "natural oak wood"], ["đồng thau đánh xước", "brushed brass"]],
+                            [["ấm áp và có chiều sâu", "a warm, grounded feel"], ["tĩnh tại nhưng không hề đơn điệu", "a calm yet layered look"], ["thanh lịch và rất dễ chịu cho mắt", "an understated, restful elegance"], ["gần gũi như một góc trú ẩn yên bình", "a cosy, lived-in sense of retreat"]]
                         ]
                     },
                     {
-                        v: "Tôi hoàn toàn hiểu ý bạn, nhưng {1} thì {2}.",
-                        e: "I totally see your point, but {1}, {2}.",
-                        tip: "<b>Phản biện lịch sự:</b> <code>I see your point, but...</code> (Tôi hiểu ý bạn, nhưng...) giúp không làm mất lòng đối tác.",
+                        v: "Chiếc {1} đặt ở góc phòng tuy nhỏ nhưng {2}.",
+                        e: "The {1} in the corner is modest, yet {2}.",
+                        tip: "<b>Sự vật quanh ta:</b> Dùng <code>modest, yet...</code> (khiêm tốn/nhỏ nhắn nhưng lại...).",
                         slots: [
-                            [["xét về mặt ngân sách", "in terms of budget"], ["nhìn từ góc độ khách hàng", "from the customer's perspective"], ["với thời gian hiện tại", "given our current timeline"], ["nếu tính đến rủi ro", "considering the potential risks"]],
-                            [["chúng ta cần một phương án an toàn hơn", "we need a safer approach"], ["điều đó hơi khó khả thi", "that might be hard to pull off"], ["tôi nghĩ nên ưu tiên chất lượng trước", "I think we should prioritize quality first"], ["chúng ta nên thử nghiệm quy mô nhỏ trước", "we should run a small test first"]]
-                        ]
-                    },
-                    {
-                        v: "Cảm ơn bạn đã {1}, điều đó {2}.",
-                        e: "Thank you for {1}, it {2}.",
-                        tip: "<b>Ngữ pháp:</b> Sau giới từ <code>for</code> động từ phải chia đuôi <code>-ing</code> • <code>mean a lot</code> (có ý nghĩa lớn).",
-                        slots: [
-                            [["dành thời gian lắng nghe tôi", "taking the time to listen to me"], ["hỗ trợ tôi đúng lúc", "stepping in to help me"], ["chia sẻ kinh nghiệm quý báu này", "sharing this valuable experience"], ["luôn kiên nhẫn với tôi", "always being patient with me"]],
-                            [["thực sự có ý nghĩa rất lớn với tôi", "really means a lot to me"], ["đã giúp tôi tiết kiệm rất nhiều thời gian", "saved me a ton of time"], ["giúp tôi tự tin hơn hẳn", "made me feel much more confident"], ["giải quyết được vấn đề lớn nhất của tôi", "solved my biggest problem"]]
+                            [["đèn bàn chao vải", "fabric-shaded table lamp"], ["ấm pha trà bằng đất nung", "clay teapot"], ["chiếc đồng hồ cơ cũ", "vintage mechanical clock"], ["kệ sách gỗ ba tầng", "three-tier wooden bookshelf"]],
+                            [["giữ cho cả căn phòng có điểm tựa ấm cúng", "anchors the whole room with warmth"], ["gợi lại rất nhiều ký ức thân quen", "brings back a quiet sense of familiarity"], ["làm dịu ánh sáng gắt mỗi buổi tối", "softens harsh light every evening"], ["luôn hữu dụng mỗi khi cần thư giãn", "proves indispensable whenever you unwind"]]
                         ]
                     }
                 ]
             },
             5: {
-                ten: "🌿 5. Trung niên & Bản lĩnh",
+                ten: "⛈️ 5. Hiện tượng tự nhiên & Thời tiết",
                 khung: [
                     {
-                        v: "Càng trưởng thành, tôi càng nhận ra rằng {1} quan trọng hơn {2}.",
-                        e: "The older I get, the more I realize that {1} matters more than {2}.",
-                        tip: "<b>So sánh kép:</b> <code>The + so sánh hơn..., the + so sánh hơn...</code> (Càng... càng...) • <code>matter</code> (v): quan trọng.",
+                        v: "Trời đang {1}, báo hiệu {2} trong ít giờ tới.",
+                        e: "A {1} is rolling in, signalling {2} over the next few hours.",
+                        tip: "<b>Hiện tượng thời tiết:</b> <code>roll in</code> (kéo đến — dùng cho sương mù, mây giông, thủy triều).",
                         slots: [
-                            [["sự bình yên trong tâm hồn", "peace of mind"], ["sức khỏe của gia đình", "family's health"], ["những mối quan hệ chân thành", "genuine relationships"], ["sự tự do về thời gian", "freedom of time"], ["lòng tự trọng", "self-respect"]],
-                            [["những lời khen xã giao", "casual compliments"], ["việc cố làm hài lòng tất cả mọi người", "trying to please everyone"], ["những cuộc tranh cãi hơn thua", "winning pointless arguments"], ["vẻ bề ngoài hào nhoáng", "flashy appearances"]]
+                            [["lớp sương mù dày đặc", "thick coastal mist"], ["cơn gió mùa se lạnh", "chilly seasonal breeze"], ["đám mây giông xám sẫm", "dark thundercloud"], ["làn mưa bụi lất phất", "fine misty drizzle"]],
+                            [["nhiệt độ sẽ giảm khá nhanh", "a noticeable drop in temperature"], ["một trận mưa rào lớn sắp trút xuống", "a heavy downpour on the way"], ["biển bắt đầu động và thủy triều dâng", "rougher waters and a rising tide"], ["không khí sẽ dịu mát hẳn vào chiều tối", "much cooler air by evening"]]
                         ]
                     },
                     {
-                        v: "Đừng {1} về những điều {2}.",
-                        e: "Don't {1} over things {2}.",
-                        tip: "<b>Thành ngữ hay:</b> <code>beat yourself up</code> (tự dằn vặt mình) • <code>beyond your control</code> (ngoài tầm kiểm soát).",
+                        v: "Khoảnh khắc {1} vừa tan, {2} hiện ra rõ mồn một.",
+                        e: "The moment {1} lifted, {2} came into clear view.",
+                        tip: "<b>Hiện tượng tự nhiên:</b> <code>lift</code> (tan đi — dùng cho sương mù, mây mù).",
                         slots: [
-                            [["mất ngủ", "lose sleep"], ["tự làm khổ mình", "beat yourself up"], ["lãng phí năng lượng", "waste your energy"], ["quá lo âu", "stress yourself out"]],
-                            [["nằm ngoài tầm kiểm soát của bạn", "beyond your control"], ["đã thuộc về quá khứ", "that belong to the past"], ["chưa hề xảy ra", "that haven't even happened"], ["bạn không thể thay đổi được", "you cannot change"]]
-                        ]
-                    },
-                    {
-                        v: "Tôi từng {1}, nên tôi hiểu rằng {2}.",
-                        e: "I've {1}, so I understand that {2}.",
-                        tip: "<b>Hiện tại hoàn thành:</b> <code>I've + V3/ed</code> (Tôi đã từng trải qua...) • <code>stepping stone</code> (bước đệm).",
-                        slots: [
-                            [["trải qua giai đoạn khó khăn đó", "been through that tough phase"], ["mắc sai lầm tương tự", "made similar mistakes"], ["bắt đầu lại từ con số không", "started over from scratch"], ["đứng ở vị trí của bạn", "stood in your shoes"]],
-                            [["mọi thứ đều cần thời gian để chữa lành", "everything takes time to heal"], ["kiên nhẫn chính là chìa khóa", "patience is the real key"], ["thất bại chỉ là một bước đệm", "failure is just a stepping stone"], ["bạn mạnh mẽ hơn bạn nghĩ nhiều", "you are much stronger than you think"]]
+                            [["màn sương sớm trên đồi", "the early morning mist on the hill"], ["cơn mưa giông cuối chiều", "the late afternoon squall"], ["lớp mây mù che đỉnh núi", "the low cloud cover"], ["đợt sương muối ban mai", "the dawn frost"]],
+                            [["một dải cầu vồng đôi vắt ngang trời", "a faint double rainbow arching across the sky"], ["cả thung lũng xanh ngắt phía dưới", "the entire green valley below"], ["đường chân trời sáng rực ánh vàng", "a golden horizon"], ["mặt hồ phẳng lặng như gương", "the glassy surface of the lake"]]
                         ]
                     }
                 ]
             },
             6: {
-                ten: "🍵 6. Tuổi già & Minh triết",
+                ten: "👩‍⚕️ 6. Nghề nghiệp & Vai trò xã hội",
                 khung: [
                     {
-                        v: "Khi nhìn lại cả cuộc đời, điều khiến tôi {1} nhất chính là {2}.",
-                        e: "Looking back on my life, what makes me most {1} is {2}.",
-                        tip: "<b>Mệnh đề danh ngữ:</b> <code>What makes me most + Adj + is...</code> (Điều khiến tôi... nhất chính là...).",
+                        v: "Làm nghề {1} đòi hỏi {2}, nhất là khi {3}.",
+                        e: "Working as {1} calls for {2}, particularly when {3}.",
+                        tip: "<b>Nghề nghiệp & kỹ năng:</b> <code>Working as a/an + Nghề nghiệp + calls for...</code> (Đòi hỏi phẩm chất gì).",
                         slots: [
-                            [["mãn nguyện", "fulfilled"], ["mỉm cười", "smile"], ["biết ơn", "grateful"], ["tự hào", "proud"]],
-                            [["những khoảnh khắc bình dị bên gia đình", "the simple moments with my family"], ["việc tôi đã dám sống trọn vẹn ước mơ", "that I dared to live my dreams"], ["những người bạn tri kỷ đã đồng hành", "the true friends who walked beside me"], ["việc tôi chưa từng bỏ cuộc giữa chừng", "that I never gave up halfway"]]
-                        ]
-                    },
-                    {
-                        v: "Cuộc đời này {1}, vì vậy hãy {2} khi còn có thể.",
-                        e: "Life is {1}, so {2} while you still can.",
-                        tip: "<b>Thành ngữ:</b> <code>in the blink of an eye</code> (trong nháy mắt) • <code>while you still can</code> (khi bạn vẫn còn có thể).",
-                        slots: [
-                            [["trôi qua nhanh như một cái chớp mắt", "passing in the blink of an eye"], ["ngắn ngủi hơn chúng ta tưởng", "shorter than we think"], ["đầy những điều bất ngờ", "full of surprises"], ["một món quà vô giá", "a priceless gift"]],
-                            [["yêu thương những người bên cạnh nhiều hơn", "love the people around you more"], ["tha thứ cho những lỗi lầm cũ", "forgive old mistakes"], ["tận hưởng từng buổi sáng bình yên", "enjoy every peaceful morning"], ["nói lời cảm ơn thật chân thành", "say thank you sincerely"]]
+                            [["kiến trúc sư cảnh quan", "a landscape architect"], ["dược sĩ tư vấn", "a clinical pharmacist"], ["thợ mộc thủ công", "a bespoke carpenter"], ["biên dịch viên hội nghị", "a conference interpreter"], ["giám tuyển triển lãm", "an exhibition curator"], ["thợ làm bánh thủ công", "an artisan baker"]],
+                            [["sự kiên nhẫn và độ chính xác cao", "patience and precision"], ["khả năng lắng nghe thấu đáo", "attentive listening"], ["tư duy linh hoạt dưới áp lực", "adaptability under pressure"], ["con mắt tinh tế đến từng chi tiết nhỏ", "a sharp eye for detail"]],
+                            [["yêu cầu thực tế thay đổi sát giờ", "requirements shift at short notice"], ["phải dung hòa nhiều góc nhìn khác nhau", "balancing competing expectations"], ["điều kiện thi công không như bản vẽ", "on-site conditions differ from the plan"], ["khối lượng công việc tăng đột biến", "the workload spikes unexpectedly"]]
                         ]
                     }
                 ]
             },
             7: {
-                ten: "✈️ 7. Du lịch, Sân bay & Khách sạn",
+                ten: "☕ 7. Giao tiếp hằng ngày & Hỏi thăm",
                 khung: [
                     {
-                        v: "Xin lỗi, cho tôi hỏi {1} {2}?",
-                        e: "Excuse me, could you tell me {1} {2}?",
-                        tip: "<b>Hỏi lịch sự kiểu Anh:</b> <code>Excuse me, could you tell me...</code> (Xin lỗi, bạn có thể chỉ giúp tôi...).",
+                        v: "Lâu rồi không gặp, dạo này {1} thế nào rồi, {2}?",
+                        e: "Long time no see — how has {1} been treating you, {2}?",
+                        tip: "<b>Hỏi thăm tự nhiên kiểu Anh:</b> <code>How has X been treating you?</code> (Dạo này X đối xử với bạn thế nào / suôn sẻ chứ?).",
                         slots: [
-                            [["cổng lên máy bay của chuyến bay đi London", "where the boarding gate for the London flight"], ["quầy làm thủ tục hành lý", "where the luggage check-in desk"], ["ga tàu điện ngầm gần nhất", "where the nearest underground station"], ["bàn lễ tân khách sạn", "where the hotel reception desk"]],
-                            [["ở đâu không ạ", "is"], ["mở cửa lúc mấy giờ không ạ", "opens"], ["nằm ở tầng nào không ạ", "is located"]]
+                            [["công việc mới", "the new role"], ["cuộc sống ở khu mới", "life in the new neighbourhood"], ["nhịp sống mấy tuần nay", "the past few weeks"], ["dự án bạn đang theo", "that project you're on"]],
+                            [["có bận rộn lắm không", "keeping you busy"], ["mọi thứ vào guồng cả chưa", "everything settling in nicely"], ["vẫn giữ được thời gian nghỉ ngơi chứ", "still managing to get some downtime"], ["có gì mới mẻ đáng kể không", "anything exciting on the horizon"]]
                         ]
                     },
                     {
-                        v: "Tôi đã đặt trước {1} {2}.",
-                        e: "I've booked {1} {2}.",
-                        tip: "<b>Đặt phòng/vé:</b> Người Anh dùng động từ <code>book</code> (đặt trước) phổ biến hơn <i>reserve</i>.",
+                        v: "Hôm nay của bạn trôi qua thế nào, {1}?",
+                        e: "How's your day shaping up so far, {1}?",
+                        tip: "<b>Chào hỏi hằng ngày:</b> <code>How's your day shaping up?</code> (Hôm nay của bạn diễn tiến thế nào rồi?).",
                         slots: [
-                            [["một phòng đơn cho hai đêm", "a single room for two nights"], ["một ghế ngồi cạnh cửa sổ", "a window seat"], ["một chuyến xe đón tại sân bay", "an airport pickup"], ["một bàn gần cửa sổ", "a table by the window"]],
-                            [["dưới tên của tôi", "under my name"], ["qua ứng dụng trực tuyến", "through the online app"], ["cho cuối tuần này", "for this weekend"]]
+                            [["có suôn sẻ như dự tính không", "going roughly to plan"], ["đã kịp ăn trưa đàng hoàng chưa", "managed to grab a proper lunch yet"], ["còn nhiều việc dồn buổi chiều không", "much left on your plate this afternoon"], ["tinh thần hôm nay thoải mái chứ", "feeling fairly steady today"]]
                         ]
                     }
                 ]
             },
             8: {
-                ten: "🍽️ 8. Nhà hàng, Cà phê & Mua sắm",
+                ten: "💐 8. Lời khen & Sự ghi nhận tinh tế",
                 khung: [
                     {
-                        v: "Cho tôi {1} {2} được không?",
-                        e: "Could I have {1} {2}, please?",
-                        tip: "<b>Gọi món chuẩn Anh:</b> Người Anh luôn dùng <code>Could I have..., please?</code> thay vì <i>I want...</i>.",
+                        v: "Mình thật sự ấn tượng với cách bạn {1} — {2}.",
+                        e: "I'm genuinely impressed by how you {1} — {2}.",
+                        tip: "<b>Lời khen có chiều sâu:</b> Khen cụ thể hành động/cách xử lý thay vì khen chung chung.",
                         slots: [
-                            [["xem thực đơn", "a look at the menu"], ["một tách trà nóng", "a cup of hot tea"], ["tính tiền", "the bill"], ["thử chiếc áo khoác này", "a try on this jacket"]],
-                            [["với một ít sữa", "with a little milk"], ["bằng thẻ tín dụng", "by credit card"], ["cỡ lớn hơn một chút", "in a slightly larger size"], ["ngay bây giờ", "right now"]]
+                            [["giữ được sự bình tĩnh suốt buổi", "kept your cool throughout"], ["sắp xếp mọi ý tưởng rõ ràng mạch lạc", "laid everything out so clearly"], ["chọn màu sắc và bố cục rất có gu", "put the colours and layout together"], ["lắng nghe mà không hề ngắt lời ai", "listened without cutting anyone off"]],
+                            [["nó tạo cảm giác rất đáng tin cậy", "it brings a real sense of steadiness"], ["ai nghe cũng dễ nắm bắt ngay", "everyone could follow straight away"], ["nhìn rất tinh tế mà không phô trương", "it feels refined without trying too hard"], ["hiếm ai giữ được sự điềm tĩnh đó", "not many people hold that composure"]]
                         ]
                     },
                     {
-                        v: "Bạn có thể gợi ý cho tôi {1} {2} không?",
-                        e: "Could you recommend {1} {2}?",
-                        tip: "<b>Nhờ tư vấn:</b> <code>Could you recommend + Danh từ?</code> (Bạn có thể giới thiệu cho tôi...).",
+                        v: "Hôm nay trông bạn {1}, {2}!",
+                        e: "You look {1} today — {2}!",
+                        tip: "<b>Khen ngợi hằng ngày chuẩn Anh:</b> Người Anh dùng từ <code>sharp</code>, <code>well-rested</code>, <code>radiant</code> rất tự nhiên.",
                         slots: [
-                            [["một món đặc sản địa phương", "a local specialty"], ["một món ăn nhẹ không cay", "a light non-spicy dish"], ["một quán cà phê yên tĩnh", "a quiet coffee shop"], ["một món quà lưu niệm ý nghĩa", "a meaningful souvenir"]],
-                            [["ở khu vực này", "in this area"], ["cho bữa tối nay", "for dinner tonight"], ["với mức giá hợp lý", "at a reasonable price"]]
+                            [["rất có thần sắc và tươi tắn", "so well-rested and bright"], ["cực kỳ chỉn chu và thanh lịch", "really sharp and put-together"], ["nhẹ nhõm và tràn đầy năng lượng", "noticeably lighter and energised"]],
+                            [["chiếc áo đó rất hợp tông da bạn", "that shade suits you brilliantly"], ["chắc hẳn tuần này bạn nghỉ ngơi tốt", "you must have had a good break"], ["năng lượng tích cực lan sang cả mọi người", "the good energy rubs off on everyone"]]
                         ]
                     }
                 ]
             },
             9: {
-                ten: "🏥 9. Sức khỏe, Hiệu thuốc & Khẩn cấp",
+                ten: "🥂 9. Lời chúc & Động viên chân thành",
                 khung: [
                     {
-                        v: "Tôi đang bị {1} và cần {2}.",
-                        e: "I have {1} and I need {2}.",
-                        tip: "<b>Mô tả bệnh:</b> <code>have a headache / a sore throat / a fever</code> • <code>pharmacy</code> (hiệu thuốc).",
+                        v: "Chúc bạn {1}, và mong rằng {2}.",
+                        e: "Wishing you {1}, and I hope {2}.",
+                        tip: "<b>Lời chúc tinh tế:</b> <code>Wishing you + Danh từ</code> + <code>and I hope...</code>.",
                         slots: [
-                            [["đau đầu dữ dội", "a bad headache"], ["đau họng và ho", "a sore throat and a cough"], ["sốt nhẹ từ tối qua", "a mild fever since last night"], ["đau bụng", "a stomach ache"]],
-                            [["một ít thuốc giảm đau", "some painkillers"], ["tìm hiệu thuốc gần nhất", "to find the nearest pharmacy"], ["gặp bác sĩ ngay", "to see a doctor right away"], ["nghỉ ngơi một chút", "to get some rest"]]
+                            [["một khởi đầu mới thật vững vàng", "a steady and rewarding fresh start"], ["một chuyến đi bình an và nhiều trải nghiệm đẹp", "a safe trip full of memorable moments"], ["nhiều sức khỏe và sự bình yên trong tâm trí", "good health and genuine peace of mind"], ["một buổi phỏng vấn thật tự tin và suôn sẻ", "a calm and confident interview"]],
+                            [["mọi nỗ lực của bạn đều được đền đáp xứng đáng", "all your hard work pays off"], ["bạn luôn gặp được những người đồng hành tử tế", "you cross paths with kind, supportive people"], ["mọi việc diễn ra thuận lợi hơn cả mong đợi", "things unfold even better than expected"], ["bạn luôn giữ được niềm vui với điều mình chọn", "you keep finding joy in what you do"]]
+                        ]
+                    },
+                    {
+                        v: "Chúc mừng bạn đã {1} — {2}!",
+                        e: "Warmest congratulations on {1} — {2}!",
+                        tip: "<b>Chúc mừng trang trọng & ấm áp:</b> <code>Congratulations on + V-ing / N</code>.",
+                        slots: [
+                            [["hoàn thành chặng đường đầy thử thách này", "seeing this challenging chapter through"], ["chính thức bước sang vai trò mới", "stepping into your new role"], ["giữ vững phong độ đến phút cuối", "staying consistent right to the finish"]],
+                            [["bạn hoàn toàn xứng đáng với kết quả này", "you've earned every bit of this"], ["thật vui khi chứng kiến bước tiến của bạn", "it's wonderful seeing your progress"], ["cùng nâng ly chúc mừng cột mốc này nhé", "here's to celebrating this milestone"]]
                         ]
                     }
                 ]
             },
             10: {
-                ten: "🤝 10. Kết bạn, Giao tiếp xã hội & Hẹn hò",
+                ten: "🙅 10. Lời từ chối khéo & Giữ ranh giới",
                 khung: [
                     {
-                        v: "Rất vui được gặp bạn, {1} {2}?",
-                        e: "Lovely to meet you, {1} {2}?",
-                        tip: "<b>Bắt chuyện chuẩn Anh:</b> Người Anh hay nói <code>Lovely to meet you</code> (Rất vui được gặp bạn) thay cho <i>Nice to meet you</i>.",
+                        v: "Cảm ơn bạn đã nghĩ tới mình, nhưng {1}, nên {2}.",
+                        e: "Thanks for thinking of me, though {1}, so {2}.",
+                        tip: "<b>Từ chối khéo kiểu Anh:</b> Luôn cảm ơn thiện ý trước, nêu lý do gọn gàng, rồi khước từ nhẹ nhàng.",
                         slots: [
-                            [["bạn đến từ", "where do you come"], ["dạo này công việc của bạn", "how has your work been"], ["cuối tuần vừa rồi của bạn", "how was your weekend"]],
-                            [["đâu thế", "from"], ["dạo gần đây", "going lately"], ["có vui không", ""]]
+                            [["lịch tuần này của mình đã kín mất rồi", "my schedule is pretty packed this week"], ["mình đang muốn tập trung dứt điểm việc hiện tại", "I'm focusing on wrapping up current commitments"], ["mình cần dành cuối tuần này để nghỉ ngơi", "I need to keep this weekend free to recharge"], ["mảng này không phải thế mạnh của mình", "this isn't really my strong suit"]],
+                            [["lần này mình xin phép lỡ hẹn nhé", "I'll have to pass this time"], ["mình sợ không nhận lời trọn vẹn được", "I wouldn't want to half-commit"], ["để dịp khác thong thả hơn mình tham gia nhé", "let's catch the next one when things ease up"], ["bạn thử hỏi người khác phù hợp hơn xem sao", "it might be better to loop someone else in"]]
                         ]
                     },
                     {
-                        v: "Hôm nào rảnh chúng ta {1} {2} nhé!",
-                        e: "Let's {1} {2} sometime!",
-                        tip: "<b>Giữ kết nối:</b> <code>catch up over coffee</code> (gặp nhau hàn huyên bên ly cà phê) • <code>keep in touch</code> (giữ liên lạc).",
+                        v: "Rất tiếc là {1}, mong bạn {2}.",
+                        e: "I'm afraid {1}; I hope {2}.",
+                        tip: "<b>Cụm lịch sự đặc trưng Anh:</b> <code>I'm afraid...</code> không có nghĩa là 'tôi sợ', mà là 'tôi rất tiếc phải báo rằng...'.",
                         slots: [
-                            [["gặp nhau uống cà phê", "catch up over coffee"], ["đi ăn trưa cùng nhau", "grab lunch together"], ["giữ liên lạc thường xuyên", "keep in touch"]],
-                            [["vào tuần tới", "next week"], ["khi bạn rảnh", "whenever you're free"], ["ở quán quen nhé", "at our usual spot"]]
+                            [["mình không thể hỗ trợ phần này ngay lúc này", "I can't take this on right now"], ["mình chưa thể đưa ra câu trả lời chắc chắn hôm nay", "I can't give you a firm answer today"], ["mình phải từ chối đề nghị này", "I have to decline this offer"]],
+                            [["bạn thông cảm cho hoàn cảnh hiện tại", "you understand where I'm coming from"], ["mọi việc bên bạn vẫn tiến triển thuận lợi", "things still go smoothly on your end"], ["chúng ta sẽ có dịp hợp tác vào lúc phù hợp hơn", "we'll find a better time to team up"]]
+                        ]
+                    }
+                ]
+            },
+            11: {
+                ten: "💛 11. Lời quan tâm, Hỏi han & An ủi",
+                khung: [
+                    {
+                        v: "Nhìn bạn có vẻ {1} — {2}, đừng cố gồng một mình nhé.",
+                        e: "You seem {1} — {2}; don't feel you have to carry it all alone.",
+                        tip: "<b>Lời quan tâm tinh tế:</b> <code>carry it all alone</code> (gánh vác mọi thứ một mình).",
+                        slots: [
+                            [["hơi trầm tư mấy hôm nay", "a bit quiet over the past few days"], ["đang chịu khá nhiều áp lực", "under quite a bit of pressure"], ["mệt mỏi hơn mọi khi", "more worn out than usual"]],
+                            [["nếu cần người lắng nghe thì mình luôn sẵn sàng", "if you ever want a sounding board, I'm here"], ["hôm nay cứ gác bớt việc chưa gấp lại", "leave anything non-urgent for tomorrow"], ["cứ cho phép bản thân nghỉ ngơi một chút", "give yourself permission to slow down"]]
+                        ]
+                    },
+                    {
+                        v: "Về đến nhà nhớ {1} cho mình yên tâm nhé, {2}.",
+                        e: "Let me know once you get home safely, {2} — {1}.",
+                        tip: "<b>Quan tâm đời thường:</b> <code>once you get home safely</code> (ngay khi bạn về nhà an toàn).",
+                        slots: [
+                            [["nhắn một tin ngắn thôi cũng được", "even a quick text is plenty"], ["uống cốc nước ấm rồi nghỉ sớm đi", "have some warm water and get an early night"], ["đừng thức khuya làm việc nữa", "don't stay up working late"]],
+                            [["ngoài trời đang mưa gió khá lớn", "it's pouring outside"], ["hôm nay bạn đã chạy suốt cả ngày rồi", "you've been on the go all day"], ["đường tối đi lại cẩn thận nhé", "take care on the road"]]
+                        ]
+                    }
+                ]
+            },
+            12: {
+                ten: "⚡ 12. Phản xạ tức thì & Xoay trục",
+                khung: [
+                    {
+                        v: "Khoan đã, {1} — {2}.",
+                        e: "Hold on, {1} — {2}.",
+                        tip: "<b>Phản xạ ngắt nhịp:</b> <code>Hold on</code> giúp chặn nhịp vội vã tự nhiên hơn <i>Wait a minute</i>.",
+                        slots: [
+                            [["mình vừa nhớ ra một chi tiết", "I've just remembered a detail"], ["ý bạn chưa hẳn sai đâu", "you don't quite have it wrong"], ["chúng ta đang đi lệch hướng", "we're drifting off track"], ["cứ bình tĩnh đã", "let's not jump ahead"]],
+                            [["để mình nói nốt ý này", "let me finish this thought"], ["xem lại đoạn đầu trước đã", "check the opening bit first"], ["đừng chốt vội lúc này", "don't lock anything in yet"], ["để lỡ thì phí lắm", "it'd be a shame to miss it"]]
+                        ]
+                    },
+                    {
+                        v: "Thôi được rồi, {1} — {2} nhé.",
+                        e: "Fair enough, {1} — {2}.",
+                        tip: "<b>Nhượng bộ gọn gàng:</b> <code>Fair enough</code> (Cũng có lý / Được thôi).",
+                        slots: [
+                            [["để hôm khác tính tiếp", "we can pick it up another day"], ["làm theo cách của bạn trước", "let's try it your way first"], ["bỏ qua tiểu tiết này đi", "let's leave that minor detail aside"], ["dừng ở đây cho nhẹ đầu", "call it a day on this"]],
+                            [["nhắn lại cho mình khi rảnh", "drop me a line when you're free"], ["nhớ báo lại kết quả nhé", "let me know how it goes"], ["không cần gấp gáp đâu", "there's no rush at all"], ["cứ giữ nhịp như hiện tại", "keep things steady for now"]]
+                        ]
+                    }
+                ]
+            },
+            13: {
+                ten: "🗣️ 13. Tranh luận, Phản biện & Thương lượng",
+                khung: [
+                    {
+                        v: "Mình sẵn sàng {1}, miễn là {2}.",
+                        e: "I'm happy to {1}, as long as {2}.",
+                        tip: "<b>Thương lượng có điều kiện:</b> <code>as long as</code> (miễn là / với điều kiện là).",
+                        slots: [
+                            [["điều chỉnh lại lịch trình", "adjust the timeline"], ["nhận phần việc bổ sung", "take on the extra piece"], ["thử nghiệm thêm một vòng nữa", "run one more round"], ["trao đổi thẳng thắn hơn", "have a candid conversation"]],
+                            [["mọi người thống nhất rõ ràng", "everyone is on the same page"], ["không bị dồn việc vào phút chót", "it doesn't pile up last minute"], ["có đủ thông tin cần thiết", "we have clear context"], ["quyền quyết định được minh bạch", "ownership is clear"]]
+                        ]
+                    },
+                    {
+                        v: "Vấn đề không nằm ở {1}, mà ở chỗ {2}.",
+                        e: "The issue isn't {1}; it's that {2}.",
+                        tip: "<b>Chỉ đúng điểm nghẽn:</b> Tách bạch bề mặt vấn đề và nguyên nhân cốt lõi.",
+                        slots: [
+                            [["số lượng công việc", "the sheer volume of work"], ["thiếu thiện chí từ hai phía", "a lack of goodwill"], ["chúng ta làm chưa đủ nhanh", "we aren't moving fast enough"], ["công cụ đang dùng", "the tools we use"]],
+                            [["chưa ai nói thẳng điều này", "nobody has said this out loud"], ["giả định ban đầu bị lệch", "the initial assumption was off"], ["ai cũng đang đoán mò", "everyone is guessing"], ["nhịp trao đổi bị đứt quãng", "updates keep slipping through the cracks"]]
+                        ]
+                    }
+                ]
+            },
+            14: {
+                ten: "💼 14. Công sở, Dự án & Vận hành",
+                khung: [
+                    {
+                        v: "Tiến độ hiện tại {1}, nên {2}.",
+                        e: "Where things stand right now, {1}, so {2}.",
+                        tip: "<b>Cập nhật trạng thái thực tế:</b> <code>Where things stand right now</code>.",
+                        slots: [
+                            [["vài đầu mục đang chờ duyệt", "a few items are still pending"], ["khối lượng rà soát nhiều hơn dự kiến", "the review is heavier than expected"], ["nhịp xử lý khá ổn định", "progress is fairly steady"], ["có một vài điểm cần thống nhất lại", "there are a couple of loose ends"]],
+                            [["mình sẽ cập nhật lại vào cuối ngày", "I'll send a fuller update by end of day"], ["chưa cần đổi hướng vội", "there's no need to pivot yet"], ["mình ưu tiên xử lý phần cốt lõi trước", "I'm tackling the core piece first"], ["chúng ta nên rà soát lại trước khi gửi", "we should do a quick check before sending"]]
+                        ]
+                    },
+                    {
+                        v: "Để tránh {1}, {2} trước khi triển khai rộng.",
+                        e: "To avoid {1}, {2} before rolling it out.",
+                        tip: "<b>Phòng ngừa rủi ro vận hành:</b> <code>roll it out</code> (triển khai diện rộng).",
+                        slots: [
+                            [["phải sửa đi sửa lại nhiều lần", "endless back-and-forth edits"], ["nhầm lẫn giữa các bộ phận", "mix-ups across teams"], ["quá tải ngay từ ngày đầu", "bottlenecks on day one"], ["bỏ sót chi tiết quan trọng", "missing key details"]],
+                            [["hãy chạy thử với một nhóm nhỏ", "let's test it on a small scale"], ["hãy làm rõ quy trình bàn giao", "let's map out the handover"], ["hãy chốt mẫu chuẩn trước", "let's agree on a template first"], ["hãy kiểm tra lại dữ liệu gốc", "let's verify the source figures"]]
+                        ]
+                    }
+                ]
+            },
+            15: {
+                ten: "🎭 15. Sáng tạo, Nghệ thuật & Góc nhìn",
+                khung: [
+                    {
+                        v: "Cái hay của đoạn này là {1}, dù {2}.",
+                        e: "What works here is {1}, even though {2}.",
+                        tip: "<b>Nhận xét sáng tạo tinh tế:</b> <code>What works here is...</code>.",
+                        slots: [
+                            [["nhịp điệu rất tự nhiên", "the pacing feels natural"], ["hình ảnh gợi được nhiều liên tưởng", "the imagery leaves room to breathe"], ["không cố giải thích quá nhiều", "it doesn't over-explain"], ["sự đối lập khá thú vị", "the contrast is intriguing"]],
+                            [["vài chỗ còn hơi thô", "some edges are still rough"], ["cách thể hiện hơi kén người xem", "it won't appeal to everyone"], ["mình mới phác bước đầu", "it's still an early sketch"], ["cần thêm thời gian để chín", "it needs more time to settle"]]
+                        ]
+                    }
+                ]
+            },
+            16: {
+                ten: "🧭 16. Sự nghiệp, Lựa chọn & Bước ngoặt",
+                khung: [
+                    {
+                        v: "Điều mình quan tâm nhất lúc này là {1}, chứ không chỉ là {2}.",
+                        e: "What matters most to me right now is {1}, not just {2}.",
+                        tip: "<b>Xác lập ưu tiên nghề nghiệp:</b> <code>not just</code> (chứ không chỉ dừng ở...).",
+                        slots: [
+                            [["môi trường có thể học nghề thật", "a place where I can actually learn the craft"], ["sự ổn định lâu dài", "long-term stability"], ["sự rõ ràng trong vai trò", "clarity in what I'm doing"], ["nhịp sống bền vững", "a sustainable pace"]],
+                            [["mức lương trước mắt", "the headline figure"], ["một chức danh nghe cho oai", "a title that sounds good"], ["làm cho có việc", "staying busy for the sake of it"], ["đáp ứng kỳ vọng bên ngoài", "meeting outside expectations"]]
+                        ]
+                    }
+                ]
+            },
+            17: {
+                ten: "🧳 17. Di chuyển, Lạc đường & Dịch vụ",
+                khung: [
+                    {
+                        v: "Chuyến này {1}, nên mình phải {2}.",
+                        e: "This trip {1}, so I had to {2}.",
+                        tip: "<b>Xử lý tình huống di chuyển:</b> Dùng thì quá khứ khi thuật lại sự việc đã xảy ra.",
+                        slots: [
+                            [["bị đổi giờ vào phút chót", "got pushed back at short notice"], ["gặp trục trặc ngay lúc xuất phát", "hit a snag right at the start"], ["đông hơn dự kiến rất nhiều", "was far busier than expected"], ["bị kẹt xe ngay đoạn nối", "got stuck right at the junction"]],
+                            [["tìm đường vòng khác", "find a detour"], ["sắp xếp lại thứ tự việc cần làm", "reshuffle what came first"], ["báo lại cho bên kia biết", "let the other side know"], ["giữ bình tĩnh và xoay xở tiếp", "keep calm and work around it"]]
+                        ]
+                    },
+                    {
+                        v: "Thực tế thì {1}, khác với {2}.",
+                        e: "In practice, {1}, which is different from {2}.",
+                        tip: "<b>Đối chiếu thực tế dịch vụ:</b> <code>In practice</code> (Trên thực tế vận hành).",
+                        slots: [
+                            [["trải nghiệm sử dụng hơi khác", "the actual experience feels a bit different"], ["chi phí phát sinh chưa được nói rõ", "extra charges weren't made clear"], ["thời gian xử lý lâu hơn dự kiến", "it takes longer than quoted"], ["chất lượng chưa đồng đều", "quality is a bit uneven"]],
+                            [["những gì được giới thiệu ban đầu", "what was pitched upfront"], ["mô tả trên trang thông tin", "the listing description"], ["lần trước mình từng dùng", "what I experienced last time"], ["kỳ vọng ban đầu của mình", "what I had in mind"]]
+                        ]
+                    }
+                ]
+            },
+            18: {
+                ten: "🩺 18. Sức khỏe, Thể trạng & Đời sống",
+                khung: [
+                    {
+                        v: "Mấy hôm nay {1}, nên mình {2}.",
+                        e: "Over the last few days, {1}, so I've been {2}.",
+                        tip: "<b>Hiện tại hoàn thành tiếp diễn:</b> <code>have been + V-ing</code> diễn tả trạng thái kéo dài đến hiện tại.",
+                        slots: [
+                            [["giấc ngủ không được sâu", "my sleep hasn't been great"], ["cơ thể có dấu hiệu xuống sức", "my energy's been dipping"], ["mắt hơi mỏi vì nhìn màn hình nhiều", "my eyes feel strained from screens"], ["thời tiết thay đổi thất thường", "the weather's been up and down"]],
+                            [["cố gắng đi ngủ sớm hơn", "trying to turn in earlier"], ["uống nhiều nước ấm hơn", "drinking more warm water"], ["giảm bớt nhịp làm việc", "easing off the pace"], ["để ý cơ thể kỹ hơn", "paying closer attention to how I feel"]]
+                        ]
+                    },
+                    {
+                        v: "Đôi khi chỉ cần {1} là {2}.",
+                        e: "Sometimes all it takes is {1} to {2}.",
+                        tip: "<b>Cấu trúc gọn gàng:</b> <code>All it takes is + V-ing/N + to + V</code> (Đôi khi chỉ cần... là...).",
+                        slots: [
+                            [["đổi một cung đường quen", "taking a different route"], ["pha một ấm trà nóng", "making a pot of hot tea"], ["tắt bớt thông báo một lúc", "muting notifications for a bit"], ["nói thẳng thay vì giữ trong lòng", "speaking plain instead of holding it in"]],
+                            [["lấy lại sự tỉnh táo", "clear your head"], ["làm dịu không khí", "ease the tension"], ["thấy nhẹ nhõm hơn hẳn", "feel noticeably lighter"], ["nhìn mọi việc rõ hơn", "see things straight"]]
                         ]
                     }
                 ]
             }
         };
 
+        const TONG_SO_CHU_DE = 18;
         let danhSach = [];
         let tenBaiHoc = "";
         let cauHienTai = 0;
         let dapAnChuan = "";
-        let cheDoXem = "de";        
-        let kieuCauHienTai = "";    
-        let cheDoVoHan = false;     
-        let giaiDoanDangChon = 0;   
+        let cheDoXem = "de";
+        let kieuCauHienTai = "";
+        let cheDoVoHan = false;
+        let giaiDoanDangChon = 0;
         let chuoiDung = 0;
-        let daBiSaiCauNay = false;
         let dangChoEnter = false;
         let ipaCache = {};
-        let khoCauSai = [];         
-        let soCauDaLamTrongPhien = 0;
+        let lichSuDaHoc = [];         // Lưu toàn bộ các câu đã hoàn thành
+        let lichSuPhienHienTai = [];  // Lưu các câu trong phiên để bấm nút "Câu trước"
+        let lichSuCauVoHan = [];
 
         // ============================================================
-        // HỆ THỐNG PHÁT ÂM GIỌNG BẢN XỨ ANH-ANH (NEURAL UK + FALLBACK)
-        // Không bị dính giọng tiếng Việt / Huế của iPhone
+        // HỆ THỐNG PHÁT ÂM GIỌNG BẢN XỨ ANH-ANH TỐI ƯU CHO IPHONE (iOS)
+        // Mở khóa âm thanh khi chạm + Neural UK + Từ điển UK + Lọc giọng en-GB
         // ============================================================
         let giongDaChon = localStorage.getItem("luyenGo_voiceEngine_uk") || "neural_sonia";
         let currentAudio = null;
-        let daTuongTacNguoiDung = false;
+        let daMoKhoaAudioIOS = false;
+        let audioCtx = null;
 
-        document.addEventListener("pointerdown", () => { daTuongTacNguoiDung = true; }, { passive: true });
-        document.addEventListener("keydown", () => { daTuongTacNguoiDung = true; }, { passive: true });
+        function moKhoaAmThanhIOS() {
+            if (daMoKhoaAudioIOS) return;
+            daMoKhoaAudioIOS = true;
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass && !audioCtx) {
+                    audioCtx = new AudioContextClass();
+                    if (audioCtx.state === "suspended") {
+                        audioCtx.resume();
+                    }
+                    const buffer = audioCtx.createBuffer(1, 1, 22050);
+                    const source = audioCtx.createBufferSource();
+                    source.buffer = buffer;
+                    source.connect(audioCtx.destination);
+                    source.start(0);
+                }
+            } catch (e) {}
+
+            if ('speechSynthesis' in window) {
+                try {
+                    window.speechSynthesis.getVoices();
+                } catch (e) {}
+            }
+        }
+
+        document.addEventListener("pointerdown", moKhoaAmThanhIOS, { passive: true });
+        document.addEventListener("touchstart", moKhoaAmThanhIOS, { passive: true });
+        document.addEventListener("keydown", moKhoaAmThanhIOS, { passive: true });
 
         function doiGiongDocUK(val) {
+            moKhoaAmThanhIOS();
             giongDaChon = val;
             localStorage.setItem("luyenGo_voiceEngine_uk", val);
             if (dapAnChuan) phatAm(dapAnChuan, false);
@@ -613,7 +773,6 @@
             }
         }
 
-        // Phát bằng giọng AI Neural Anh-Anh tự nhiên (Sonia / Libby / Ryan)
         function phatQuaNeuralUK(text, slow, voiceCode) {
             return new Promise((resolve, reject) => {
                 const voiceMap = {
@@ -626,8 +785,8 @@
                 const url = `https://tts.travisvn.com/v1/audio/speech?text=${encodeURIComponent(text)}&voice=${encodeURIComponent(voiceName)}&rate=${encodeURIComponent(rateParam)}`;
 
                 const audio = new Audio();
-                audio.crossOrigin = "anonymous";
                 audio.preload = "auto";
+                audio.setAttribute("playsinline", "true");
                 audio.src = url;
                 currentAudio = audio;
 
@@ -664,21 +823,47 @@
             });
         }
 
-        // Phát qua từ điển UK chuẩn (type=1 là giọng Anh-Anh bản xứ)
         function phatQuaYoudaoUK(text, slow) {
             return new Promise((resolve, reject) => {
                 const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}&type=1`;
-                const audio = new Audio(url);
+                const audio = new Audio();
+                audio.setAttribute("playsinline", "true");
+                audio.src = url;
                 audio.playbackRate = slow ? 0.8 : 1.0;
                 currentAudio = audio;
 
-                audio.onplaying = () => resolve();
-                audio.onerror = () => reject(new Error("youdao_error"));
-                audio.play().catch(reject);
+                let settled = false;
+                const timer = setTimeout(() => {
+                    if (!settled) {
+                        settled = true;
+                        reject(new Error("youdao_timeout"));
+                    }
+                }, 3500);
+
+                audio.onplaying = () => {
+                    if (!settled) {
+                        settled = true;
+                        clearTimeout(timer);
+                        resolve();
+                    }
+                };
+                audio.onerror = () => {
+                    if (!settled) {
+                        settled = true;
+                        clearTimeout(timer);
+                        reject(new Error("youdao_error"));
+                    }
+                };
+                audio.play().catch(err => {
+                    if (!settled) {
+                        settled = true;
+                        clearTimeout(timer);
+                        reject(err);
+                    }
+                });
             });
         }
 
-        // Dự phòng giọng hệ thống iOS nhưng khóa chặt tiếng Anh (tuyệt đối không lấy giọng tiếng Việt)
         function phatQuaIOSNative(text, slow) {
             if (!('speechSynthesis' in window)) return;
             const synth = window.speechSynthesis;
@@ -687,7 +872,7 @@
             const utter = new SpeechSynthesisUtterance(text);
             const voices = synth.getVoices() || [];
 
-            // Chỉ lấy giọng thuộc nhóm tiếng Anh (en-GB ưu tiên, sau đó en-US/en-AU), loại bỏ hoàn toàn giọng vi-VN
+            // Khóa chặt nhóm giọng tiếng Anh (ưu tiên Anh-Anh en-GB trên iOS như Daniel, Arthur, Martha, Kate, Serena, Oliver, Stephanie)
             const enVoices = voices.filter(v => /^en[-_]/i.test(v.lang));
             const ukVoice =
                 enVoices.find(v => /en[-_]GB/i.test(v.lang) && /daniel|arthur|martha|kate|serena|oliver|stephanie/i.test(v.name)) ||
@@ -702,11 +887,11 @@
                 utter.lang = "en-GB";
             }
 
-            utter.pitch = 1.02;
+            utter.pitch = 1.0;
             utter.rate = slow ? 0.78 : 0.96;
             utter.volume = 1.0;
 
-            setTimeout(() => synth.speak(utter), 50);
+            setTimeout(() => synth.speak(utter), 40);
         }
 
         async function phatAm(text, slow = false) {
@@ -728,7 +913,7 @@
                 return;
             }
 
-            // Mặc định: ưu tiên giọng AI Neural Anh-Anh -> fallback Youdao UK -> fallback iOS English
+            // Ưu tiên AI Neural UK -> Từ điển UK -> Giọng tiếng Anh hệ thống iPhone
             try {
                 await phatQuaNeuralUK(cleanText, slow, giongDaChon);
             } catch (e1) {
@@ -760,12 +945,10 @@
                 let savedStage = localStorage.getItem("luyenGo_giaiDoan_uk");
                 let savedList = localStorage.getItem("luyenGo_danhSach_uk");
                 let savedIndex = localStorage.getItem("luyenGo_cauHienTai_uk");
-                let savedWrong = localStorage.getItem("luyenGo_khoCauSai_uk");
+                let savedHistory = localStorage.getItem("luyenGo_lichSuDaHoc_uk");
 
-                if (savedWrong) {
-                    khoCauSai = JSON.parse(savedWrong) || [];
-                }
-                capNhatSoLuongCauSai();
+                if (savedHistory) lichSuDaHoc = JSON.parse(savedHistory) || [];
+                capNhatSoLuongLichSu();
 
                 if (savedMode === "de" || savedMode === "mau" || savedMode === "nghe") cheDoXem = savedMode;
                 if (savedSubType === "viet" || savedSubType === "ipa") kieuCauHienTai = savedSubType;
@@ -791,81 +974,211 @@
             }
         };
 
-        function capNhatSoLuongCauSai() {
-            let btnTop = document.getElementById("btn-on-tap-sai");
-            let badge = document.getElementById("srs-count-badge");
-            if (btnTop) btnTop.innerText = `🧠 Ôn câu hay sai (${khoCauSai.length})`;
-            if (badge) badge.innerText = `📌 Cần nhớ: ${khoCauSai.length}`;
+        function capNhatSoLuongLichSu() {
+            let btnTop = document.getElementById("btn-lich-su-top");
+            let badge = document.getElementById("hist-count-badge");
+            if (btnTop) btnTop.innerText = `📜 Lịch sử đã học (${lichSuDaHoc.length})`;
+            if (badge) badge.innerText = `📜 Đã học: ${lichSuDaHoc.length}`;
         }
 
-        function luuCauSaiVaoSRS(item) {
+        function luuCauVaoLichSu(item) {
             if (!item || !item.anh) return;
-            let tonTai = khoCauSai.some(x => x.anh.toLowerCase() === item.anh.toLowerCase());
-            if (!tonTai) {
-                khoCauSai.push({
-                    viet: item.viet,
-                    anh: item.anh,
-                    ipa: item.ipa || "",
-                    tip: item.tip || "<b>Mẹo ghi nhớ:</b> Đọc to câu này 2 lần theo giọng Anh-Anh và hình dung tình huống giao tiếp thực tế."
-                });
-                if (khoCauSai.length > 100) khoCauSai.shift();
-                localStorage.setItem("luyenGo_khoCauSai_uk", JSON.stringify(khoCauSai));
-                capNhatSoLuongCauSai();
+            lichSuDaHoc = lichSuDaHoc.filter(x => x.anh.toLowerCase() !== item.anh.toLowerCase());
+            let now = new Date();
+            let timeStr = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + " " + now.toLocaleDateString('vi-VN');
+            lichSuDaHoc.unshift({
+                viet: item.viet,
+                anh: item.anh,
+                ipa: item.ipa || "",
+                tip: item.tip || "",
+                chuDe: tenBaiHoc || "Luyện tập",
+                thoiGian: timeStr
+            });
+            if (lichSuDaHoc.length > 300) lichSuDaHoc.pop();
+            localStorage.setItem("luyenGo_lichSuDaHoc_uk", JSON.stringify(lichSuDaHoc));
+            capNhatSoLuongLichSu();
+        }
+
+        function moModalLichSu() {
+            document.getElementById("o-tim-lich-su").value = "";
+            renderDanhSachLichSu();
+            document.getElementById("modal-lich-su").style.display = "block";
+        }
+
+        function dongModalLichSu() {
+            document.getElementById("modal-lich-su").style.display = "none";
+            if (document.getElementById("hoc-khu-vuc").style.display === "block") {
+                document.getElementById("o-nhap").focus();
             }
         }
 
-        function xoaCauKhoiSRS(anhStr) {
-            khoCauSai = khoCauSai.filter(x => x.anh.toLowerCase() !== anhStr.toLowerCase());
-            localStorage.setItem("luyenGo_khoCauSai_uk", JSON.stringify(khoCauSai));
-            capNhatSoLuongCauSai();
+        function xoaToanBoLichSu() {
+            if (lichSuDaHoc.length === 0) return;
+            if (confirm("Bạn có chắc muốn xóa toàn bộ sổ lịch sử các câu đã học không?")) {
+                lichSuDaHoc = [];
+                localStorage.removeItem("luyenGo_lichSuDaHoc_uk");
+                capNhatSoLuongLichSu();
+                renderDanhSachLichSu();
+            }
+        }
+
+        function renderDanhSachLichSu() {
+            let tuKhoa = (document.getElementById("o-tim-lich-su").value || "").trim().toLowerCase();
+            let container = document.getElementById("danh-sach-lich-su-ui");
+            let loc = lichSuDaHoc.filter(item =>
+                item.anh.toLowerCase().includes(tuKhoa) ||
+                item.viet.toLowerCase().includes(tuKhoa) ||
+                (item.chuDe && item.chuDe.toLowerCase().includes(tuKhoa))
+            );
+
+            document.getElementById("modal-hist-title").innerText = `📜 Sổ tay Lịch sử các câu đã qua (${loc.length} / ${lichSuDaHoc.length} câu)`;
+
+            if (loc.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Chưa có câu nào phù hợp. Hãy hoàn thành các câu luyện tập để hệ thống tự động lưu tại đây!</div>`;
+                return;
+            }
+
+            container.innerHTML = loc.map((item) => {
+                let realIndex = lichSuDaHoc.indexOf(item);
+                return `
+                    <div class="hist-item">
+                        <div class="hist-content">
+                            <div class="hist-en">${escapeHTML(item.anh)}</div>
+                            ${item.ipa ? `<div class="hist-ipa">${escapeHTML(item.ipa)}</div>` : ""}
+                            <div class="hist-vi">🇻🇳 ${escapeHTML(item.viet)}</div>
+                            <div class="hist-meta">🏷️ ${escapeHTML(item.chuDe)} • 🕒 ${escapeHTML(item.thoiGian || "")}</div>
+                        </div>
+                        <div class="hist-actions">
+                            <button class="btn-mini-audio" onclick="phatAmLichSu(${realIndex})">🔊 Nghe</button>
+                            <button class="btn-mini-retry" onclick="luyenLaiTuLichSu(${realIndex})">✍️ Gõ lại</button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function escapeHTML(str) {
+            return String(str || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function phatAmLichSu(idx) {
+            moKhoaAmThanhIOS();
+            if (lichSuDaHoc[idx]) phatAm(lichSuDaHoc[idx].anh, false);
+        }
+
+        function luyenLaiTuLichSu(idx) {
+            moKhoaAmThanhIOS();
+            let item = lichSuDaHoc[idx];
+            if (!item) return;
+            dongModalLichSu();
+
+            if (document.getElementById("hoc-khu-vuc").style.display !== "block") {
+                cheDoVoHan = true;
+                giaiDoanDangChon = 0;
+                tenBaiHoc = "♾️ Vũ trụ Vô hạn (18 Thế giới)";
+                document.getElementById("ten-bai-hoc").innerText = tenBaiHoc;
+                document.getElementById("nhap-du-lieu").style.display = "none";
+                document.getElementById("hoc-khu-vuc").style.display = "block";
+            }
+
+            if (danhSach[cauHienTai]) {
+                lichSuPhienHienTai.push(danhSach[cauHienTai]);
+            }
+
+            let banSao = {
+                viet: item.viet,
+                anh: item.anh,
+                ipa: item.ipa || "",
+                nguon: "vohan",
+                tip: item.tip || "<b>Ôn lại từ lịch sử:</b> Lắng nghe nhịp điệu Anh-Anh và gõ lại thật chuẩn xác."
+            };
+
+            if (cheDoVoHan) {
+                danhSach = [banSao];
+                cauHienTai = 0;
+            } else {
+                danhSach.splice(cauHienTai, 0, banSao);
+            }
+            loadCauHoi(false, true);
+        }
+
+        function quayLaiCauTruoc() {
+            moKhoaAmThanhIOS();
+            if (lichSuPhienHienTai.length === 0) return;
+            let cauTruoc = lichSuPhienHienTai.pop();
+            if (cheDoVoHan) {
+                danhSach = [cauTruoc];
+                cauHienTai = 0;
+            } else if (cauHienTai > 0) {
+                cauHienTai--;
+            } else {
+                danhSach.unshift(cauTruoc);
+                cauHienTai = 0;
+            }
+            loadCauHoi(false, true);
+        }
+
+        function capNhatNutCauTruoc() {
+            let btn = document.getElementById("btn-quay-lai-cau-truoc");
+            if (btn) btn.disabled = (lichSuPhienHienTai.length === 0);
         }
 
         function sinhMotCauNgauNhien(stageId) {
-            if (khoCauSai.length > 0 && soCauDaLamTrongPhien > 0 && soCauDaLamTrongPhien % 4 === 0) {
-                let onLai = khoCauSai[0];
-                return {
-                    viet: onLai.viet,
-                    anh: onLai.anh,
-                    ipa: onLai.ipa,
-                    tip: "🔄 <b>Nhắc lại câu từng nhầm (Spaced Repetition):</b> " + (onLai.tip || ""),
-                    isReview: true
-                };
-            }
-
             let danhSachKhung = [];
-            if (stageId === 0) {
-                for (let id = 1; id <= 10; id++) {
-                    danhSachKhung.push(...BO_SINH_CAU[id].khung);
+            if (stageId === 0 || !BO_SINH_CAU[stageId]) {
+                for (let id = 1; id <= TONG_SO_CHU_DE; id++) {
+                    if (BO_SINH_CAU[id]) danhSachKhung.push(...BO_SINH_CAU[id].khung);
                 }
             } else {
                 danhSachKhung = BO_SINH_CAU[stageId].khung;
             }
 
-            let mau = danhSachKhung[Math.floor(Math.random() * danhSachKhung.length)];
-            let cauViet = mau.v;
-            let cauAnh = mau.e;
+            let cauViet = "";
+            let cauAnh = "";
+            let mauChon = null;
 
-            mau.slots.forEach((slotOptions, index) => {
-                let chon = slotOptions[Math.floor(Math.random() * slotOptions.length)];
-                let placeholder = `{${index + 1}}`;
-                cauViet = cauViet.replace(placeholder, chon[0]);
-                cauAnh = cauAnh.replace(placeholder, chon[1]);
-            });
+            for (let attempt = 0; attempt < 30; attempt++) {
+                mauChon = danhSachKhung[Math.floor(Math.random() * danhSachKhung.length)];
+                cauViet = mauChon.v;
+                cauAnh = mauChon.e;
+
+                mauChon.slots.forEach((slotOptions, index) => {
+                    let chon = slotOptions[Math.floor(Math.random() * slotOptions.length)];
+                    let placeholder = `{${index + 1}}`;
+                    cauViet = cauViet.replace(placeholder, chon[0]);
+                    cauAnh = cauAnh.replace(placeholder, chon[1]);
+                });
+
+                cauViet = cauViet.replace(/\s+([.,!?;:])/g, "$1").replace(/\s+/g, " ").trim();
+                cauAnh = cauAnh.replace(/\s+([.,!?;:])/g, "$1").replace(/\s+/g, " ").trim();
+
+                if (!lichSuCauVoHan.includes(cauAnh.toLowerCase())) {
+                    break;
+                }
+            }
+
+            lichSuCauVoHan.push(cauAnh.toLowerCase());
+            if (lichSuCauVoHan.length > 50) lichSuCauVoHan.shift();
 
             return {
-                viet: cauViet.replace(/\s+\?/g, "?").trim(),
-                anh: cauAnh.replace(/\s+\?/g, "?").trim(),
+                viet: cauViet,
+                anh: cauAnh,
                 ipa: "",
-                tip: mau.tip || ""
+                nguon: "vohan",
+                tip: (mauChon && mauChon.tip) || ""
             };
         }
 
         function batDauVoHan(stageId) {
-            daTuongTacNguoiDung = true;
+            moKhoaAmThanhIOS();
             cheDoVoHan = true;
             giaiDoanDangChon = stageId;
-            soCauDaLamTrongPhien = 0;
-            tenBaiHoc = (stageId === 0) ? "♾️ Vũ trụ Vô hạn (10 Chủ đề)" : BO_SINH_CAU[stageId].ten;
+            lichSuPhienHienTai = [];
+            tenBaiHoc = (stageId === 0 || !BO_SINH_CAU[stageId]) ? "♾️ Vũ trụ Vô hạn (18 Thế giới)" : BO_SINH_CAU[stageId].ten;
             
             danhSach = [sinhMotCauNgauNhien(stageId)];
             cauHienTai = 0;
@@ -879,29 +1192,8 @@
             loadCauHoi(false, true);
         }
 
-        function batDauOnTapCauSai() {
-            daTuongTacNguoiDung = true;
-            if (khoCauSai.length === 0) {
-                alert("🎉 Tuyệt vời! Sổ tay Cần nhớ của bạn đang trống. Hãy luyện tập để hệ thống tự ghi nhận những câu bạn dễ nhầm nhé!");
-                return;
-            }
-            cheDoVoHan = false;
-            danhSach = [...khoCauSai];
-            xaoTron(danhSach);
-            tenBaiHoc = "🧠 Ôn tập câu hay sai (" + danhSach.length + " câu)";
-            cauHienTai = 0;
-            chuoiDung = 0;
-            cheDoXem = "de";
-            capNhatNutCheDo();
-
-            document.getElementById("ten-bai-hoc").innerText = tenBaiHoc;
-            document.getElementById("nhap-du-lieu").style.display = "none";
-            document.getElementById("hoc-khu-vuc").style.display = "block";
-            loadCauHoi(false, true);
-        }
-
         function batDauTuExcel() {
-            daTuongTacNguoiDung = true;
+            moKhoaAmThanhIOS();
             let text = document.getElementById("du-lieu-excel").value.trim();
             if(!text) { alert("Vui lòng dán dữ liệu từ Excel vào!"); return; }
             
@@ -914,6 +1206,7 @@
                         viet: parts[0].trim(), 
                         anh: parts[1].trim(),
                         ipa: parts[2] ? parts[2].trim() : "",
+                        nguon: "excel",
                         tip: "<b>Mẹo ghi nhớ:</b> Nghe kỹ âm điệu Anh-Anh, chia câu thành các cụm ngắn để nhớ nguyên cụm."
                     });
                 }
@@ -925,6 +1218,7 @@
             }
 
             cheDoVoHan = false;
+            lichSuPhienHienTai = [];
             tenBaiHoc = "📝 Bài tự nhập (" + danhSach.length + " câu)";
             xaoTron(danhSach);
             cauHienTai = 0;
@@ -950,7 +1244,8 @@
         }
 
         function nhapLaiTuDau() {
-            if (confirm("Bạn muốn quay lại màn hình chọn chủ đề / nhập bài mới?")) {
+            if (confirm("Bạn muốn quay lại màn hình chọn thế giới / nhập bài mới?")) {
+                dungTatCaAmThanh();
                 localStorage.removeItem("luyenGo_danhSach_uk");
                 localStorage.removeItem("luyenGo_tenBaiHoc_uk");
                 localStorage.removeItem("luyenGo_cauHienTai_uk");
@@ -963,6 +1258,7 @@
         }
 
         function doiCheDo(mode) {
+            moKhoaAmThanhIOS();
             if (cheDoXem === mode || dangChoEnter) return;
             cheDoXem = mode;
             capNhatNutCheDo();
@@ -983,7 +1279,7 @@
 
         function chuanHoaSoSanh(str) {
             return str
-                .replace(/’/g, "'")
+                .replace(/[’‘]/g, "'")
                 .replace(/[.,!?;:"“”()\-–—…']/g, "")
                 .replace(/\s+/g, " ")
                 .toLowerCase();
@@ -1031,14 +1327,24 @@
             let goiYBox = document.getElementById("goi-y-box");
             let nhanEl = document.getElementById("nhan-kieu-bai");
             let memBox = document.getElementById("memory-tip-box");
+            let ipaFixedEl = document.getElementById("ipa-fixed-text");
             let input = document.getElementById("o-nhap");
 
             memBox.innerHTML = item.tip || "<b>Mẹo ghi nhớ:</b> Đọc nhẩm theo nhịp điệu Anh-Anh để ghi nhớ nguyên cụm từ.";
 
-            if (!item.ipa) {
+            if (item.ipa) {
+                ipaFixedEl.innerText = item.ipa;
+            } else {
+                ipaFixedEl.innerText = "Đang tạo phiên âm IPA Anh-Anh...";
                 layIPACaCauUK(dapAnChuan, "").then(res => {
                     item.ipa = res;
                     luuTienDo();
+                    if (danhSach[cauHienTai]?.anh === dapAnChuan) {
+                        ipaFixedEl.innerText = res;
+                        if (!dangChoEnter && cheDoXem === "de" && kieuCauHienTai === "ipa") {
+                            cauHoiEl.innerHTML = `<span style="color:#581c87;">${res}</span>`;
+                        }
+                    }
                 });
             }
 
@@ -1046,9 +1352,7 @@
                 nhanEl.innerText = "⚡ CHẾ ĐỘ: GÕ CHÉP MẪU";
                 cauHoiEl.innerText = item.viet;
                 goiYBox.style.display = "block";
-                let ipaHienThi = item.ipa || await layIPACaCauUK(dapAnChuan, "");
-                item.ipa = ipaHienThi;
-                goiYBox.innerHTML = `<div style="color:#0056b3; font-weight:bold;">${dapAnChuan}</div><div class="ipa-box" style="font-size:18px; margin-top:4px;">${ipaHienThi}</div>`;
+                goiYBox.innerHTML = `<div style="color:#0056b3; font-weight:bold;">${dapAnChuan}</div>`;
                 input.placeholder = "Gõ lại câu mẫu bên trên (không cần dấu câu)...";
                 return;
             }
@@ -1058,7 +1362,7 @@
                 cauHoiEl.innerHTML = `<span style="color:#0d9488;">🔊 Hãy lắng nghe giọng Anh-Anh và gõ lại những gì bạn nghe được...</span>`;
                 goiYBox.style.display = "block";
                 goiYBox.innerHTML = `<span style="font-size:15.5px; color:#555;">💡 Gợi ý nghĩa tiếng Việt: <b>${item.viet}</b></span>`;
-                input.placeholder = "Nghe và gõ lại câu tiếng Anh (Bấm Ctrl + Space để nghe lại)...";
+                input.placeholder = "Nghe và gõ lại câu tiếng Anh...";
                 return;
             }
 
@@ -1075,16 +1379,9 @@
                 input.placeholder = "Đọc phiên âm IPA Anh-Anh ở trên và gõ lại câu tiếng Anh...";
 
                 if (item.ipa) {
-                    cauHoiEl.innerHTML = `<span class="ipa-box">${item.ipa}</span>`;
+                    cauHoiEl.innerHTML = `<span style="color:#581c87;">${item.ipa}</span>`;
                 } else {
                     cauHoiEl.innerText = "Đang tạo phiên âm IPA Anh-Anh...";
-                    let ipaText = await layIPACaCauUK(dapAnChuan, "");
-                    item.ipa = ipaText;
-                    luuTienDo();
-
-                    if (!dangChoEnter && cheDoXem === "de" && kieuCauHienTai === "ipa" && danhSach[cauHienTai]?.anh === dapAnChuan) {
-                        cauHoiEl.innerHTML = `<span class="ipa-box">${ipaText}</span>`;
-                    }
                 }
             }
         }
@@ -1094,11 +1391,7 @@
             dangChoEnter = true;
 
             let item = danhSach[cauHienTai];
-            soCauDaLamTrongPhien++;
-            if (!daBiSaiCauNay) {
-                chuoiDung++;
-                xoaCauKhoiSRS(dapAnChuan);
-            }
+            chuoiDung++;
             if (cheDoVoHan) {
                 let tong = parseInt(localStorage.getItem("luyenGo_tongDaLuyen_uk") || "0", 10) + 1;
                 localStorage.setItem("luyenGo_tongDaLuyen_uk", tong);
@@ -1110,6 +1403,10 @@
 
             let ipaDayDu = item.ipa || await layIPACaCauUK(dapAnChuan, "");
             item.ipa = ipaDayDu;
+            document.getElementById("ipa-fixed-text").innerText = ipaDayDu;
+
+            // Lưu câu vừa hoàn thành vào Sổ Lịch sử
+            luuCauVaoLichSu(item);
 
             let box = document.getElementById("box-cau-hoi");
             box.classList.add("hoan-tat");
@@ -1119,7 +1416,6 @@
             let goiYBox = document.getElementById("goi-y-box");
             goiYBox.style.display = "block";
             goiYBox.innerHTML = 
-                `<div class="ipa-box" style="margin-bottom:6px;">${ipaDayDu}</div>` +
                 `<div>🇻🇳 <b>Nghĩa tiếng Việt:</b> <span style="color:#b45309; font-weight:bold;">${item.viet}</span></div>`;
 
             let input = document.getElementById("o-nhap");
@@ -1129,8 +1425,15 @@
         }
 
         function chuyenSangCauTiepTheo() {
+            moKhoaAmThanhIOS();
             if (!dangChoEnter) return;
             dangChoEnter = false;
+
+            if (danhSach[cauHienTai]) {
+                lichSuPhienHienTai.push(danhSach[cauHienTai]);
+                if (lichSuPhienHienTai.length > 50) lichSuPhienHienTai.shift();
+            }
+
             document.getElementById("banner-enter").style.display = "none";
             document.getElementById("box-cau-hoi").classList.remove("hoan-tat");
             let input = document.getElementById("o-nhap");
@@ -1151,6 +1454,7 @@
             document.getElementById("banner-enter").style.display = "none";
             document.getElementById("box-cau-hoi").classList.remove("hoan-tat");
             document.getElementById("o-nhap").readOnly = false;
+            capNhatNutCauTruoc();
 
             if (cheDoVoHan) {
                 if (cauHienTai >= danhSach.length) {
@@ -1176,7 +1480,6 @@
                 document.getElementById("tien-do").innerText = "Câu " + (cauHienTai + 1) + " / " + danhSach.length;
             }
             
-            daBiSaiCauNay = false;
             dapAnChuan = danhSach[cauHienTai].anh;
             document.getElementById("streak-text").innerText = "🔥 Chuỗi đúng: " + chuoiDung;
 
@@ -1187,7 +1490,7 @@
             luuTienDo();
             hienThiCauHoiHienTai();
             
-            if (tuDongDoc && daTuongTacNguoiDung) {
+            if (tuDongDoc && daMoKhoaAudioIOS) {
                 phatAm(dapAnChuan, false);
             }
 
@@ -1198,6 +1501,10 @@
         }
 
         document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape" && document.getElementById("modal-lich-su").style.display === "block") {
+                dongModalLichSu();
+                return;
+            }
             if (e.key === "Enter" && dangChoEnter) {
                 e.preventDefault();
                 chuyenSangCauTiepTheo();
@@ -1232,10 +1539,6 @@
                 }
             } else {
                 this.className = "sai"; 
-                if (!daBiSaiCauNay) {
-                    luuCauSaiVaoSRS(danhSach[cauHienTai]);
-                }
-                daBiSaiCauNay = true;
                 chuoiDung = 0;
                 document.getElementById("streak-text").innerText = "🔥 Chuỗi đúng: 0";
             }
