@@ -52,7 +52,8 @@
         
         .voice-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .uk-tag { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: bold; padding: 3px 9px; border-radius: 6px; }
-        #chon-giong-uk { padding: 5px 8px; font-size: 12.5px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; color: #1e293b; max-width: 235px; font-weight: 600; }
+        #chon-giong-uk { padding: 5px 8px; font-size: 12.5px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; color: #1e293b; max-width: 245px; font-weight: 600; }
+        #audio-status { font-size: 11.5px; color: #0284c7; font-weight: 600; }
 
         .dong-viet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
         #cau-hoi { font-size: 22px; font-weight: bold; color: #0056b3; margin: 0; line-height: 1.4; flex: 1; min-width: 210px; }
@@ -86,7 +87,6 @@
 
         .meo-phim { margin-top: 12px; font-size: 12.5px; color: #666; text-align: right; }
 
-        /* MODAL LỊCH SỬ CÂU ĐÃ HỌC */
         .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 9999; padding: 16px 10px; overflow-y: auto; }
         .modal-box { max-width: 860px; margin: 12px auto; background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.25); }
         .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
@@ -112,7 +112,7 @@
 <body>
     <div class="container">
         <h2>🇬🇧 Vũ Trụ Giao Tiếp Tiếng Anh Vô Hạn (18 Thế Giới Toàn Diện) 🇬🇧</h2>
-        <div class="sub-title">Từ vựng & Giao tiếp bao la đời sống • Chuẩn IPA Anh-Anh (UK) • Tối ưu giọng đọc trên iPhone</div>
+        <div class="sub-title">Từ vựng & Giao tiếp bao la đời sống • Chuẩn IPA Anh-Anh (UK) • Âm thanh trong rõ trên iPhone & Máy tính</div>
         
         <div id="nhap-du-lieu">
             <h3>1. Chọn thế giới từ vựng & tình huống giao tiếp (18 mảng bao quát đời sống thật):</h3>
@@ -173,13 +173,13 @@
                     <span class="nhan-thu-thach" id="nhan-kieu-bai"></span>
                     <div class="voice-bar">
                         <span class="uk-tag">🇬🇧 Chuẩn IPA Anh–Anh (UK)</span>
-                        <select id="chon-giong-uk" onchange="doiGiongDocUK(this.value)" title="Chọn giọng đọc tiếng Anh chuẩn cho iPhone & Máy tính">
-                            <option value="neural_sonia">🇬🇧 Sonia (AI Nữ Anh-Anh tự nhiên)</option>
-                            <option value="neural_libby">🇬🇧 Libby (AI Nữ Anh-Anh trẻ)</option>
-                            <option value="neural_ryan">🇬🇧 Ryan (AI Nam Anh-Anh chuẩn)</option>
-                            <option value="youdao_uk">🇬🇧 Từ điển UK (Giọng thu âm)</option>
-                            <option value="ios_native">📱 Giọng hệ thống iPhone</option>
+                        <select id="chon-giong-uk" onchange="doiGiongDocUK(this.value)" title="Chọn nguồn giọng đọc trong rõ">
+                            <option value="auto_clear">🇬🇧 Giọng Anh-Anh Trong Rõ (Tự động tối ưu)</option>
+                            <option value="google_uk">🇬🇧 Google UK (Nữ chuẩn rõ từng chữ)</option>
+                            <option value="youdao_uk">🇬🇧 Từ điển UK (Thu âm tự nhiên)</option>
+                            <option value="ios_native">📱 Giọng hệ thống máy (Offline)</option>
                         </select>
+                        <span id="audio-status"></span>
                     </div>
                 </div>
                 <div class="dong-viet">
@@ -229,6 +229,9 @@
     </div>
 
     <script>
+        // ============================================================
+        // TỪ ĐIỂN PHIÊN ÂM IPA ANH-ANH (UK - RP) ĐẦY ĐỦ 100% TỪ VỰNG
+        // ============================================================
         const TU_DIEN_IPA_UK = {
             "i": "aɪ", "you": "juː", "we": "wiː", "they": "ðeɪ", "he": "hiː", "she": "ʃiː", "it": "ɪt",
             "me": "miː", "us": "ʌs", "them": "ðem", "him": "hɪm", "her": "hɜː",
@@ -283,23 +286,127 @@
             "focus": "ˈfəʊkəs", "focusing": "ˈfəʊkəsɪŋ", "wrap": "ræp", "wrapping": "ˈræpɪŋ",
             "current": "ˈkʌrənt", "commitment": "kəˈmɪtmənt", "commitments": "kəˈmɪtmənts",
             "better": "ˈbetə", "loop": "luːp", "someone": "ˈsʌmwʌn", "else": "els", "everyone": "ˈevriwʌn", "nobody": "ˈnəʊbədi",
-            "fox": "fɒks", "foxes": "ˈfɒksɪz", "owl": "aʊl", "owls": "aʊlz", "deer": "dɪə", "whale": "weɪl", "dolphin": "ˈdɒlfɪn", "dolphins": "ˈdɒlfɪnz",
-            "sparrow": "ˈspærəʊ", "sparrows": "ˈspærəʊz", "otter": "ˈɒtə", "otters": "ˈɒtəz", "tabby": "ˈtæbi", "retriever": "rɪˈtriːvə", "parrot": "ˈpærət", "rabbit": "ˈræbɪt",
-            "orchid": "ˈɔːkɪd", "bamboo": "ˌbæmˈbuː", "lavender": "ˈlævəndə", "fern": "fɜːn", "moss": "mɒs", "root": "ruːt", "roots": "ruːts",
-            "rosemary": "ˈrəʊzməri", "bougainvillea": "ˌbuːɡənˈvɪliə", "trellis": "ˈtrelɪs", "daisies": "ˈdeɪzɪz", "shoots": "ʃuːts", "bushes": "ˈbʊʃɪz",
-            "mango": "ˈmæŋɡəʊ", "mangoes": "ˈmæŋɡəʊz", "fig": "fɪɡ", "figs": "fɪɡz", "pear": "peə", "pears": "peəz",
-            "plum": "plʌm", "plums": "plʌmz", "spinach": "ˈspɪnɪtʃ", "garlic": "ˈɡɑːlɪk", "ginger": "ˈdʒɪndʒə",
-            "asparagus": "əˈspærəɡəs", "carrots": "ˈkærəts", "broccoli": "ˈbrɒkəli", "florets": "ˈflɒrɪts", "veg": "vedʒ",
-            "amber": "ˈæmbə", "ivory": "ˈaɪvəri", "charcoal": "ˈtʃɑːkəʊl", "emerald": "ˈemərəld", "linen": "ˈlɪnɪn", "ceramic": "səˈræmɪk",
-            "cosy": "ˈkəʊzi", "teapot": "ˈtiːpɒt", "bookshelf": "ˈbʊkʃelf", "draughts": "drɑːfts",
-            "mist": "mɪst", "drizzle": "ˈdrɪzl", "breeze": "briːz", "thunder": "ˈθʌndə", "thundercloud": "ˈθʌndəklaʊd",
-            "tide": "taɪd", "rainbow": "ˈreɪnbəʊ", "frost": "frɒst", "downpour": "ˈdaʊnpɔː", "squall": "skwɔːl", "horizon": "həˈraɪzn",
-            "architect": "ˈɑːkɪtekt", "pharmacist": "ˈfɑːməsɪst", "carpenter": "ˈkɑːpəntə", "translator": "trænsˈleɪtə",
-            "interpreter": "ɪnˈtɜːprɪtə", "baker": "ˈbeɪkə", "curator": "kjʊəˈreɪtə", "artisan": "ˌɑːtɪˈzæn",
-            "neighbourhood": "ˈneɪbəhʊd", "downtime": "ˈdaʊntaɪm", "composure": "kəmˈpəʊʒə", "energised": "ˈenədʒaɪzd",
-            "milestone": "ˈmaɪlstəʊn", "congratulations": "kənˌɡrætʃuˈleɪʃnz", "pouring": "ˈpɔːrɪŋ",
-            "detour": "ˈdiːtʊə", "junction": "ˈdʒʌŋkʃn", "handover": "ˈhændəʊvə", "bottlenecks": "ˈbɒtlneks",
-            "pacing": "ˈpeɪsɪŋ", "imagery": "ˈɪmɪdʒəri", "rough": "rʌf", "edges": "ˈedʒɪz", "dipping": "ˈdɪpɪŋ", "strained": "streɪnd"
+            "red": "red", "fox": "fɒks", "foxes": "ˈfɒksɪz", "snowy": "ˈsnəʊi", "owl": "aʊl", "owls": "aʊlz",
+            "bottlenose": "ˈbɒtlnəʊz", "dolphin": "ˈdɒlfɪn", "dolphins": "ˈdɒlfɪnz", "spotted": "ˈspɒtɪd", "deer": "dɪə",
+            "tree": "triː", "sparrow": "ˈspærəʊ", "sparrows": "ˈspærəʊz", "sea": "siː", "otter": "ˈɒtə", "otters": "ˈɒtəz",
+            "tend": "tend", "hunt": "hʌnt", "dusk": "dʌsk", "travel": "ˈtrævl", "small": "smɔːl", "groups": "ɡruːps",
+            "cautious": "ˈkɔːʃəs", "distance": "ˈdɪstəns", "rely": "rɪˈlaɪ", "sound": "saʊnd", "navigate": "ˈnævɪɡeɪt",
+            "blend": "blend", "effortlessly": "ˈefətləsli", "undergrowth": "ˈʌndəɡrəʊθ", "especially": "ɪˈspeʃəli",
+            "weather": "ˈweðə", "turns": "tɜːnz", "suddenly": "ˈsʌdənli", "breeding": "ˈbriːdɪŋ", "season": "ˈsiːzn",
+            "begins": "bɪˈɡɪnz", "food": "fuːd", "becomes": "bɪˈkʌmz", "scarce": "skeəs", "unfamiliar": "ˌʌnfəˈmɪliə",
+            "tabby": "ˈtæbi", "cat": "kæt", "golden": "ˈɡəʊldən", "retriever": "rɪˈtriːvə", "little": "ˈlɪtl", "parrot": "ˈpærət",
+            "white": "waɪt", "rabbit": "ˈræbɪt", "hears": "hɪəz", "keys": "kiːz", "rattling": "ˈrætlɪŋ",
+            "spots": "spɒts", "patch": "pætʃ", "sunlight": "ˈsʌnlaɪt", "floor": "flɔː", "catches": "ˈkætʃɪz",
+            "scent": "sent", "fresh": "freʃ", "scratched": "skrætʃt", "behind": "bɪˈhaɪnd", "ears": "ɪəz",
+            "immediately": "ɪˈmiːdiətli", "rushes": "ˈrʌʃɪz", "greet": "ɡriːt", "curls": "kɜːlz", "dozes": "ˈdəʊzɪz",
+            "tilts": "tɪlts", "head": "hed", "curiosity": "ˌkjʊəriˈɒsəti", "wags": "wæɡz", "tail": "teɪl", "nonstop": "ˌnɒnˈstɒp",
+            "lavender": "ˈlævəndə", "moth": "mɒθ", "orchid": "ˈɔːkɪd", "woodland": "ˈwʊdlənd", "fern": "fɜːn",
+            "slender": "ˈslendə", "bamboo": "ˌbæmˈbuː", "rosemary": "ˈrəʊzməri", "velvet": "ˈvelvɪt", "moss": "mɒs",
+            "thrives": "θraɪvz", "soft": "sɒft", "indirect": "ˌɪndəˈrekt", "light": "laɪt", "well": "wel", "drained": "dreɪnd",
+            "soil": "sɔɪl", "cool": "kuːl", "mildly": "ˈmaɪldli", "humid": "ˈhjuːmɪd", "air": "eə", "dappled": "ˈdæpld",
+            "shade": "ʃeɪd", "under": "ˈʌndə", "taller": "ˈtɔːlə", "trees": "triːz", "grows": "ɡrəʊz", "remarkably": "rɪˈmɑːkəbli",
+            "overwatering": "ˌəʊvəˈwɔːtərɪŋ", "old": "əʊld", "trimmed": "trɪmd", "regularly": "ˈreɡjələli",
+            "roots": "ruːts", "plenty": "ˈplenti", "direct": "dəˈrekt", "draughts": "drɑːfts",
+            "night": "naɪt", "rain": "reɪn", "shoots": "ʃuːts", "bougainvillea": "ˌbuːɡənˈvɪliə", "trellis": "ˈtrelɪs",
+            "green": "ɡriːn", "tea": "tiː", "bushes": "ˈbʊʃɪz", "clumps": "klʌmps", "wild": "waɪld", "daisies": "ˈdeɪzɪz",
+            "garden": "ˈɡɑːdn", "lush": "lʌʃ", "life": "laɪf", "give": "ɡɪv", "crisp": "krɪsp", "herbal": "ˈhɜːbl",
+            "beaded": "ˈbiːdɪd", "tiny": "ˈtaɪni", "raindrops": "ˈreɪndrɒps", "stretch": "stretʃ", "toward": "təˈwɔːd", "sun": "sʌn",
+            "ripened": "ˈraɪpənd", "mangoes": "ˈmæŋɡəʊz", "sugar": "ˈʃʊɡə", "pears": "peəz", "ripe": "raɪp", "plums": "plʌmz",
+            "figs": "fɪɡz", "juicy": "ˈdʒuːsi", "king": "kɪŋ", "oranges": "ˈɒrɪndʒɪz", "best": "best",
+            "sweet": "swiːt", "subtle": "ˈsʌtl", "tang": "tæŋ", "fleshed": "fleʃt", "naturally": "ˈnætʃrəli", "fragrant": "ˈfreɪɡrənt",
+            "without": "wɪˈðaʊt", "overly": "ˈəʊvəli", "thin": "θɪn", "skinned": "skɪnd", "freshly": "ˈfreʃli", "picked": "pɪkt",
+            "brilliantly": "ˈbrɪliəntli", "salad": "ˈsæləd", "chilling": "ˈtʃɪlɪŋ", "slightly": "ˈslaɪtli", "spot": "spɒt",
+            "buying": "ˈbaɪɪŋ", "days": "deɪz", "ideal": "aɪˈdɪəl", "extra": "ˈekstrə", "all": "ɔːl",
+            "preparing": "prɪˈpeərɪŋ", "spinach": "ˈspɪnɪtʃ", "asparagus": "əˈspærəɡəs", "young": "jʌŋ", "ginger": "ˈdʒɪndʒə",
+            "garlic": "ˈɡɑːlɪk", "baby": "ˈbeɪbi", "carrots": "ˈkærəts", "broccoli": "ˈbrɒkəli", "florets": "ˈflɒrɪts",
+            "blanch": "blɑːntʃ", "briefly": "ˈbriːfli", "plunge": "plʌndʒ", "ice": "aɪs", "stir": "stɜː", "fry": "fraɪ",
+            "high": "haɪ", "heat": "hiːt", "quickly": "ˈkwɪkli", "slice": "slaɪs", "evenly": "ˈiːvnli", "rinse": "rɪns",
+            "gently": "ˈdʒentli", "natural": "ˈnætʃrəl", "crunch": "krʌntʃ", "bright": "braɪt", "colour": "ˈkʌlə",
+            "aromatic": "ˌærəˈmætɪk", "oils": "ɔɪlz", "sweetness": "ˈswiːtnəs", "veg": "vedʒ", "nutrients": "ˈnjuːtriənts", "soggy": "ˈsɒɡi",
+            "pairing": "ˈpeərɪŋ", "deep": "diːp", "amber": "ˈæmbə", "emerald": "ˈemərəld", "ivory": "ˈaɪvəri",
+            "charcoal": "ˈtʃɑːkəʊl", "grey": "ɡreɪ", "muted": "ˈmjuːtɪd", "sage": "seɪdʒ", "raw": "rɔː", "linen": "ˈlɪnɪn",
+            "handcrafted": "ˌhændˈkrɑːftɪd", "crackle": "ˈkrækl", "ceramic": "səˈræmɪk", "oak": "əʊk", "wood": "wʊd",
+            "brushed": "brʌʃt", "brass": "brɑːs", "space": "speɪs", "grounded": "ˈɡraʊndɪd", "calm": "kɑːm",
+            "layered": "ˈleɪəd", "understated": "ˌʌndəˈsteɪtɪd", "restful": "ˈrestfl", "elegance": "ˈelɪɡəns",
+            "cosy": "ˈkəʊzi", "lived": "lɪvd", "retreat": "rɪˈtriːt", "fabric": "ˈfæbrɪk", "shaded": "ˈʃeɪdɪd",
+            "table": "ˈteɪbl", "lamp": "læmp", "clay": "kleɪ", "teapot": "ˈtiːpɒt", "vintage": "ˈvɪntɪdʒ",
+            "mechanical": "məˈkænɪkl", "clock": "klɒk", "tier": "tɪə", "wooden": "ˈwʊdn", "bookshelf": "ˈbʊkʃelf",
+            "corner": "ˈkɔːnə", "modest": "ˈmɒdɪst", "anchors": "ˈæŋkəz", "whole": "həʊl", "warmth": "wɔːmθ",
+            "brings": "brɪŋz", "quiet": "ˈkwaɪət", "familiarity": "fəˌmɪliˈærəti", "softens": "ˈsɒfnz", "harsh": "hɑːʃ",
+            "every": "ˈevri", "indispensable": "ˌɪndɪˈspensəbl", "unwind": "ˌʌnˈwaɪnd",
+            "thick": "θɪk", "coastal": "ˈkəʊstl", "mist": "mɪst", "chilly": "ˈtʃɪli", "seasonal": "ˈsiːzənl", "breeze": "briːz",
+            "dark": "dɑːk", "thundercloud": "ˈθʌndəklaʊd", "fine": "faɪn", "misty": "ˈmɪsti", "drizzle": "ˈdrɪzl",
+            "rolling": "ˈrəʊlɪŋ", "signalling": "ˈsɪɡnəlɪŋ", "hours": "ˈaʊəz", "noticeable": "ˈnəʊtɪsəbl", "drop": "drɒp",
+            "temperature": "ˈtemprətʃə", "heavy": "ˈhevi", "downpour": "ˈdaʊnpɔː", "rougher": "ˈrʌfə", "waters": "ˈwɔːtəz",
+            "rising": "ˈraɪzɪŋ", "tide": "taɪd", "cooler": "ˈkuːlə", "hill": "hɪl", "late": "leɪt", "squall": "skwɔːl",
+            "low": "ləʊ", "cloud": "klaʊd", "cover": "ˈkʌvə", "dawn": "dɔːn", "frost": "frɒst", "lifted": "ˈlɪftɪd",
+            "came": "keɪm", "faint": "feɪnt", "double": "ˈdʌbl", "rainbow": "ˈreɪnbəʊ", "arching": "ˈɑːtʃɪŋ", "across": "əˈkrɒs",
+            "sky": "skaɪ", "entire": "ɪnˈtaɪə", "valley": "ˈvæli", "below": "bɪˈləʊ", "horizon": "həˈraɪzn",
+            "glassy": "ˈɡlɑːsi", "surface": "ˈsɜːfɪs", "lake": "leɪk",
+            "landscape": "ˈlændskeɪp", "architect": "ˈɑːkɪtekt", "clinical": "ˈklɪnɪkl", "pharmacist": "ˈfɑːməsɪst",
+            "bespoke": "bɪˈspəʊk", "carpenter": "ˈkɑːpəntə", "conference": "ˈkɒnfərəns", "interpreter": "ɪnˈtɜːprɪtə",
+            "exhibition": "ˌeksɪˈbɪʃn", "curator": "kjʊəˈreɪtə", "artisan": "ˌɑːtɪˈzæn", "baker": "ˈbeɪkə",
+            "calls": "kɔːlz", "patience": "ˈpeɪʃns", "precision": "prɪˈsɪʒn", "attentive": "əˈtentɪv", "listening": "ˈlɪsnɪŋ",
+            "adaptability": "əˌdæptəˈbɪləti", "pressure": "ˈpreʃə", "sharp": "ʃɑːp", "eye": "aɪ", "detail": "ˈdiːteɪl",
+            "particularly": "pəˈtɪkjələli", "requirements": "rɪˈkwaɪəmənts", "shift": "ʃɪft", "short": "ʃɔːt",
+            "balancing": "ˈbælənsɪŋ", "competing": "kəmˈpiːtɪŋ", "expectations": "ˌekspekˈteɪʃnz", "site": "saɪt",
+            "conditions": "kənˈdɪʃnz", "differ": "ˈdɪfə", "workload": "ˈwɜːkləʊd", "spikes": "spaɪks", "unexpectedly": "ˌʌnɪkˈspektɪdli",
+            "treating": "ˈtriːtɪŋ", "role": "rəʊl", "neighbourhood": "ˈneɪbəhʊd", "weeks": "wiːks", "project": "ˈprɒdʒekt",
+            "keeping": "ˈkiːpɪŋ", "busy": "ˈbɪzi", "everything": "ˈevriθɪŋ", "settling": "ˈsetlɪŋ", "nicely": "ˈnaɪsli",
+            "still": "stɪl", "managing": "ˈmænɪdʒɪŋ", "downtime": "ˈdaʊntaɪm", "anything": "ˈeniθɪŋ", "exciting": "ɪkˈsaɪtɪŋ",
+            "day": "deɪ", "shaping": "ˈʃeɪpɪŋ", "far": "fɑː", "roughly": "ˈrʌfli", "grab": "ɡræb", "lunch": "lʌntʃ",
+            "left": "left", "plate": "pleɪt", "feeling": "ˈfiːlɪŋ", "fairly": "ˈfeəli", "steady": "ˈstedi", "today": "təˈdeɪ",
+            "genuinely": "ˈdʒenjuɪnli", "impressed": "ɪmˈprest", "cool": "kuːl", "laid": "leɪd", "out": "aʊt",
+            "colours": "ˈkʌləz", "layout": "ˈleɪaʊt", "listened": "ˈlɪsnd", "anyone": "ˈeniwʌn", "steadiness": "ˈstedinəs",
+            "follow": "ˈfɒləʊ", "away": "əˈweɪ", "refined": "rɪˈfaɪnd", "many": "ˈmeni", "people": "ˈpiːpl", "hold": "həʊld",
+            "composure": "kəmˈpəʊʒə", "rested": "ˈrestɪd", "together": "təˈɡeðə", "noticeably": "ˈnəʊtɪsəbli", "lighter": "ˈlaɪtə",
+            "energised": "ˈenədʒaɪzd", "suits": "suːts", "break": "breɪk", "energy": "ˈenədʒi", "rubs": "rʌbz",
+            "wishing": "ˈwɪʃɪŋ", "hope": "həʊp", "rewarding": "rɪˈwɔːdɪŋ", "safe": "seɪf", "trip": "trɪp", "memorable": "ˈmemərəbl",
+            "health": "helθ", "genuine": "ˈdʒenjuɪn", "peace": "piːs", "confident": "ˈkɒnfɪdənt", "interview": "ˈɪntəvjuː",
+            "pays": "peɪz", "cross": "krɒs", "paths": "pɑːðz", "supportive": "səˈpɔːtɪv", "unfold": "ʌnˈfəʊld", "even": "ˈiːvn",
+            "better": "ˈbetə", "expected": "ɪkˈspektɪd", "joy": "dʒɔɪ", "warmest": "ˈwɔːmɪst", "congratulations": "kənˌɡrætʃuˈleɪʃnz",
+            "seeing": "ˈsiːɪŋ", "challenging": "ˈtʃælɪndʒɪŋ", "chapter": "ˈtʃæptə", "staying": "ˈsteɪɪŋ", "consistent": "kənˈsɪstənt",
+            "right": "raɪt", "finish": "ˈfɪnɪʃ", "earned": "ɜːnd", "bit": "bɪt", "wonderful": "ˈwʌndəfl", "progress": "ˈprəʊɡres",
+            "celebrating": "ˈselɪbreɪtɪŋ", "milestone": "ˈmaɪlstəʊn",
+            "pretty": "ˈprɪti", "packed": "pækt", "week": "wiːk", "weekend": "ˌwiːkˈend", "free": "friː", "recharge": "ˌriːˈtʃɑːdʒ",
+            "strong": "strɒŋ", "suit": "suːt", "pass": "pɑːs", "half": "hɑːf", "commit": "kəˈmɪt", "catch": "kætʃ",
+            "ease": "iːz", "afraid": "əˈfreɪd", "answer": "ˈɑːnsə", "decline": "dɪˈklaɪn", "offer": "ˈɒfə",
+            "understand": "ˌʌndəˈstænd", "end": "end", "team": "tiːm",
+            "seem": "siːm", "carry": "ˈkæri", "alone": "əˈləʊn", "past": "pɑːst", "quite": "kwaɪt", "more": "mɔː",
+            "worn": "wɔːn", "ever": "ˈevə", "sounding": "ˈsaʊndɪŋ", "board": "bɔːd", "non": "nɒn", "urgent": "ˈɜːdʒənt",
+            "tomorrow": "təˈmɒrəʊ", "yourself": "jɔːˈself", "permission": "pəˈmɪʃn", "down": "daʊn", "once": "wʌns",
+            "safely": "ˈseɪfli", "quick": "kwɪk", "text": "tekst", "stay": "steɪ", "pouring": "ˈpɔːrɪŋ", "outside": "ˌaʊtˈsaɪd",
+            "all": "ɔːl", "care": "keə", "road": "rəʊd",
+            "remembered": "rɪˈmembəd", "drifting": "ˈdrɪftɪŋ", "track": "træk", "jump": "dʒʌmp", "ahead": "əˈhed",
+            "bit": "bɪt", "lock": "lɒk", "shame": "ʃeɪm", "miss": "mɪs", "fair": "feə", "pick": "pɪk",
+            "minor": "ˈmaɪnə", "aside": "əˈsaɪd", "call": "kɔːl", "drop": "drɒp",
+            "happy": "ˈhæpi", "adjust": "əˈdʒʌst", "timeline": "ˈtaɪmlaɪn", "piece": "piːs", "round": "raʊnd",
+            "candid": "ˈkændɪd", "same": "seɪm", "page": "peɪdʒ", "pile": "paɪl", "minute": "ˈmɪnɪt",
+            "context": "ˈkɒntekst", "ownership": "ˈəʊnəʃɪp", "issue": "ˈɪʃuː", "sheer": "ʃɪə", "volume": "ˈvɒljuːm",
+            "lack": "læk", "goodwill": "ˌɡʊdˈwɪl", "moving": "ˈmuːvɪŋ", "tools": "tuːlz", "use": "juːz",
+            "loud": "laʊd", "initial": "ɪˈnɪʃl", "assumption": "əˈsʌmpʃn", "guessing": "ˈɡesɪŋ", "updates": "ˈʌpdeɪts",
+            "slipping": "ˈslɪpɪŋ", "cracks": "kræks",
+            "items": "ˈaɪtəmz", "pending": "ˈpendɪŋ", "review": "rɪˈvjuː", "heavier": "ˈheviə", "couple": "ˈkʌpl",
+            "loose": "luːs", "ends": "endz", "send": "send", "fuller": "ˈfʊlə", "update": "ˈʌpdeɪt", "pivot": "ˈpɪvət",
+            "tackling": "ˈtæklɪŋ", "core": "kɔː", "sending": "ˈsendɪŋ", "endless": "ˈendləs", "forth": "fɔːθ",
+            "edits": "ˈedɪts", "mix": "mɪks", "ups": "ʌps", "teams": "tiːmz", "bottlenecks": "ˈbɒtlneks", "one": "wʌn",
+            "missing": "ˈmɪsɪŋ", "details": "ˈdiːteɪlz", "scale": "skeɪl", "map": "mæp", "handover": "ˈhændəʊvə",
+            "agree": "əˈɡriː", "template": "ˈtempleɪt", "verify": "ˈverɪfaɪ", "source": "sɔːs", "figures": "ˈfɪɡəz",
+            "works": "wɜːks", "pacing": "ˈpeɪsɪŋ", "imagery": "ˈɪmɪdʒəri", "leaves": "liːvz", "breathe": "briːð",
+            "explain": "ɪkˈspleɪn", "contrast": "ˈkɒntrɑːst", "intriguing": "ɪnˈtriːɡɪŋ", "edges": "ˈedʒɪz",
+            "appeal": "əˈpiːl", "sketch": "sketʃ", "settle": "ˈsetl",
+            "craft": "krɑːft", "term": "tɜːm", "stability": "stəˈbɪləti", "clarity": "ˈklærəti", "doing": "ˈduːɪŋ",
+            "sustainable": "səˈsteɪnəbl", "pace": "peɪs", "headline": "ˈhedlaɪn", "figure": "ˈfɪɡə", "title": "ˈtaɪtl",
+            "sounds": "saʊndz", "sake": "seɪk", "meeting": "ˈmiːtɪŋ",
+            "pushed": "pʊʃt", "notice": "ˈnəʊtɪs", "hit": "hɪt", "snag": "snæɡ", "busier": "ˈbɪziə", "stuck": "stʌk",
+            "junction": "ˈdʒʌŋkʃn", "detour": "ˈdiːtʊə", "reshuffle": "ˌriːˈʃʌfl", "side": "saɪd", "practice": "ˈpræktɪs",
+            "different": "ˈdɪfrənt", "actual": "ˈæktʃuəl", "experience": "ɪkˈspɪəriəns", "charges": "ˈtʃɑːdʒɪz",
+            "weren't": "wɜːnt", "quoted": "ˈkwəʊtɪd", "quality": "ˈkwɒləti", "uneven": "ʌnˈiːvn", "pitched": "pɪtʃt",
+            "upfront": "ˌʌpˈfrʌnt", "listing": "ˈlɪstɪŋ", "description": "dɪˈskrɪpʃn", "experienced": "ɪkˈspɪəriənst",
+            "sleep": "sliːp", "great": "ɡreɪt", "dipping": "ˈdɪpɪŋ", "eyes": "aɪz", "strained": "streɪnd", "screens": "skriːnz",
+            "drinking": "ˈdrɪŋkɪŋ", "easing": "ˈiːzɪŋ", "paying": "ˈpeɪɪŋ", "closer": "ˈkləʊsə", "attention": "əˈtenʃn",
+            "sometimes": "ˈsʌmtaɪmz", "route": "ruːt", "pot": "pɒt", "muting": "ˈmjuːtɪŋ", "notifications": "ˌnəʊtɪfɪˈkeɪʃnz",
+            "plain": "pleɪn", "holding": "ˈhəʊldɪŋ", "tension": "ˈtenʃn", "straight": "streɪt"
         };
 
         function chuanHoaSangIPAUK(ipaRaw) {
@@ -347,22 +454,18 @@
             return "";
         }
 
-        // Tự động tách hậu tố (-ing, -s, -es, -ed, -ly) nếu API không có từ chia đuôi
         async function traIPATuThongMinh(tuGoc) {
             let key = tuGoc.toLowerCase();
 
-            // Xử lý từ ghép có dấu gạch nối (VD: well-drained, back-and-forth)
             if (key.includes("-")) {
                 let parts = key.split("-");
                 let mappedParts = await Promise.all(parts.map(p => traIPATuThongMinh(p)));
                 return mappedParts.join("-");
             }
 
-            // 1. Tra trực tiếp
             let direct = await traIPAMotTuDon(key);
             if (direct) return direct;
 
-            // 2. Xử lý đuôi -ing (focusing -> focus, wrapping -> wrap, making -> make)
             if (key.endsWith("ing") && key.length > 4) {
                 let stem1 = key.slice(0, -3);
                 let base = await traIPAMotTuDon(stem1)
@@ -375,7 +478,6 @@
                 }
             }
 
-            // 3. Xử lý đuôi -s / -es (commitments -> commitment, rushes -> rush)
             if (key.endsWith("s") && key.length > 3) {
                 let stem = key.endsWith("ies") ? key.slice(0, -3) + "y" : (key.endsWith("es") ? key.slice(0, -2) : key.slice(0, -1));
                 let base = await traIPAMotTuDon(stem) || (key.endsWith("es") ? await traIPAMotTuDon(key.slice(0, -1)) : "");
@@ -387,7 +489,6 @@
                 }
             }
 
-            // 4. Xử lý đuôi -ed (worked -> work, settled -> settle)
             if (key.endsWith("ed") && key.length > 3) {
                 let stem = key.slice(0, -2);
                 let base = await traIPAMotTuDon(stem)
@@ -402,7 +503,6 @@
                 }
             }
 
-            // 5. Xử lý đuôi -ly (smoothly -> smooth, remarkably -> remarkable)
             if (key.endsWith("ly") && key.length > 4) {
                 let stem = key.slice(0, -2);
                 let base = await traIPAMotTuDon(stem)
@@ -844,29 +944,30 @@
         let lichSuCauVoHan = [];
 
         // ============================================================
-        // HỆ THỐNG PHÁT ÂM GIỌNG BẢN XỨ ANH-ANH TỐI ƯU CHO IPHONE (iOS)
+        // HỆ THỐNG PHÁT ÂM TRONG RÕ, KHÔNG MÉO TIẾNG TRÊN IPHONE & PC
         // ============================================================
-        let giongDaChon = localStorage.getItem("luyenGo_voiceEngine_uk") || "neural_sonia";
-        let currentAudio = null;
+        let giongDaChon = localStorage.getItem("luyenGo_voiceEngine_uk_v2") || "auto_clear";
+        let audioPlayer = new Audio();
+        audioPlayer.setAttribute("playsinline", "true");
+        audioPlayer.preload = "auto";
+
         let daMoKhoaAudioIOS = false;
-        let audioCtx = null;
+        let speechSessionId = 0;
+
+        function setTrangThaiAmThanh(msg) {
+            const el = document.getElementById("audio-status");
+            if (el) el.innerText = msg;
+        }
 
         function moKhoaAmThanhIOS() {
             if (daMoKhoaAudioIOS) return;
             daMoKhoaAudioIOS = true;
             try {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (AudioContextClass && !audioCtx) {
-                    audioCtx = new AudioContextClass();
-                    if (audioCtx.state === "suspended") {
-                        audioCtx.resume();
-                    }
-                    const buffer = audioCtx.createBuffer(1, 1, 22050);
-                    const source = audioCtx.createBufferSource();
-                    source.buffer = buffer;
-                    source.connect(audioCtx.destination);
-                    source.start(0);
-                }
+                // Phát một đoạn WAV im lặng siêu ngắn bằng thẻ Audio chính để mở khóa hoàn toàn Safari
+                audioPlayer.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+                audioPlayer.play().then(() => {
+                    audioPlayer.pause();
+                }).catch(() => {});
             } catch (e) {}
 
             if ('speechSynthesis' in window) {
@@ -883,81 +984,97 @@
         function doiGiongDocUK(val) {
             moKhoaAmThanhIOS();
             giongDaChon = val;
-            localStorage.setItem("luyenGo_voiceEngine_uk", val);
+            localStorage.setItem("luyenGo_voiceEngine_uk_v2", val);
             if (dapAnChuan) phatAm(dapAnChuan, false);
         }
 
         function dungTatCaAmThanh() {
-            if (currentAudio) {
-                try {
-                    currentAudio.pause();
-                    currentAudio.src = "";
-                } catch (e) {}
-                currentAudio = null;
-            }
+            speechSessionId++;
+            try {
+                audioPlayer.pause();
+                audioPlayer.onplaying = null;
+                audioPlayer.onerror = null;
+                audioPlayer.onended = null;
+            } catch (e) {}
             if ('speechSynthesis' in window) {
                 try { window.speechSynthesis.cancel(); } catch (e) {}
             }
         }
 
-        function phatQuaNeuralUK(text, slow, voiceCode) {
+        // Chia câu thành các cụm tự nhiên theo dấu câu nếu vượt quá 180 ký tự
+        function chiaCumDeDoc(text) {
+            if (text.length <= 180) return [text];
+            return text.split(/(?<=[,;—–.!?])\s+/).filter(Boolean);
+        }
+
+        // Nguồn 1: Google Translate TTS chuẩn en-GB (giọng nữ Anh-Anh trong, sáng, hỗ trợ tham số tốc độ gốc ttsspeed không méo tiếng)
+        function phatQuaGoogleUK(text, slow, sessionId) {
             return new Promise((resolve, reject) => {
-                const voiceMap = {
-                    neural_sonia: "en-GB-SoniaNeural",
-                    neural_libby: "en-GB-LibbyNeural",
-                    neural_ryan: "en-GB-RyanNeural"
-                };
-                const voiceName = voiceMap[voiceCode] || "en-GB-SoniaNeural";
-                const rateParam = slow ? "-25%" : "0%";
-                const url = `https://tts.travisvn.com/v1/audio/speech?text=${encodeURIComponent(text)}&voice=${encodeURIComponent(voiceName)}&rate=${encodeURIComponent(rateParam)}`;
+                if (sessionId !== speechSessionId) return reject(new Error("cancelled"));
+                const chunks = chiaCumDeDoc(text);
+                let idx = 0;
 
-                const audio = new Audio();
-                audio.preload = "auto";
-                audio.setAttribute("playsinline", "true");
-                audio.src = url;
-                currentAudio = audio;
+                function docCumTiep() {
+                    if (sessionId !== speechSessionId) return reject(new Error("cancelled"));
+                    if (idx >= chunks.length) {
+                        setTrangThaiAmThanh("");
+                        return resolve();
+                    }
+                    const part = chunks[idx];
+                    // Tham số ttsspeed gốc của server (0.65 cho chậm, 1.0 cho thường) -> KHÔNG BAO GIỜ bị méo tiếng hay ồm giọng
+                    const speed = slow ? "0.65" : "1";
+                    const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(part)}&tl=en-GB&total=${chunks.length}&idx=${idx}&textlen=${part.length}&client=tw-ob&ttsspeed=${speed}`;
 
-                let settled = false;
-                const timer = setTimeout(() => {
-                    if (!settled) {
-                        settled = true;
-                        reject(new Error("timeout"));
-                    }
-                }, 4000);
+                    let settled = false;
+                    const timer = setTimeout(() => {
+                        if (!settled) {
+                            settled = true;
+                            reject(new Error("google_timeout"));
+                        }
+                    }, 2200);
 
-                audio.onplaying = () => {
-                    if (!settled) {
-                        settled = true;
-                        clearTimeout(timer);
-                        resolve();
-                    }
-                };
-                audio.onerror = () => {
-                    if (!settled) {
-                        settled = true;
-                        clearTimeout(timer);
-                        reject(new Error("neural_error"));
-                    }
-                };
+                    audioPlayer.onplaying = () => {
+                        if (!settled) {
+                            settled = true;
+                            clearTimeout(timer);
+                            setTrangThaiAmThanh("🔊 Đang phát UK");
+                        }
+                    };
 
-                audio.play().catch(err => {
-                    if (!settled) {
-                        settled = true;
-                        clearTimeout(timer);
-                        reject(err);
-                    }
-                });
+                    audioPlayer.onended = () => {
+                        idx++;
+                        docCumTiep();
+                    };
+
+                    audioPlayer.onerror = () => {
+                        if (!settled) {
+                            settled = true;
+                            clearTimeout(timer);
+                            reject(new Error("google_error"));
+                        }
+                    };
+
+                    audioPlayer.src = url;
+                    // Luôn giữ playbackRate = 1.0 để giọng trong trẻo, tuyệt đối không bị trầm đục
+                    audioPlayer.playbackRate = 1.0;
+                    audioPlayer.play().catch(err => {
+                        if (!settled) {
+                            settled = true;
+                            clearTimeout(timer);
+                            reject(err);
+                        }
+                    });
+                }
+
+                docCumTiep();
             });
         }
 
-        function phatQuaYoudaoUK(text, slow) {
+        // Nguồn 2: Từ điển Youdao UK (type=1 là Anh-Anh chuẩn)
+        function phatQuaYoudaoUK(text, slow, sessionId) {
             return new Promise((resolve, reject) => {
+                if (sessionId !== speechSessionId) return reject(new Error("cancelled"));
                 const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}&type=1`;
-                const audio = new Audio();
-                audio.setAttribute("playsinline", "true");
-                audio.src = url;
-                audio.playbackRate = slow ? 0.8 : 1.0;
-                currentAudio = audio;
 
                 let settled = false;
                 const timer = setTimeout(() => {
@@ -965,23 +1082,32 @@
                         settled = true;
                         reject(new Error("youdao_timeout"));
                     }
-                }, 3500);
+                }, 2200);
 
-                audio.onplaying = () => {
+                audioPlayer.onplaying = () => {
                     if (!settled) {
                         settled = true;
                         clearTimeout(timer);
-                        resolve();
+                        setTrangThaiAmThanh("🔊 Từ điển UK");
                     }
                 };
-                audio.onerror = () => {
+
+                audioPlayer.onended = () => {
+                    setTrangThaiAmThanh("");
+                    resolve();
+                };
+
+                audioPlayer.onerror = () => {
                     if (!settled) {
                         settled = true;
                         clearTimeout(timer);
                         reject(new Error("youdao_error"));
                     }
                 };
-                audio.play().catch(err => {
+
+                audioPlayer.src = url;
+                audioPlayer.playbackRate = 1.0;
+                audioPlayer.play().catch(err => {
                     if (!settled) {
                         settled = true;
                         clearTimeout(timer);
@@ -991,20 +1117,31 @@
             });
         }
 
+        // Nguồn 3: Giọng hệ thống iPhone / Trình duyệt (chọn lọc giọng tự nhiên, tránh giọng trầm đục)
         function phatQuaIOSNative(text, slow) {
-            if (!('speechSynthesis' in window)) return;
+            if (!('speechSynthesis' in window)) {
+                setTrangThaiAmThanh("⚠️ Trình duyệt không hỗ trợ loa");
+                return;
+            }
             const synth = window.speechSynthesis;
-            synth.cancel();
+            try { synth.cancel(); } catch (e) {}
 
             const utter = new SpeechSynthesisUtterance(text);
             const voices = synth.getVoices() || [];
 
-            const enVoices = voices.filter(v => /^en[-_]/i.test(v.lang));
+            // Loại bỏ các giọng bị trầm/rè như Fred, Albert, Bad News, Bells, Boing, Organ...
+            const cleanEnVoices = voices.filter(v =>
+                /^en[-_]/i.test(v.lang) &&
+                !/fred|albert|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|junior|kathy|pipe|princess|ralph|trinoids|whisper|zarvox/i.test(v.name)
+            );
+
+            // Ưu tiên giọng Anh-Anh nữ/nam rõ nét trên iOS (Martha, Serena, Kate, Stephanie, Daniel, Arthur)
             const ukVoice =
-                enVoices.find(v => /en[-_]GB/i.test(v.lang) && /daniel|arthur|martha|kate|serena|oliver|stephanie/i.test(v.name)) ||
-                enVoices.find(v => /en[-_]GB/i.test(v.lang)) ||
-                enVoices.find(v => /samantha|alex|daniel|karen|moira|tessa/i.test(v.name)) ||
-                enVoices[0];
+                cleanEnVoices.find(v => /en[-_]GB/i.test(v.lang) && /martha|serena|kate|stephanie|enhanced/i.test(v.name)) ||
+                cleanEnVoices.find(v => /en[-_]GB/i.test(v.lang) && /daniel|arthur|oliver/i.test(v.name)) ||
+                cleanEnVoices.find(v => /en[-_]GB/i.test(v.lang)) ||
+                cleanEnVoices.find(v => /samantha|moira|karen|tessa|alex/i.test(v.name)) ||
+                cleanEnVoices[0];
 
             if (ukVoice) {
                 utter.voice = ukVoice;
@@ -1013,17 +1150,24 @@
                 utter.lang = "en-GB";
             }
 
+            // Giữ pitch chuẩn 1.0 để giọng tự nhiên, không bị biến dạng
             utter.pitch = 1.0;
-            utter.rate = slow ? 0.78 : 0.96;
+            utter.rate = slow ? 0.72 : 0.94;
             utter.volume = 1.0;
 
-            setTimeout(() => synth.speak(utter), 40);
+            utter.onstart = () => setTrangThaiAmThanh("📱 Giọng máy");
+            utter.onend = () => setTrangThaiAmThanh("");
+            utter.onerror = () => setTrangThaiAmThanh("");
+
+            synth.speak(utter);
         }
 
         async function phatAm(text, slow = false) {
             if (!text) return;
             const cleanText = text.trim();
             dungTatCaAmThanh();
+            const currentSession = speechSessionId;
+            setTrangThaiAmThanh("⏳ Đang tải...");
 
             if (giongDaChon === "ios_native") {
                 phatQuaIOSNative(cleanText, slow);
@@ -1032,20 +1176,29 @@
 
             if (giongDaChon === "youdao_uk") {
                 try {
-                    await phatQuaYoudaoUK(cleanText, slow);
+                    if (slow) {
+                        // Với chế độ chậm, dùng Google UK hỗ trợ ttsspeed=0.65 để không bị méo tiếng
+                        await phatQuaGoogleUK(cleanText, true, currentSession);
+                    } else {
+                        await phatQuaYoudaoUK(cleanText, false, currentSession);
+                    }
                 } catch (e) {
-                    phatQuaIOSNative(cleanText, slow);
+                    if (currentSession === speechSessionId) phatQuaIOSNative(cleanText, slow);
                 }
                 return;
             }
 
+            // Chế độ mặc định (auto_clear / google_uk): Google UK trước -> Youdao UK -> Giọng máy
             try {
-                await phatQuaNeuralUK(cleanText, slow, giongDaChon);
+                await phatQuaGoogleUK(cleanText, slow, currentSession);
             } catch (e1) {
+                if (currentSession !== speechSessionId) return;
                 try {
-                    await phatQuaYoudaoUK(cleanText, slow);
+                    await phatQuaYoudaoUK(cleanText, slow, currentSession);
                 } catch (e2) {
-                    phatQuaIOSNative(cleanText, slow);
+                    if (currentSession === speechSessionId) {
+                        phatQuaIOSNative(cleanText, slow);
+                    }
                 }
             }
         }
@@ -1088,10 +1241,8 @@
                     cauHienTai = parseInt(savedIndex, 10);
 
                     if (Array.isArray(danhSach) && danhSach.length > 0 && cauHienTai >= 0 && cauHienTai < danhSach.length && danhSach[cauHienTai].anh) {
-                        // Buộc tạo lại IPA chuẩn nếu dữ liệu lưu cũ còn dính chữ chưa dịch hoặc ngoặc vuông
-                        if (danhSach[cauHienTai].ipa && (/\[|\]|ɹ/.test(danhSach[cauHienTai].ipa) || /[a-zA-Z]{4,}/.test(danhSach[cauHienTai].ipa))) {
-                            danhSach[cauHienTai].ipa = "";
-                        }
+                        // Luôn làm mới IPA khi tải lại để sửa các phiên âm cũ còn sót chữ tiếng Anh
+                        danhSach[cauHienTai].ipa = "";
                         document.getElementById("nhap-du-lieu").style.display = "none";
                         document.getElementById("hoc-khu-vuc").style.display = "block";
                         document.getElementById("ten-bai-hoc").innerText = tenBaiHoc || "Thế giới giao tiếp";
@@ -1582,7 +1733,7 @@
             luuTienDo();
             hienThiCauHoiHienTai();
             
-            if (tuDongDoc && daMoKhoaAudioIOS) {
+            if (tuDongDoc) {
                 phatAm(dapAnChuan, false);
             }
 
