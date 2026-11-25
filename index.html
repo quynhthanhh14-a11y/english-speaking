@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thế Giới Giao Tiếp Anh-Anh Vô Hạn - Luyện Phản Xạ & Nhớ Sâu</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; padding: 25px 15px; background: #f0f2f5; color: #333; }
@@ -48,9 +49,13 @@
         .top-tags { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
         .nhan-thu-thach { display: inline-block; background: #e0e7ff; color: #1e40af; font-size: 13px; font-weight: bold; padding: 4px 10px; border-radius: 6px; }
         .uk-tag { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: bold; padding: 3px 9px; border-radius: 6px; }
+
+        /* Thanh chọn giọng UK để fix triệt để lỗi méo giọng trên iOS */
+        .voice-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        #chon-giong-uk { padding: 4px 8px; font-size: 12.5px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; color: #1e293b; max-width: 215px; }
         
-        .dong-viet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-        #cau-hoi { font-size: 24px; font-weight: bold; color: #0056b3; margin: 0; line-height: 1.4; }
+        .dong-viet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+        #cau-hoi { font-size: 24px; font-weight: bold; color: #0056b3; margin: 0; line-height: 1.4; flex: 1; min-width: 220px; }
         .btn-group-audio { display: flex; gap: 6px; flex-shrink: 0; }
         .btn-nghe { padding: 8px 13px; background: #17a2b8; color: white; font-size: 13.5px; white-space: nowrap; }
         .btn-nghe:hover { background: #138496; }
@@ -64,7 +69,7 @@
         .memory-card { margin-top: 12px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px; font-size: 13.5px; color: #78350f; line-height: 1.5; }
         .memory-card b { color: #b45309; }
 
-        #o-nhap { width: 100%; box-sizing: border-box; font-size: 24px; padding: 18px; border: 3px solid #ccc; border-radius: 8px; outline: none; transition: 0.2s; }
+        #o-nhap { width: 100%; box-sizing: border-box; font-size: 22px; padding: 16px; border: 3px solid #ccc; border-radius: 8px; outline: none; transition: 0.2s; }
         .dung { color: #155724; background-color: #d4edda; border-color: #28a745 !important; }
         .sai { color: #721c24; background-color: #f8d7da; border-color: #dc3545 !important; }
 
@@ -132,20 +137,26 @@
             <div class="box-cau-hoi" id="box-cau-hoi">
                 <div class="top-tags">
                     <span class="nhan-thu-thach" id="nhan-kieu-bai"></span>
-                    <span class="uk-tag">🇬🇧 Chuẩn IPA Anh–Anh (UK)</span>
+                    <div class="voice-bar">
+                        <span class="uk-tag">🇬🇧 Chuẩn IPA Anh–Anh (UK)</span>
+                        <select id="chon-giong-uk" onchange="doiGiongDocUK(this.value)" title="Đổi giọng đọc nếu máy iPhone bị méo giọng">
+                            <option value="auto">🎙️ Tự động chọn giọng UK</option>
+                            <option value="audio_uk">☁️ Giọng UK Online (Chống méo iOS)</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="dong-viet">
                     <div id="cau-hoi"></div>
                     <div class="btn-group-audio">
-                        <button class="btn-nghe" onclick="phatAm(dapAnChuan, 0.95)" title="Nghe tốc độ chuẩn Anh-Anh">🔊 Nghe UK</button>
-                        <button class="btn-cham" onclick="phatAm(dapAnChuan, 0.65)" title="Nghe đọc chậm rõ từng âm">🐢 Chậm</button>
+                        <button class="btn-nghe" onclick="phatAm(dapAnChuan, 0.96)" title="Nghe tốc độ chuẩn Anh-Anh">🔊 Nghe UK</button>
+                        <button class="btn-cham" onclick="phatAm(dapAnChuan, 0.76)" title="Nghe đọc chậm rõ từng âm">🐢 Chậm</button>
                     </div>
                 </div>
                 <div id="goi-y-box"></div>
                 <div class="memory-card" id="memory-tip-box"></div>
             </div>
 
-            <input type="text" id="o-nhap" placeholder="Nghe phát âm và bắt đầu gõ tiếng Anh (không cần dấu câu)..." autocomplete="off">
+            <input type="text" id="o-nhap" placeholder="Nghe phát âm và bắt đầu gõ tiếng Anh (không cần dấu câu)..." autocomplete="off" autocapitalize="off" spellcheck="false">
 
             <!-- Thông báo nhấn Enter để chuyển câu tiếp theo -->
             <div id="banner-enter">
@@ -158,9 +169,7 @@
     </div>
 
     <script>
-        // KHO PHIÊN ÂM ANH-ANH (UK RP) CHUẨN XÁC THEO HỆ THỐNG ÂM VỊ:
-        // Phụ âm: /p/ /b/ /t/ /d/ /k/ /g/ /f/ /v/ /θ/ /ð/ /s/ /z/ /ʃ/ /ʒ/ /tʃ/ /dʒ/ /m/ /n/ /ŋ/ /h/ /l/ /r/ /w/ /j/
-        // Nguyên âm: /iː/ /ɪ/ /e/ /æ/ /uː/ /ʊ/ /ɔː/ /ɒ/ /ɑː/ /ʌ/ /ə/ /ɜː/
+        // KHO PHIÊN ÂM ANH-ANH (UK RP) CHUẨN XÁC THEO HỆ THỐNG ÂM VỊ
         const TU_DIEN_IPA_UK = {
             "i": "aɪ", "you": "juː", "we": "wiː", "they": "ðeɪ", "he": "hiː", "she": "ʃiː", "it": "ɪt",
             "me": "miː", "us": "ʌs", "them": "ðem", "him": "hɪm", "her": "hɜː",
@@ -254,9 +263,6 @@
             "usual": "ˈjuːʒuəl", "spot": "spɒt"
         };
 
-        // Chuẩn hóa IPA về đúng hệ thống âm vị chuẩn Anh-Anh (UK RP) của người dùng:
-        // Phụ âm: /p/ /b/ /t/ /d/ /k/ /g/ /f/ /v/ /θ/ /ð/ /s/ /z/ /ʃ/ /ʒ/ /tʃ/ /dʒ/ /m/ /n/ /ŋ/ /h/ /l/ /r/ /w/ /j/
-        // Nguyên âm: /iː/ /ɪ/ /e/ /æ/ /uː/ /ʊ/ /ɔː/ /ɒ/ /ɑː/ /ʌ/ /ə/ /ɜː/
         function chuanHoaSangIPAUK(ipaRaw) {
             if (!ipaRaw) return "";
             let s = ipaRaw.replace(/^\/|\/$/g, '');
@@ -279,7 +285,7 @@
             return s;
         }
 
-        // BỘ MÁY SINH CÂU TỔ HỢP 10 CHỦ ĐỀ KÈM MẸO GHI NHỚ (CHUNKING + CẤU TRÚC LÕI)
+        // BỘ MÁY SINH CÂU TỔ HỢP 10 CHỦ ĐỀ KÈM MẸO GHI NHỚ
         const BO_SINH_CAU = {
             1: {
                 ten: "👶 1. Sơ sinh & Gia đình",
@@ -570,8 +576,8 @@
         let tenBaiHoc = "";
         let cauHienTai = 0;
         let dapAnChuan = "";
-        let cheDoXem = "de";        // 'de', 'nghe', hoặc 'mau'
-        let kieuCauHienTai = "";    // 'viet' hoặc 'ipa'
+        let cheDoXem = "de";        
+        let kieuCauHienTai = "";    
         let cheDoVoHan = false;     
         let giaiDoanDangChon = 0;   
         let chuoiDung = 0;
@@ -581,7 +587,161 @@
         let khoCauSai = [];         
         let soCauDaLamTrongPhien = 0;
 
+        // ==========================================
+        // BỘ PHÁT ÂM CHUẨN UK TỐI ƯU CHO IPHONE (iOS)
+        // ==========================================
+        let cachedVoices = [];
+        let giongDaChon = localStorage.getItem("luyenGo_voiceChoice_uk") || "auto";
+        let currentAudioFallback = null;
+        let daTuongTacNguoiDung = false;
+
+        function danhDauTuongTac() {
+            daTuongTacNguoiDung = true;
+        }
+        document.addEventListener("pointerdown", danhDauTuongTac, { passive: true });
+        document.addEventListener("keydown", danhDauTuongTac, { passive: true });
+
+        function napDanhSachGiongUK() {
+            if (!('speechSynthesis' in window)) return [];
+            const voices = window.speechSynthesis.getVoices() || [];
+            if (voices.length > 0) {
+                cachedVoices = voices;
+            }
+            const selectEl = document.getElementById("chon-giong-uk");
+            if (!selectEl) return cachedVoices;
+
+            // Lọc các giọng tiếng Anh thật sự, loại bỏ giọng hiệu ứng lạ/trầm trên Apple
+            const giongAnh = cachedVoices.filter(v =>
+                /^en[-_]/i.test(v.lang) &&
+                !/albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|organ|superstar|trinoids|whisper|wobble|zarvox/i.test(v.name)
+            );
+
+            // Sắp xếp đưa giọng UK (en-GB) lên đầu
+            giongAnh.sort((a, b) => {
+                const aUK = /en[-_]GB/i.test(a.lang) ? 0 : 1;
+                const bUK = /en[-_]GB/i.test(b.lang) ? 0 : 1;
+                return aUK - bUK;
+            });
+
+            const currentVal = giongDaChon;
+            selectEl.innerHTML =
+                `<option value="auto">🎙️ Tự động giọng UK chuẩn</option>` +
+                `<option value="audio_uk">☁️ Giọng UK Online (Chống méo iOS)</option>`;
+
+            giongAnh.forEach(v => {
+                const opt = document.createElement("option");
+                opt.value = v.name;
+                opt.textContent = `${/en[-_]GB/i.test(v.lang) ? '🇬🇧' : '🔊'} ${v.name} (${v.lang})`;
+                selectEl.appendChild(opt);
+            });
+
+            if ([...selectEl.options].some(o => o.value === currentVal)) {
+                selectEl.value = currentVal;
+            } else {
+                selectEl.value = "auto";
+            }
+
+            return cachedVoices;
+        }
+
+        function doiGiongDocUK(val) {
+            giongDaChon = val;
+            localStorage.setItem("luyenGo_voiceChoice_uk", val);
+            if (dapAnChuan) phatAm(dapAnChuan, 0.96);
+        }
+
+        function chonGiongUKTotNhat() {
+            const voices = cachedVoices.length > 0 ? cachedVoices : napDanhSachGiongUK();
+            if (!voices || voices.length === 0) return null;
+
+            if (giongDaChon !== "auto" && giongDaChon !== "audio_uk") {
+                const manual = voices.find(v => v.name === giongDaChon);
+                if (manual) return manual;
+            }
+
+            const ukVoices = voices.filter(v =>
+                /en[-_]GB/i.test(v.lang) &&
+                !/albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|organ|superstar|trinoids|whisper|wobble|zarvox/i.test(v.name)
+            );
+
+            if (ukVoices.length > 0) {
+                // Ưu tiên giọng Anh-Anh sáng, rõ trên iOS/macOS/Chrome
+                const uuTien = [/daniel/i, /arthur/i, /martha/i, /kate/i, /serena/i, /oliver/i, /google uk english female/i, /google uk english male/i];
+                for (const rx of uuTien) {
+                    const found = ukVoices.find(v => rx.test(v.name));
+                    if (found) return found;
+                }
+                return ukVoices.find(v => v.localService) || ukVoices[0];
+            }
+
+            return voices.find(v => /^en[-_]/i.test(v.lang)) || null;
+        }
+
+        function phatAmQuaAudioOnline(text, rate = 0.96) {
+            try {
+                if (currentAudioFallback) {
+                    currentAudioFallback.pause();
+                    currentAudioFallback.currentTime = 0;
+                }
+                const url = "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en-GB&q=" + encodeURIComponent(text.trim());
+                const audio = new Audio(url);
+                audio.playbackRate = rate < 0.85 ? 0.78 : 1.0;
+                currentAudioFallback = audio;
+                audio.play().catch(() => {});
+            } catch (e) {}
+        }
+
+        function phatAm(text, rate = 0.96) {
+            if (!text) return;
+
+            if (currentAudioFallback) {
+                currentAudioFallback.pause();
+                currentAudioFallback.currentTime = 0;
+            }
+
+            // Nếu người dùng chọn chế độ chống méo iOS hoặc trình duyệt không hỗ trợ speechSynthesis
+            if (giongDaChon === "audio_uk" || !('speechSynthesis' in window)) {
+                phatAmQuaAudioOnline(text, rate);
+                return;
+            }
+
+            const synth = window.speechSynthesis;
+            synth.cancel();
+
+            const utter = new SpeechSynthesisUtterance(text.trim());
+            const ukVoice = chonGiongUKTotNhat();
+
+            if (ukVoice) {
+                utter.voice = ukVoice;
+                utter.lang = ukVoice.lang;
+            } else {
+                utter.lang = "en-GB";
+            }
+
+            // Khóa pitch = 1.03 và không hạ rate xuống quá thấp (< 0.75) để iOS không bị trầm ồm
+            utter.pitch = 1.03;
+            utter.rate = Math.max(0.75, Math.min(1.1, rate));
+            utter.volume = 1.0;
+
+            // Nếu speechSynthesis trên iOS báo lỗi -> tự chuyển sang Audio UK Online
+            utter.onerror = () => {
+                phatAmQuaAudioOnline(text, rate);
+            };
+
+            setTimeout(() => {
+                synth.speak(utter);
+            }, 60);
+        }
+
+        if ('speechSynthesis' in window) {
+            napDanhSachGiongUK();
+            window.speechSynthesis.onvoiceschanged = () => {
+                napDanhSachGiongUK();
+            };
+        }
+
         window.onload = function() {
+            napDanhSachGiongUK();
             try {
                 let savedMode = localStorage.getItem("luyenGo_cheDoXem_uk");
                 let savedSubType = localStorage.getItem("luyenGo_kieuCauHienTai_uk");
@@ -614,7 +774,7 @@
                         document.getElementById("nhap-du-lieu").style.display = "none";
                         document.getElementById("hoc-khu-vuc").style.display = "block";
                         document.getElementById("ten-bai-hoc").innerText = tenBaiHoc || "Thế giới giao tiếp";
-                        loadCauHoi(true);
+                        loadCauHoi(true, false);
                     }
                 }
             } catch (e) {
@@ -692,6 +852,7 @@
         }
 
         function batDauVoHan(stageId) {
+            daTuongTacNguoiDung = true;
             cheDoVoHan = true;
             giaiDoanDangChon = stageId;
             soCauDaLamTrongPhien = 0;
@@ -706,10 +867,11 @@
             document.getElementById("ten-bai-hoc").innerText = tenBaiHoc;
             document.getElementById("nhap-du-lieu").style.display = "none";
             document.getElementById("hoc-khu-vuc").style.display = "block";
-            loadCauHoi(false);
+            loadCauHoi(false, true);
         }
 
         function batDauOnTapCauSai() {
+            daTuongTacNguoiDung = true;
             if (khoCauSai.length === 0) {
                 alert("🎉 Tuyệt vời! Sổ tay Cần nhớ của bạn đang trống. Hãy luyện tập để hệ thống tự ghi nhận những câu bạn dễ nhầm nhé!");
                 return;
@@ -726,10 +888,11 @@
             document.getElementById("ten-bai-hoc").innerText = tenBaiHoc;
             document.getElementById("nhap-du-lieu").style.display = "none";
             document.getElementById("hoc-khu-vuc").style.display = "block";
-            loadCauHoi(false);
+            loadCauHoi(false, true);
         }
 
         function batDauTuExcel() {
+            daTuongTacNguoiDung = true;
             let text = document.getElementById("du-lieu-excel").value.trim();
             if(!text) { alert("Vui lòng dán dữ liệu từ Excel vào!"); return; }
             
@@ -763,7 +926,7 @@
             document.getElementById("ten-bai-hoc").innerText = tenBaiHoc;
             document.getElementById("nhap-du-lieu").style.display = "none";
             document.getElementById("hoc-khu-vuc").style.display = "block";
-            loadCauHoi(false);
+            loadCauHoi(false, true);
         }
 
         function luuTienDo() {
@@ -817,7 +980,6 @@
                 .toLowerCase();
         }
 
-        // LẤY PHIÊN ÂM CHUẨN ANH-ANH (UK RP)
         async function layIPACaCauUK(cauTiengAnh, ipaCoSan) {
             if (ipaCoSan) return ipaCoSan;
             let tokens = cauTiengAnh.split(/\s+/);
@@ -843,7 +1005,7 @@
                         let rawPhonetic = ukEntry?.text || data[0]?.phonetic || phonetics.find(p => p.text)?.text;
                         
                         if (rawPhonetic) {
-                            let ukIpa = ukEntry ? chuanHoaSangIPAUK(rawPhonetic) : chuanHoaSangIPAUK(rawPhonetic);
+                            let ukIpa = chuanHoaSangIPAUK(rawPhonetic);
                             ipaCache[key] = ukIpa;
                             return truoc + ukIpa + sau;
                         }
@@ -864,7 +1026,6 @@
 
             memBox.innerHTML = item.tip || "<b>Mẹo ghi nhớ:</b> Đọc nhẩm theo nhịp điệu Anh-Anh để ghi nhớ nguyên cụm từ.";
 
-            // Tải sẵn phiên âm IPA UK cho câu hiện tại để lúc hoàn thành hiện ngay tức thì
             if (!item.ipa) {
                 layIPACaCauUK(dapAnChuan, "").then(res => {
                     item.ipa = res;
@@ -919,10 +1080,6 @@
             }
         }
 
-        // KHI HOÀN THÀNH CÂU:
-        // 1. Phát âm chuẩn Anh-Anh
-        // 2. Hiện đầy đủ: Câu tiếng Anh + IPA chuẩn UK + Nghĩa tiếng Việt
-        // 3. Chờ người dùng bấm ENTER để qua câu tiếp theo (không tự động nhảy giây)
         async function xuLyKhiXongCau() {
             if (dangChoEnter) return;
             dangChoEnter = true;
@@ -940,10 +1097,8 @@
             }
             document.getElementById("streak-text").innerText = "🔥 Chuỗi đúng: " + chuoiDung;
 
-            // 1. Phát âm ngay lập tức
-            phatAm(dapAnChuan, 0.95);
+            phatAm(dapAnChuan, 0.96);
 
-            // 2. Hiển thị đầy đủ đáp án tiếng Anh, IPA chuẩn UK và nghĩa tiếng Việt
             let ipaDayDu = item.ipa || await layIPACaCauUK(dapAnChuan, "");
             item.ipa = ipaDayDu;
 
@@ -961,7 +1116,6 @@
             let input = document.getElementById("o-nhap");
             input.readOnly = true;
 
-            // 3. Hiện thanh nhắc nhấn Enter để sang câu mới
             document.getElementById("banner-enter").style.display = "flex";
         }
 
@@ -973,26 +1127,7 @@
             let input = document.getElementById("o-nhap");
             input.readOnly = false;
             cauHienTai++;
-            loadCauHoi(false);
-        }
-
-        // ƯU TIÊN GIỌNG ĐỌC ANH-ANH (en-GB)
-        function phatAm(text, rate = 0.95) {
-            if (!('speechSynthesis' in window) || !text) return;
-            window.speechSynthesis.cancel();
-            let utterance = new SpeechSynthesisUtterance(text);
-            let voices = window.speechSynthesis.getVoices();
-            let ukVoice = voices.find(v => v.lang === 'en-GB' && v.name.includes('Female')) 
-                       || voices.find(v => v.lang === 'en-GB') 
-                       || voices.find(v => v.lang.startsWith('en'));
-            if (ukVoice) utterance.voice = ukVoice;
-            utterance.lang = 'en-GB';
-            utterance.rate = rate;
-            window.speechSynthesis.speak(utterance);
-        }
-
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+            loadCauHoi(false, true);
         }
 
         function xaoTron(array) {
@@ -1002,7 +1137,7 @@
             }
         }
 
-        function loadCauHoi(giuNguyenKieu = false) {
+        function loadCauHoi(giuNguyenKieu = false, tuDongDoc = true) {
             dangChoEnter = false;
             document.getElementById("banner-enter").style.display = "none";
             document.getElementById("box-cau-hoi").classList.remove("hoan-tat");
@@ -1043,8 +1178,9 @@
             luuTienDo();
             hienThiCauHoiHienTai();
             
-            // Phát âm giọng Anh-Anh ngay khi đề hiện ra
-            phatAm(dapAnChuan, 0.95);
+            if (tuDongDoc && daTuongTacNguoiDung) {
+                phatAm(dapAnChuan, 0.96);
+            }
 
             let input = document.getElementById("o-nhap");
             input.value = "";
@@ -1060,11 +1196,11 @@
             }
             if (e.ctrlKey && e.code === "Space") {
                 e.preventDefault();
-                phatAm(dapAnChuan, 0.95);
+                phatAm(dapAnChuan, 0.96);
             }
             if (e.altKey && (e.key === "s" || e.key === "S")) {
                 e.preventDefault();
-                phatAm(dapAnChuan, 0.65);
+                phatAm(dapAnChuan, 0.76);
             }
         });
 
