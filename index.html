@@ -2,8 +2,11 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cozy Island Vocab — 18 Thế Giới, Slang/Idioms & Boss 45s</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Cozy Island">
+    <title>Cozy Island Vocab — iOS Mobile Edition</title>
     <style>
         :root {
             --sidebar-bg: #5a6d56;
@@ -21,8 +24,10 @@
             --accent-amber-soft: #fdf4df;
             --accent-sky: #4e89a8;
             --border: #e6decb;
-            --shadow: 0 6px 18px rgba(84, 74, 54, 0.08);
+            --shadow: 0 4px 14px rgba(84, 74, 54, 0.08);
             --base-font: 15px;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
 
         body[data-theme="midnight"] {
@@ -41,7 +46,7 @@
             --accent-amber-soft: #332b1e;
             --accent-sky: #38bdf8;
             --border: #313a58;
-            --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            --shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
         }
 
         body[data-theme="sakura"] {
@@ -60,18 +65,24 @@
             --accent-amber-soft: #fdf0eb;
             --accent-sky: #6c8ebf;
             --border: #edd5de;
-            --shadow: 0 6px 18px rgba(140, 90, 108, 0.09);
+            --shadow: 0 4px 14px rgba(140, 90, 108, 0.09);
         }
 
-        * { box-sizing: border-box; }
-        body {
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: var(--base-font);
             background: var(--page-bg);
             color: var(--ink);
-            min-height: 100vh;
-            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100dvh;
+            overscroll-behavior-y: none;
+            -webkit-text-size-adjust: 100%;
         }
 
         #rain-layer {
@@ -91,286 +102,271 @@
             100% { background-position: -18px 72px, 0 0; }
         }
 
-        .cozy-layout {
+        /* iOS MOBILE HEADER */
+        .ios-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--sidebar-bg);
+            color: #fff;
+            padding: calc(var(--safe-top) + 10px) 14px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .ios-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ios-pet-badge {
+            font-size: 24px;
+            background: rgba(255,255,255,0.16);
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .ios-pet-badge.bounce { animation: petPop 0.35s ease; }
+        @keyframes petPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.22) rotate(-6deg); }
+            100% { transform: scale(1); }
+        }
+        .ios-pet-acc { position: absolute; top: -6px; right: -4px; font-size: 14px; }
+        .ios-header-info h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+        }
+        .ios-header-sub {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+        .ios-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ios-pill {
+            background: rgba(255,255,255,0.16);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* MAIN CONTAINER */
+        .main-area {
             position: relative;
             z-index: 2;
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            min-height: 100vh;
-            max-width: 1340px;
+            max-width: 760px;
             margin: 0 auto;
-        }
-        body.compact-mode .cozy-layout { grid-template-columns: 225px 1fr; }
-        @media (max-width: 880px) {
-            .cozy-layout, body.compact-mode .cozy-layout { grid-template-columns: 1fr; }
-        }
-
-        .sidebar {
-            background: var(--sidebar-bg);
-            color: #f7f5ee;
-            padding: 18px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .island-brand {
-            text-align: center;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.16);
-        }
-        .island-brand .small-cap { font-size: 11px; letter-spacing: 0.9px; opacity: 0.85; text-transform: uppercase; }
-        .island-brand h1 { margin: 2px 0; font-size: 22px; font-weight: 800; }
-        .island-brand .sub-cap { font-size: 12px; opacity: 0.85; }
-
-        .theme-switcher {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            background: rgba(0,0,0,0.2);
-            padding: 4px;
-            border-radius: 12px;
-        }
-        .theme-btn {
-            padding: 6px 4px;
-            font-size: 11.5px;
-            background: transparent;
-            color: #f3f0e6;
-            border-radius: 8px;
-        }
-        .theme-btn.active { background: var(--card-bg); color: var(--ink); font-weight: 800; }
-
-        .nav-list { display: flex; flex-direction: column; gap: 4px; }
-        .nav-item {
-            display: flex; align-items: center; gap: 9px;
-            padding: 9px 11px; border-radius: 11px;
-            background: transparent; color: #f3f0e6;
-            font-size: 13.5px; font-weight: 700; text-align: left;
-            width: 100%; cursor: pointer; border: none;
-        }
-        .nav-item:hover { background: rgba(255,255,255,0.12); }
-        .nav-item.active { background: var(--card-bg); color: var(--ink); box-shadow: 0 3px 10px rgba(0,0,0,0.14); }
-
-        .ambient-box {
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 9px 10px;
-            font-size: 12px;
-        }
-        .ambient-row { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
-        .amb-btn {
-            flex: 1; padding: 5px 6px; font-size: 11px;
-            background: rgba(0,0,0,0.22); color: #fff; border-radius: 8px;
-        }
-        .amb-btn.active { background: #fde047; color: #2b261d; font-weight: 800; }
-
-        .pet-sidebar-card {
-            margin-top: auto;
-            background: var(--sidebar-card);
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 16px;
-            padding: 12px;
-            text-align: center;
-        }
-        .pet-stage-wrap {
-            position: relative;
-            display: inline-block;
-            font-size: 42px;
-            line-height: 1.1;
-            transition: transform 0.25s ease;
-        }
-        .pet-stage-wrap.bounce { transform: scale(1.18) rotate(-4deg); }
-        .pet-acc { position: absolute; top: -12px; right: -12px; font-size: 20px; }
-        .pet-mood { position: absolute; bottom: -4px; left: -14px; font-size: 18px; }
-        .pet-name-txt { font-size: 14px; font-weight: 800; margin-top: 6px; color: #fff; }
-        .pet-lvl-txt { font-size: 11.5px; color: #e6efe2; margin-top: 2px; }
-        .xp-track { height: 8px; background: rgba(0,0,0,0.25); border-radius: 999px; overflow: hidden; margin: 8px 0 6px; }
-        .xp-fill { height: 100%; background: #fde047; width: 0%; transition: width 0.3s; }
-        .tip-bubble {
-            background: rgba(255,255,255,0.12);
-            border-radius: 10px; padding: 8px;
-            font-size: 11.5px; line-height: 1.4; color: #f6f4ec;
-        }
-
-        .main-area {
-            padding: 18px 22px 44px;
-            background: linear-gradient(180deg, var(--page-grad) 0%, var(--page-bg) 170px);
-        }
-        body.compact-mode .main-area { padding: 12px 14px 32px; }
-        @media (max-width: 600px) { .main-area { padding: 14px 10px 36px; } }
-
-        .top-banner {
-            display: flex; justify-content: space-between; align-items: flex-start;
-            gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
-        }
-        .welcome-title { margin: 0; font-size: 23px; font-weight: 800; color: var(--title-ink); }
-        .welcome-sub { margin: 3px 0 0; font-size: 13px; color: var(--muted); }
-        .top-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-        .meta-pill-box {
-            background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 13px; padding: 8px 13px;
-            font-size: 12px; font-weight: 700; color: var(--ink);
-            box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 2px;
+            padding: 12px 12px calc(var(--safe-bottom) + 86px);
+            background: linear-gradient(180deg, var(--page-grad) 0%, var(--page-bg) 160px);
         }
 
         button {
-            cursor: pointer; border: none; border-radius: 12px;
-            font-weight: 700; transition: transform 0.14s ease, background 0.2s ease;
-            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-family: inherit;
+            transition: transform 0.12s ease, opacity 0.15s ease;
         }
-        button:active { transform: scale(0.97); }
+        button:active { transform: scale(0.96); }
 
         .cozy-card {
             background: var(--card-bg);
             border: 1.5px solid var(--border);
             border-radius: 18px;
-            padding: 15px 17px;
+            padding: 14px;
             box-shadow: var(--shadow);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
-        body.compact-mode .cozy-card { padding: 12px 13px; margin-bottom: 10px; }
         .card-header-row {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 10px; gap: 8px; flex-wrap: wrap;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 8px;
         }
-        .card-header-row h2 { margin: 0; font-size: 15.5px; font-weight: 800; color: var(--ink); }
-        .mini-link { font-size: 11.5px; color: var(--accent-green); font-weight: 800; background: var(--accent-leaf); padding: 4px 10px; border-radius: 999px; }
+        .card-header-row h2 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--ink);
+        }
+        .mini-link {
+            font-size: 11px;
+            color: var(--accent-green);
+            font-weight: 800;
+            background: var(--accent-leaf);
+            padding: 4px 9px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
 
+        /* COSMOS BANNER */
         .cosmos-banner {
             background: linear-gradient(135deg, #3c3163, #5c4d8c);
             color: #fff;
             border-radius: 18px;
-            padding: 15px 18px;
-            margin-bottom: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
             box-shadow: var(--shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
         }
-        .cosmos-banner h2 { margin: 0; font-size: 17px; font-weight: 800; }
-        .cosmos-banner p { margin: 4px 0 0; font-size: 12.5px; opacity: 0.92; line-height: 1.4; }
+        .cosmos-banner h2 { margin: 0; font-size: 15.5px; font-weight: 800; }
+        .cosmos-banner p { margin: 4px 0 10px; font-size: 12px; opacity: 0.92; line-height: 1.4; }
         .btn-cosmos {
-            background: #ffd166; color: #2c2349;
-            padding: 11px 16px; font-size: 13.5px; font-weight: 800;
+            width: 100%;
+            background: #ffd166;
+            color: #2c2349;
+            padding: 11px 14px;
+            font-size: 14px;
+            font-weight: 800;
         }
 
-        /* VÙNG ĐẤT TƯƠNG TÁC THẬT */
+        /* ISLAND ZONES */
         .island-zones-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
-        @media (max-width: 820px) { .island-zones-grid { grid-template-columns: repeat(2, 1fr); } }
         .zone-card {
             background: var(--sub-card);
             border: 1.5px solid var(--border);
             border-radius: 14px;
-            padding: 11px 12px;
+            padding: 10px;
             text-align: left;
             color: var(--ink);
             width: 100%;
         }
         .zone-card.unlocked { border-color: var(--accent-green); background: var(--accent-leaf); }
-        .zone-card.unlocked:hover { filter: brightness(0.98); }
-        .zone-card.locked { opacity: 0.75; }
-        .zone-title { font-weight: 800; font-size: 13.5px; display: flex; justify-content: space-between; gap: 6px; }
-        .zone-desc { font-size: 11.5px; color: var(--muted); margin-top: 4px; line-height: 1.35; font-weight: 500; }
+        .zone-card.locked { opacity: 0.72; }
+        .zone-title { font-weight: 800; font-size: 13px; display: flex; justify-content: space-between; gap: 4px; }
+        .zone-desc { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.3; font-weight: 500; }
 
-        .quests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        @media (max-width: 760px) { .quests-grid { grid-template-columns: 1fr; } }
+        /* DAILY QUESTS */
+        .quests-grid { display: flex; flex-direction: column; gap: 8px; }
         .quest-item {
             background: var(--sub-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 10px 12px;
+            padding: 9px 11px;
             font-size: 12.5px;
         }
         .quest-item.done { border-color: #3a9259; background: rgba(58, 146, 89, 0.1); }
         .quest-bar { height: 6px; background: rgba(128,128,128,0.2); border-radius: 99px; overflow: hidden; margin-top: 6px; }
         .quest-fill { height: 100%; background: var(--accent-green); transition: width 0.3s; }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-        @media (max-width: 980px) { .bento-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 640px) { .bento-grid { grid-template-columns: 1fr; } }
-
+        /* SCENARIO BUTTONS */
         .scenario-btn {
-            width: 100%; text-align: left;
+            width: 100%;
+            text-align: left;
             background: var(--accent-amber-soft);
             border: 1.5px solid #f0d79c;
-            border-radius: 13px; padding: 10px 12px;
-            color: var(--ink); margin-bottom: 7px;
+            border-radius: 13px;
+            padding: 11px 12px;
+            color: var(--ink);
+            margin-bottom: 8px;
         }
         .scenario-btn strong { display: block; font-size: 13.5px; color: var(--accent-amber); }
         .scenario-btn span { display: block; font-size: 11.5px; color: var(--muted); font-weight: 500; margin-top: 2px; }
-
         .btn-slang-inf {
-            width: 100%; text-align: center;
-            background: #7c4d06; color: #fff;
-            padding: 10px 12px; font-size: 13px; margin-top: 3px;
+            width: 100%;
+            text-align: center;
+            background: #7c4d06;
+            color: #fff;
+            padding: 11px;
+            font-size: 13.5px;
         }
 
         .mode-action-card {
-            width: 100%; text-align: left;
-            background: var(--sub-card); border: 1.5px solid var(--border);
-            border-radius: 12px; padding: 11px 12px; color: var(--ink);
-            margin-bottom: 9px;
+            width: 100%;
+            text-align: left;
+            background: var(--sub-card);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 11px 12px;
+            color: var(--ink);
+            margin-bottom: 8px;
         }
-        .mode-action-card:hover { background: var(--accent-leaf); border-color: var(--accent-green); }
-        .mode-action-card strong { display: block; font-size: 13px; }
+        .mode-action-card strong { display: block; font-size: 13.5px; }
         .mode-action-card span { display: block; font-size: 11.5px; color: var(--muted); font-weight: 500; margin-top: 2px; }
 
-        .topic-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 6px; }
+        .topic-row { display: flex; gap: 7px; margin-top: 6px; }
         .topic-input {
-            flex: 1; min-width: 150px;
-            padding: 9px 12px; font-size: 14.5px;
-            border: 1.5px solid var(--border); border-radius: 11px;
-            background: var(--card-bg); color: var(--ink); outline: none;
+            flex: 1;
+            min-width: 0;
+            padding: 10px 12px;
+            font-size: 16px; /* Prevent iOS auto-zoom */
+            border: 1.5px solid var(--border);
+            border-radius: 11px;
+            background: var(--card-bg);
+            color: var(--ink);
+            outline: none;
         }
-        .btn-cozy-green { padding: 9px 13px; background: var(--accent-green); color: #fff; font-size: 13px; }
+        .btn-cozy-green { padding: 10px 14px; background: var(--accent-green); color: #fff; font-size: 13.5px; white-space: nowrap; }
 
         .boss-card-box {
             background: linear-gradient(145deg, #3b4638, #273025);
-            color: #fff; border-radius: 15px; padding: 13px;
-            display: flex; flex-direction: column; gap: 9px;
+            color: #fff;
+            border-radius: 15px;
+            padding: 13px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
         }
-        .btn-boss-45 {
-            width: 100%; padding: 11px;
-            background: #e07a38; color: #fff; font-size: 13.5px;
-        }
+        .btn-boss-45 { width: 100%; padding: 12px; background: #e07a38; color: #fff; font-size: 14px; }
 
-        .worlds-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(225px, 1fr)); gap: 9px; }
+        /* 18 WORLDS */
+        .worlds-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        @media (max-width: 360px) { .worlds-wrap { grid-template-columns: 1fr; } }
         .world-chip {
-            padding: 10px 12px; text-align: left;
-            background: var(--sub-card); border: 1.5px solid var(--border);
-            border-radius: 13px; color: var(--ink);
+            padding: 10px;
+            text-align: left;
+            background: var(--sub-card);
+            border: 1.5px solid var(--border);
+            border-radius: 13px;
+            color: var(--ink);
         }
-        .world-chip.bloomed {
-            border-color: var(--accent-green);
-            background: var(--accent-leaf);
-        }
-        .world-chip strong { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
-        .world-chip span { display: block; font-size: 11.2px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+        .world-chip.bloomed { border-color: var(--accent-green); background: var(--accent-leaf); }
+        .world-chip strong { display: flex; justify-content: space-between; align-items: flex-start; font-size: 12.5px; gap: 4px; }
+        .world-chip span { display: block; font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 3px; }
 
         textarea {
-            width: 100%; height: 74px; padding: 10px 12px; font-size: 15px;
-            border: 1.5px solid var(--border); border-radius: 12px;
-            background: var(--card-bg); color: var(--ink); margin-bottom: 9px; outline: none;
+            width: 100%;
+            height: 76px;
+            padding: 10px 12px;
+            font-size: 16px; /* Prevent iOS zoom */
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            background: var(--card-bg);
+            color: var(--ink);
+            margin-bottom: 9px;
+            outline: none;
+            font-family: inherit;
         }
 
+        /* BOSS ARENA */
         #boss-arena {
             display: none;
             background: linear-gradient(160deg, #1f1b24, #2d2436);
             color: #f8f5f0;
-            border: 2.5px solid #f59e0b;
+            border: 2px solid #f59e0b;
             border-radius: 18px;
-            padding: 18px 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            padding: 14px;
+            margin-bottom: 14px;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.35);
             position: relative;
             overflow: hidden;
         }
@@ -380,135 +376,131 @@
             opacity: 0; transition: opacity 0.25s;
         }
         .boss-forge-spark.flash { opacity: 1; }
-        .boss-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+        .boss-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
         .timer-badge {
             font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
             background: #111; border: 1.5px solid #f59e0b;
-            color: #fbbf24; padding: 5px 13px; border-radius: 10px; font-weight: 800; font-size: 15px;
+            color: #fbbf24; padding: 4px 10px; border-radius: 9px; font-weight: 800; font-size: 14px;
         }
-        .hp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
-        @media (max-width: 600px) { .hp-grid { grid-template-columns: 1fr; } }
-        .hp-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 10px 12px; }
-        .hp-bar-bg { height: 10px; background: rgba(0,0,0,0.4); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+        .hp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+        .hp-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); border-radius: 11px; padding: 8px 10px; }
+        .hp-bar-bg { height: 8px; background: rgba(0,0,0,0.4); border-radius: 999px; overflow: hidden; margin-top: 5px; }
         .hp-boss-fill { height: 100%; background: #ef4444; width: 100%; transition: width 0.25s; }
         .hp-player-fill { height: 100%; background: #22c55e; width: 100%; transition: width 0.25s; }
-        .boss-prompt { font-size: 18px; font-weight: 800; text-align: center; margin: 12px 0 14px; color: #fde68a; line-height: 1.45; }
-        .boss-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        @media (max-width: 600px) { .boss-opts { grid-template-columns: 1fr; } }
+        .boss-prompt { font-size: 16px; font-weight: 800; text-align: center; margin: 10px 0 12px; color: #fde68a; line-height: 1.4; }
+        .boss-opts { display: flex; flex-direction: column; gap: 8px; }
         .boss-opt {
-            padding: 12px 14px; text-align: left;
-            background: rgba(255,255,255,0.09); border: 1.5px solid rgba(255,255,255,0.22);
-            border-radius: 13px; color: #fff; font-size: 14px; line-height: 1.4;
+            padding: 12px; text-align: left;
+            background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.22);
+            border-radius: 12px; color: #fff; font-size: 14px; line-height: 1.35;
         }
-        .boss-opt:hover { background: rgba(251, 191, 36, 0.2); border-color: #fbbf24; }
 
+        /* STUDY ZONE */
         #hoc-khu-vuc { display: none; }
         .study-top-bar {
             display: flex; justify-content: space-between; align-items: center;
-            gap: 8px; flex-wrap: wrap; margin-bottom: 12px;
+            gap: 6px; flex-wrap: wrap; margin-bottom: 10px;
         }
         .pill-tag {
             background: var(--card-bg); border: 1px solid var(--border); color: var(--ink);
-            padding: 6px 11px; border-radius: 999px; font-size: 12px; font-weight: 700;
+            padding: 5px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700;
         }
         .pill-streak { background: var(--accent-amber-soft); border-color: #f0d79c; color: var(--accent-amber); }
 
         .mode-switch {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
             background: var(--sub-card); border: 1px solid var(--border);
-            padding: 5px; border-radius: 14px; margin-bottom: 12px;
+            padding: 4px; border-radius: 13px; margin-bottom: 10px;
         }
-        @media (max-width: 780px) { .mode-switch { grid-template-columns: 1fr 1fr; } }
-        .mode-btn { padding: 9px 8px; background: transparent; color: var(--muted); font-size: 12.5px; border-radius: 10px; }
-        .mode-btn.active { background: var(--card-bg); color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-
-        .calm-bar {
-            display: flex; justify-content: space-between; align-items: center;
-            gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
-            background: var(--sub-card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 8px 12px; font-size: 12.5px;
-        }
+        .mode-btn { padding: 8px 6px; background: transparent; color: var(--muted); font-size: 12px; border-radius: 9px; }
+        .mode-btn.active { background: var(--card-bg); color: var(--ink); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
 
         .flash-card {
             background: var(--card-bg);
             border: 1.5px solid var(--border);
-            border-left: 6px solid var(--accent-green);
+            border-left: 5px solid var(--accent-green);
             border-radius: 18px;
-            padding: 18px;
+            padding: 14px;
             box-shadow: var(--shadow);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .flash-card.done { border-left-color: #2e8b57; }
 
-        .card-meta-row { display: flex; justify-content: space-between; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 11px; }
-        .tag-pill { background: var(--accent-leaf); color: var(--ink); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
-        .tag-kind { background: var(--accent-amber-soft); color: var(--accent-amber); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
-        .tag-tone { background: rgba(78, 137, 168, 0.15); color: var(--accent-sky); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
-        .voice-sel { padding: 5px 9px; border-radius: 9px; border: 1px solid var(--border); background: var(--card-bg); font-size: 12px; font-weight: 600; color: var(--ink); }
+        .card-meta-row { display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+        .tag-pill { background: var(--accent-leaf); color: var(--ink); padding: 4px 9px; border-radius: 8px; font-size: 11px; font-weight: 800; }
+        .tag-kind { background: var(--accent-amber-soft); color: var(--accent-amber); padding: 4px 9px; border-radius: 8px; font-size: 11px; font-weight: 800; }
+        .tag-tone { background: rgba(78, 137, 168, 0.15); color: var(--accent-sky); padding: 4px 9px; border-radius: 8px; font-size: 11px; font-weight: 800; }
+        .voice-sel { padding: 6px 8px; border-radius: 9px; border: 1px solid var(--border); background: var(--card-bg); font-size: 12px; font-weight: 600; color: var(--ink); }
 
-        .question-line { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
-        #cau-hoi { font-size: 19px; font-weight: 800; color: var(--title-ink); line-height: 1.45; flex: 1; min-width: 220px; }
+        #cau-hoi { font-size: 17.5px; font-weight: 800; color: var(--title-ink); line-height: 1.45; margin-bottom: 10px; }
 
-        .btn-row { display: flex; gap: 6px; flex-wrap: wrap; }
-        .btn-audio { padding: 8px 12px; background: var(--accent-sky); color: #fff; font-size: 12.5px; }
-        .btn-slow { padding: 8px 10px; background: var(--sub-card); border: 1px solid var(--border); color: var(--ink); font-size: 12.5px; }
-        .btn-prev { padding: 8px 10px; background: var(--sub-card); border: 1px solid var(--border); color: var(--ink); font-size: 12.5px; }
-        .btn-prev:disabled { opacity: 0.45; cursor: not-allowed; }
-        .btn-flip { padding: 8px 11px; background: var(--accent-amber-soft); border: 1px solid #f0d79c; color: var(--accent-amber); font-size: 12.5px; }
+        .ios-audio-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .btn-audio { padding: 9px 6px; background: var(--accent-sky); color: #fff; font-size: 12px; }
+        .btn-slow { padding: 9px 6px; background: var(--sub-card); border: 1px solid var(--border); color: var(--ink); font-size: 12px; }
+        .btn-prev { padding: 9px 6px; background: var(--sub-card); border: 1px solid var(--border); color: var(--ink); font-size: 12px; }
+        .btn-prev:disabled { opacity: 0.45; }
+        .btn-flip { padding: 9px 6px; background: var(--accent-amber-soft); border: 1px solid #f0d79c; color: var(--accent-amber); font-size: 12px; }
 
         .ipa-box {
-            margin-top: 11px; background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.25);
-            border-radius: 12px; padding: 9px 13px;
-            display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+            background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.25);
+            border-radius: 12px; padding: 9px 11px;
         }
-        .ipa-badge { background: rgba(124, 58, 237, 0.18); color: #6d28d9; font-size: 11.5px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+        .ipa-badge { background: rgba(124, 58, 237, 0.18); color: #6d28d9; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 6px; }
         body[data-theme="midnight"] .ipa-badge { color: #d8b4fe; }
-        .ipa-text { font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', sans-serif; font-size: 17px; font-weight: 700; color: #5b21b6; }
+        .ipa-text { font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', sans-serif; font-size: 15.5px; font-weight: 700; color: #5b21b6; word-break: break-word; }
         body[data-theme="midnight"] .ipa-text { color: #e9d5ff; }
         .ipa-guide-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
         .ipa-chip {
-            padding: 3px 8px; font-size: 12px; border-radius: 7px;
+            padding: 4px 8px; font-size: 12px; border-radius: 7px;
             background: var(--card-bg); border: 1px solid var(--border); color: var(--ink);
         }
         .ipa-tip-drawer {
-            display: none; margin-top: 7px; padding: 8px 11px;
+            display: none; margin-top: 7px; padding: 8px 10px;
             background: var(--card-bg); border-radius: 9px; border: 1px dashed var(--accent-sky);
-            font-size: 12.5px; line-height: 1.45;
+            font-size: 12px; line-height: 1.45;
         }
 
-        .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 12px; }
-        @media (max-width: 640px) { .choice-grid { grid-template-columns: 1fr; } }
+        .choice-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
         .choice-btn {
-            padding: 12px 14px; text-align: left;
+            padding: 12px; text-align: left;
             background: var(--sub-card); border: 1.5px solid var(--border);
-            border-radius: 13px; color: var(--ink); font-size: 14px; line-height: 1.4;
+            border-radius: 12px; color: var(--ink); font-size: 14px; line-height: 1.35;
         }
-        .choice-btn:hover { border-color: var(--accent-green); background: var(--accent-leaf); }
         .choice-btn.ok { background: #dcfce7; border-color: #22c55e; color: #14532d; }
         .choice-btn.bad { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
 
         #nuance-explain {
-            display: none; margin-top: 10px; padding: 10px 12px;
+            display: none; margin-top: 9px; padding: 9px 11px;
             border-radius: 11px; background: var(--accent-amber-soft);
-            border: 1px solid #f0d79c; font-size: 13px; line-height: 1.45;
+            border: 1px solid #f0d79c; font-size: 12.5px; line-height: 1.45;
         }
-
-        #goi-y-box { margin-top: 11px; padding-top: 11px; border-top: 1px dashed var(--border); font-size: 15.5px; line-height: 1.55; display: none; }
+        #goi-y-box { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 15px; line-height: 1.5; display: none; }
 
         .cue-card {
-            margin-top: 11px; background: var(--sub-card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 11px 13px; font-size: 13px; color: var(--ink); line-height: 1.5;
+            margin-top: 10px; background: var(--sub-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 10px 11px; font-size: 12.5px; color: var(--ink); line-height: 1.45;
         }
         .cue-hidden {
-            margin-top: 8px; padding: 10px 12px; background: var(--card-bg);
+            margin-top: 8px; padding: 9px 11px; background: var(--card-bg);
             border: 1px dashed var(--accent-amber); border-radius: 10px;
-            font-size: 13px; line-height: 1.55; display: none;
+            font-size: 12.5px; line-height: 1.5; display: none;
         }
 
         #o-nhap {
-            width: 100%; font-size: 19px; padding: 14px 15px;
-            border: 2.5px solid var(--border); border-radius: 14px; outline: none;
-            background: var(--card-bg); color: var(--ink); -webkit-appearance: none;
+            width: 100%;
+            font-size: 17px; /* >=16px prevents Safari zoom */
+            padding: 14px;
+            border: 2.5px solid var(--border);
+            border-radius: 14px;
+            outline: none;
+            background: var(--card-bg);
+            color: var(--ink);
+            -webkit-appearance: none;
         }
         #o-nhap:focus { border-color: var(--accent-green); }
         .dung { background: #eaf7ee !important; border-color: #3a9259 !important; color: #1f5c35 !important; }
@@ -516,57 +508,396 @@
         .calm-warn { background: #fef9c3 !important; border-color: #eab308 !important; }
 
         #banner-enter {
-            display: none; margin-top: 12px;
-            background: #eaf7ee; border: 2px solid #59ad76;
-            border-radius: 14px; padding: 13px 15px;
-            justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+            display: none;
+            margin-top: 10px;
+            background: #eaf7ee;
+            border: 2px solid #59ad76;
+            border-radius: 14px;
+            padding: 12px;
+            flex-direction: column;
+            gap: 9px;
         }
-        .btn-next { padding: 10px 17px; background: #3a9259; color: #fff; font-size: 13.5px; }
-        .shortcut-note { margin-top: 9px; font-size: 12px; color: var(--muted); text-align: right; }
+        .btn-next { width: 100%; padding: 12px; background: #3a9259; color: #fff; font-size: 15px; }
 
-        .modal-bg { display: none; position: fixed; inset: 0; background: rgba(20, 20, 24, 0.6); z-index: 9999; padding: 14px 10px; overflow-y: auto; }
-        .modal-box { max-width: 820px; margin: 14px auto; background: var(--card-bg); color: var(--ink); border-radius: 18px; padding: 18px; border: 1.5px solid var(--border); box-shadow: 0 20px 45px rgba(0,0,0,0.28); }
-        .modal-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 11px; margin-bottom: 13px; }
-        .hist-row { background: var(--sub-card); border: 1px solid var(--border); border-left: 4px solid var(--accent-green); border-radius: 12px; padding: 11px 13px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 9px; }
-        .lb-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 13px; border-radius: 12px; background: var(--sub-card); border: 1px solid var(--border); margin-bottom: 8px; }
+        /* BOTTOM TAB BAR (iOS STYLE) */
+        .ios-tabbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 60;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border);
+            padding: 6px 6px calc(var(--safe-bottom) + 6px);
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2px;
+            box-shadow: 0 -3px 14px rgba(0,0,0,0.07);
+        }
+        .tab-btn {
+            background: transparent;
+            color: var(--muted);
+            padding: 5px 2px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 10.5px;
+            font-weight: 700;
+        }
+        .tab-btn .t-ico { font-size: 18px; line-height: 1.1; }
+        .tab-btn.active { color: var(--accent-green); background: var(--accent-leaf); }
+
+        /* MODALS & DRAWER */
+        .modal-bg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 24, 0.62);
+            z-index: 9999;
+            padding: calc(var(--safe-top) + 12px) 10px calc(var(--safe-bottom) + 14px);
+            overflow-y: auto;
+        }
+        .modal-box {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            color: var(--ink);
+            border-radius: 18px;
+            padding: 16px;
+            border: 1.5px solid var(--border);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+        }
+        .modal-head {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 12px;
+        }
+        .hist-row {
+            background: var(--sub-card); border: 1px solid var(--border);
+            border-left: 4px solid var(--accent-green); border-radius: 12px;
+            padding: 10px 12px; display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px;
+        }
+        .lb-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 12px; border-radius: 12px; background: var(--sub-card);
+            border: 1px solid var(--border); margin-bottom: 8px;
+        }
         .lb-me { background: var(--accent-amber-soft); border-color: var(--accent-amber); font-weight: 800; }
-        .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        @media (max-width: 640px) { .tool-grid { grid-template-columns: 1fr; } }
-        .tool-box { background: var(--sub-card); border: 1px solid var(--border); border-radius: 13px; padding: 12px; }
+
+        .theme-switcher {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+            background: var(--sub-card); padding: 5px; border-radius: 12px; border: 1px solid var(--border);
+        }
+        .theme-btn { padding: 8px 4px; font-size: 12px; background: transparent; color: var(--ink); border-radius: 8px; }
+        .theme-btn.active { background: var(--accent-green); color: #fff; font-weight: 800; }
+
+        .ambient-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; }
+        .amb-btn { padding: 8px 4px; font-size: 12px; background: var(--sub-card); border: 1px solid var(--border); color: var(--ink); border-radius: 9px; }
+        .amb-btn.active { background: #fde047; color: #2b261d; border-color: #eab308; font-weight: 800; }
     </style>
 </head>
 <body data-theme="daylight">
     <div id="rain-layer"></div>
 
-    <div class="cozy-layout">
-        <aside class="sidebar">
-            <div class="island-brand">
-                <div class="small-cap">Cozy Island OS</div>
-                <h1>Cozy Island</h1>
-                <div class="sub-cap">Slang • Idioms • 18 Worlds</div>
+    <!-- iOS TOP BAR -->
+    <header class="ios-header">
+        <div class="ios-brand" onclick="veTrangChu()">
+            <div class="ios-pet-badge" id="pet-stage-wrap">
+                <span id="hud-pet-icon">🥚</span>
+                <span class="ios-pet-acc" id="hud-pet-acc"></span>
+            </div>
+            <div class="ios-header-info">
+                <h1 id="hud-pet-name">Cozy Island</h1>
+                <div class="ios-header-sub" id="hud-xp-text">0 XP • Cấp 1/4</div>
+            </div>
+        </div>
+        <div class="ios-header-actions">
+            <span class="ios-pill" id="hud-streak-days">🔥 1d</span>
+            <button class="ios-pill" onclick="moModalLichSu()">📜 <span id="side-hist-cnt">0</span></button>
+            <button class="ios-pill" onclick="moModalCongCu()">⚙️</button>
+        </div>
+    </header>
+
+    <main class="main-area">
+        <!-- BOSS ARENA 45s -->
+        <section id="boss-arena">
+            <div class="boss-forge-spark" id="boss-spark"></div>
+            <div class="boss-top">
+                <strong style="font-size:14px; color:#fbbf24;" id="boss-title-label">⚔️ BOSS — CẤP 1 (45s)</strong>
+                <div style="display:flex; gap:6px; align-items:center;">
+                    <span class="timer-badge" id="boss-timer">⏱️ 45.0s</span>
+                    <button class="btn-prev" style="padding:5px 9px;" onclick="thoatBossBattle()">Thoát</button>
+                </div>
+            </div>
+            <div class="hp-grid">
+                <div class="hp-box">
+                    <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700;">
+                        <span id="boss-name-tag">👹 Boss Slang</span>
+                        <span id="boss-hp-label">100/100</span>
+                    </div>
+                    <div class="hp-bar-bg"><div class="hp-boss-fill" id="boss-hp-fill"></div></div>
+                </div>
+                <div class="hp-box">
+                    <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700;">
+                        <span>🛡️ Bạn</span>
+                        <span id="player-hp-label">100/100</span>
+                    </div>
+                    <div class="hp-bar-bg"><div class="hp-player-fill" id="player-hp-fill"></div></div>
+                </div>
+            </div>
+            <div class="boss-prompt" id="boss-prompt">Sẵn sàng!</div>
+            <div class="boss-opts" id="boss-options"></div>
+        </section>
+
+        <!-- HOME DASHBOARD -->
+        <div id="nhap-du-lieu">
+            <section class="cosmos-banner">
+                <h2>🌌 VŨ TRỤ VÔ HẠN 18 THẾ GIỚI</h2>
+                <p>Trộn ngẫu nhiên không giới hạn 18 thế giới giao tiếp & từ vựng UK — tối ưu luyện gõ nhanh trên iPhone.</p>
+                <button class="btn-cosmos" onclick="batDauVuTruVoHan()">🚀 Vào Vũ trụ 18 Thế giới</button>
+            </section>
+
+            <!-- VÙNG ĐẤT -->
+            <section class="cozy-card">
+                <div class="card-header-row">
+                    <h2>🏝️ Vùng đất trên đảo</h2>
+                    <span class="mini-link" id="island-progress-pill">1 / 4 đã mở</span>
+                </div>
+                <div class="island-zones-grid" id="island-zones-grid"></div>
+            </section>
+
+            <!-- NHIỆM VỤ HÔM NAY -->
+            <section class="cozy-card">
+                <div class="card-header-row">
+                    <h2>🌤️ Nhiệm vụ nhỏ hôm nay</h2>
+                    <span class="mini-link" id="hud-badge-label">🥉 Tân binh</span>
+                </div>
+                <div class="quests-grid" id="daily-quests-grid"></div>
+            </section>
+
+            <!-- SLANG & IDIOMS -->
+            <section class="cozy-card" id="sec-slang">
+                <div class="card-header-row">
+                    <h2>🔥 Slang & Idioms</h2>
+                    <span class="mini-link">3 kịch bản + Vô hạn</span>
+                </div>
+                <button class="scenario-btn" onclick="batDauKichBan('office')">
+                    <strong>🏢 1. Sinh tồn nơi công sở</strong>
+                    <span>burn the midnight oil • circle back • touch base • on the same page • call it a day</span>
+                </button>
+                <button class="scenario-btn" onclick="batDauKichBan('hangout')">
+                    <strong>🍻 2. Tụ tập bạn bè cuối tuần</strong>
+                    <span>rain check • spill the tea • no-brainer • ghost • down to earth</span>
+                </button>
+                <button class="scenario-btn" onclick="batDauKichBan('shopping')">
+                    <strong>🛍️ 3. Mua sắm & Săn Sale</strong>
+                    <span>break the bank • rip-off • window shopping • steal • impulse buy</span>
+                </button>
+                <button class="btn-slang-inf" onclick="batDauVoHanSlang('all')">
+                    ♾️ Slang & Idioms Vô hạn (15 cụm xoay vòng)
+                </button>
+            </section>
+
+            <!-- CHẾ ĐỘ KHÁC BIỆT -->
+            <section class="cozy-card">
+                <div class="card-header-row">
+                    <h2>✨ Chế độ Khác biệt</h2>
+                    <span class="mini-link">Thực chiến</span>
+                </div>
+                <button class="mode-action-card" onclick="batDauMicroScene()">
+                    <strong>🎬 Hội thoại nối tiếp</strong>
+                    <span>Luyện từng lượt theo mạch đối thoại thực tế</span>
+                </button>
+                <button class="mode-action-card" onclick="batDauSpotNuance()">
+                    <strong>🎯 Sửa lỗi sắc thái</strong>
+                    <span>Nhận diện câu lệch tông / dùng sai ngữ cảnh idiom & slang</span>
+                </button>
+                <div style="font-size:12px; font-weight:800; margin-top:6px;">🧩 Sinh câu theo chủ đề tự do</div>
+                <div class="topic-row">
+                    <input type="text" class="topic-input" id="o-chu-de-dong" placeholder="VD: phỏng vấn, trễ hẹn, săn sale...">
+                    <button class="btn-cozy-green" onclick="batDauChuDeDong()">Sinh câu</button>
+                </div>
+            </section>
+
+            <!-- BOSS 45s -->
+            <section class="cozy-card">
+                <div class="card-header-row">
+                    <h2>⚔️ Thử thách Boss 45s</h2>
+                    <span class="mini-link" id="home-summary-txt">0 từ đã lưu</span>
+                </div>
+                <div class="boss-card-box">
+                    <div style="font-size:12.5px; line-height:1.45;">
+                        45s mỗi lượt • Trộn Slang/Idioms, 18 thế giới & từ bạn đã lưu trong sổ tay.
+                    </div>
+                    <button class="btn-boss-45" onclick="batDauBossBattle(1)">⚔️ Bắt đầu đấu Boss (45s)</button>
+                </div>
+            </section>
+
+            <!-- 18 THẾ GIỚI -->
+            <section class="cozy-card">
+                <div class="card-header-row">
+                    <h2>🗺️ 18 Thế giới (3 câu nở hoa 🌸)</h2>
+                    <button class="btn-cozy-green" style="padding:6px 10px; font-size:12px;" onclick="batDauVuTruVoHan()">🌌 Trộn tất cả</button>
+                </div>
+                <div class="worlds-wrap" id="worlds-grid"></div>
+            </section>
+
+            <!-- DANH SÁCH RIÊNG -->
+            <section class="cozy-card">
+                <div class="card-header-row">
+                    <h2>📝 Danh sách riêng (Việt [Tab] Anh)</h2>
+                </div>
+                <textarea id="du-lieu-excel" placeholder="Ví dụ:&#10;Tối qua mình thức khuya làm nốt file.	I burned the midnight oil to finish the file last night"></textarea>
+                <button class="btn-cozy-green" style="width:100%; padding:11px;" onclick="batDauTuExcel()">Bắt đầu danh sách riêng</button>
+            </section>
+        </div>
+
+        <!-- KHU VỰC HỌC -->
+        <div id="hoc-khu-vuc">
+            <div class="study-top-bar">
+                <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
+                    <span class="pill-tag" id="ten-bai-hoc"></span>
+                    <span class="pill-tag" id="tien-do"></span>
+                </div>
+                <div style="display:flex; gap:5px; align-items:center;">
+                    <span class="pill-tag pill-streak" id="streak-text">🔥 0</span>
+                    <button class="btn-prev" style="padding:5px 10px;" onclick="veTrangChu()">⬅️ Về đảo</button>
+                </div>
             </div>
 
-            <div class="theme-switcher" title="Đổi không khí đảo">
-                <button class="theme-btn active" id="th-daylight" onclick="doiTheme('daylight')">☀️ Nắng nhẹ</button>
-                <button class="theme-btn" id="th-midnight" onclick="doiTheme('midnight')">🏮 Đêm mưa</button>
-                <button class="theme-btn" id="th-sakura" onclick="doiTheme('sakura')">🌸 Anh đào</button>
+            <div class="mode-switch">
+                <button class="mode-btn active" id="btn-mode-de" onclick="doiCheDo('de')">💡 Việt/IPA → Anh</button>
+                <button class="mode-btn" id="btn-mode-reverse" onclick="doiCheDo('reverse')">🔄 Nghe → Việt</button>
+                <button class="mode-btn" id="btn-mode-nuance" onclick="doiCheDo('nuance')">🎯 Sửa sắc thái</button>
+                <button class="mode-btn" id="btn-mode-mau" onclick="doiCheDo('mau')">⚡ Nhìn mẫu gõ</button>
             </div>
 
-            <nav class="nav-list">
-                <button class="nav-item active" id="nav-home" onclick="veTrangChu()">🏡 Trang tổng quan</button>
-                <button class="nav-item" id="nav-cosmos" onclick="batDauVuTruVoHan()">🌌 Vũ trụ 18 Thế giới</button>
-                <button class="nav-item" id="nav-scene" onclick="batDauMicroScene()">🎬 Hội thoại nối tiếp</button>
-                <button class="nav-item" id="nav-nuance" onclick="batDauSpotNuance()">🎯 Sửa lỗi sắc thái</button>
-                <button class="nav-item" id="nav-office" onclick="batDauKichBan('office')">🏢 Công sở</button>
-                <button class="nav-item" id="nav-hangout" onclick="batDauKichBan('hangout')">🍻 Tụ tập cuối tuần</button>
-                <button class="nav-item" id="nav-shopping" onclick="batDauKichBan('shopping')">🛍️ Mua sắm & Sale</button>
-                <button class="nav-item" id="nav-history" onclick="moModalLichSu()">📜 Sổ tay từ (<span id="side-hist-cnt">0</span>)</button>
-                <button class="nav-item" id="nav-rank" onclick="moModalXepHang()">🏆 Xếp hạng</button>
-                <button class="nav-item" id="nav-tools" onclick="moModalCongCu()">⚙️ Cá nhân hóa & Sao lưu</button>
-            </nav>
+            <div class="flash-card" id="box-cau-hoi">
+                <div class="card-meta-row">
+                    <div style="display:flex; gap:5px; flex-wrap:wrap;">
+                        <span class="tag-pill" id="nhan-kieu-bai"></span>
+                        <span class="tag-kind" id="badge-loai-tu" style="display:none;"></span>
+                        <span class="tag-tone" id="badge-tone" style="display:none;"></span>
+                    </div>
+                    <select class="voice-sel" id="chon-giong-uk" onchange="doiGiongDocUK(this.value)">
+                        <option value="neural_sonia">🇬🇧 Sonia UK</option>
+                        <option value="neural_libby">🇬🇧 Libby UK</option>
+                        <option value="neural_ryan">🇬🇧 Ryan UK</option>
+                        <option value="youdao_uk">🇬🇧 Từ điển UK</option>
+                        <option value="ios_native">📱 Giọng iPhone</option>
+                    </select>
+                </div>
 
-            <div class="ambient-box">
-                <div>🎧 <b>Âm thanh nền</b> (tắt mặc định)</div>
+                <div id="cau-hoi"></div>
+
+                <div class="ios-audio-bar">
+                    <button class="btn-prev" id="btn-quay-lai-cau-truoc" onclick="quayLaiCauTruoc()">⬅️ Trước</button>
+                    <button class="btn-flip" onclick="latTheGoiNho()">🃏 Gợi nhớ</button>
+                    <button class="btn-audio" onclick="phatAm(dapAnChuan, false)">🔊 Nghe</button>
+                    <button class="btn-slow" onclick="phatAm(dapAnChuan, true)">🐢 Chậm</button>
+                </div>
+
+                <div class="ipa-box">
+                    <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
+                        <span class="ipa-badge">🗣️ IPA UK</span>
+                        <span class="ipa-text" id="ipa-fixed-text">Đang tạo phiên âm...</span>
+                    </div>
+                    <div class="ipa-guide-chips">
+                        <button class="ipa-chip" onclick="xemIPAGuide('əʊ')">/əʊ/</button>
+                        <button class="ipa-chip" onclick="xemIPAGuide('eə')">/eə/</button>
+                        <button class="ipa-chip" onclick="xemIPAGuide('ɪə')">/ɪə/</button>
+                        <button class="ipa-chip" onclick="xemIPAGuide('θ')">/θ/</button>
+                        <button class="ipa-chip" onclick="xemIPAGuide('ð')">/ð/</button>
+                        <button class="ipa-chip" onclick="xemIPAGuide('ɜː')">/ɜː/</button>
+                        <button class="ipa-chip" onclick="xemIPAGuide('ɒ')">/ɒ/</button>
+                    </div>
+                    <div class="ipa-tip-drawer" id="ipa-tip-drawer"></div>
+                </div>
+
+                <div id="choice-zone" style="display:none;"></div>
+                <div id="nuance-explain"></div>
+                <div id="goi-y-box"></div>
+
+                <div class="cue-card">
+                    <div id="tip-main-text"></div>
+                    <div class="cue-hidden" id="cue-reveal-box"></div>
+                </div>
+            </div>
+
+            <input type="text" id="o-nhap" placeholder="Gõ câu tiếng Anh (không cần dấu câu)..." autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next">
+
+            <div id="banner-enter">
+                <div style="font-weight:800; color:#1f5c35; font-size:14px;">✅ Chính xác (+15 XP)! Bấm nút dưới hoặc phím Return để tiếp tục</div>
+                <button class="btn-next" onclick="chuyenSangCauTiepTheo()">⏭️ Câu tiếp theo</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- iOS BOTTOM TAB BAR -->
+    <nav class="ios-tabbar">
+        <button class="tab-btn active" id="tab-home" onclick="veTrangChu()">
+            <span class="t-ico">🏡</span><span>Đảo chính</span>
+        </button>
+        <button class="tab-btn" id="tab-cosmos" onclick="batDauVuTruVoHan()">
+            <span class="t-ico">🌌</span><span>18 Thế giới</span>
+        </button>
+        <button class="tab-btn" id="tab-slang" onclick="batDauVoHanSlang('all')">
+            <span class="t-ico">🔥</span><span>Slang/Idiom</span>
+        </button>
+        <button class="tab-btn" id="tab-boss" onclick="batDauBossBattle(1)">
+            <span class="t-ico">⚔️</span><span>Boss 45s</span>
+        </button>
+        <button class="tab-btn" id="tab-more" onclick="moModalCongCu()">
+            <span class="t-ico">🎛️</span><span>Tùy chỉnh</span>
+        </button>
+    </nav>
+
+    <!-- MODAL SỔ TAY -->
+    <div class="modal-bg" id="modal-lich-su" onclick="if(event.target===this) dongModalLichSu()">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3 id="modal-hist-title" style="margin:0; font-size:16px;">📜 Sổ tay từ đã học</h3>
+                <div style="display:flex; gap:6px;">
+                    <button class="btn-prev" style="background:#fbe4e0; color:#993524; padding:6px 10px;" onclick="xoaLichSu()">🗑️</button>
+                    <button class="btn-prev" style="padding:6px 10px;" onclick="dongModalLichSu()">✖</button>
+                </div>
+            </div>
+            <input type="text" class="topic-input" style="width:100%; margin-bottom:10px;" id="o-tim-lich-su" placeholder="🔍 Tìm từ tiếng Anh, idiom hoặc nghĩa Việt..." oninput="renderLichSu()">
+            <div id="danh-sach-lich-su-ui" style="max-height:62vh; overflow-y:auto;"></div>
+        </div>
+    </div>
+
+    <!-- MODAL XẾP HẠNG -->
+    <div class="modal-bg" id="modal-xep-hang" onclick="if(event.target===this) dongModalXepHang()">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3 style="margin:0; font-size:16px;">🏆 Bảng Xếp Hạng Đảo</h3>
+                <button class="btn-prev" style="padding:6px 10px;" onclick="dongModalXepHang()">✖</button>
+            </div>
+            <div id="leaderboard-content"></div>
+        </div>
+    </div>
+
+    <!-- MODAL TÙY CHỈNH & GIAO DIỆN -->
+    <div class="modal-bg" id="modal-cong-cu" onclick="if(event.target===this) dongModalCongCu()">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3 style="margin:0; font-size:16px;">🎛️ Tùy chỉnh & Giao diện Đảo</h3>
+                <button class="btn-prev" style="padding:6px 10px;" onclick="dongModalCongCu()">✖</button>
+            </div>
+
+            <div style="margin-bottom:12px;">
+                <div style="font-size:12.5px; font-weight:800; margin-bottom:6px;">🎨 Không khí đảo</div>
+                <div class="theme-switcher">
+                    <button class="theme-btn active" id="th-daylight" onclick="doiTheme('daylight')">☀️ Nắng nhẹ</button>
+                    <button class="theme-btn" id="th-midnight" onclick="doiTheme('midnight')">🏮 Đêm mưa</button>
+                    <button class="theme-btn" id="th-sakura" onclick="doiTheme('sakura')">🌸 Anh đào</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom:12px;">
+                <div style="font-size:12.5px; font-weight:800;">🎧 Âm thanh nền (Thư giãn)</div>
                 <div class="ambient-row">
                     <button class="amb-btn active" id="amb-off" onclick="batAmbient('off')">Tắt</button>
                     <button class="amb-btn" id="amb-rain" onclick="batAmbient('rain')">🌧️ Mưa</button>
@@ -575,336 +906,39 @@
                 </div>
             </div>
 
-            <div class="pet-sidebar-card">
-                <div class="pet-stage-wrap" id="pet-stage-wrap">
-                    <span id="hud-pet-icon">🥚</span>
-                    <span class="pet-acc" id="hud-pet-acc"></span>
-                    <span class="pet-mood" id="hud-pet-mood">✨</span>
+            <div style="margin-bottom:12px; background:var(--sub-card); padding:10px; border-radius:12px; border:1px solid var(--border);">
+                <label style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; margin-bottom:8px;">
+                    <input type="checkbox" id="chk-calm-mode" onchange="toggleCalmMode(this.checked)">
+                    🌿 Chế độ Chữa lành (Tắt đếm chuỗi, giảm áp lực)
+                </label>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+                    <span style="font-size:12.5px; font-weight:700;">Nhịp độ gợi ý:</span>
+                    <select class="voice-sel" id="sel-pace" onchange="doiNhipDo(this.value)">
+                        <option value="gentle">🐢 Nhẹ nhàng (Mở gợi nhớ)</option>
+                        <option value="balanced" selected>🌿 Cân bằng</option>
+                        <option value="fast">⚡ Thử thách (Ẩn gợi ý)</option>
+                    </select>
                 </div>
-                <div class="pet-name-txt" id="hud-pet-name">Trứng ngôn ngữ</div>
-                <div class="pet-lvl-txt" id="hud-xp-text">0 XP • Cấp 1/4</div>
-                <div class="xp-track"><div class="xp-fill" id="hud-xp-bar"></div></div>
-                <div class="tip-bubble" id="hud-daily-tip">
-                    💡 <b>Nhịp đảo:</b> Gõ chuẩn nhanh thú cưng sẽ reo vui, chuỗi dài sẽ được đội phụ kiện!
-                </div>
-            </div>
-        </aside>
-
-        <main class="main-area">
-            <div class="top-banner">
-                <div>
-                    <h2 class="welcome-title">🌿 Chào mừng quay lại đảo!</h2>
-                    <p class="welcome-sub">18 thế giới nở hoa theo tiến độ, Slang & Idioms đa sắc thái, đấu Boss 45s.</p>
-                </div>
-                <div class="top-actions">
-                    <button class="pill-tag" onclick="moModalCongCu()">⚙️ Cỡ chữ & Tốc độ</button>
-                    <div class="meta-pill-box">
-                        <span id="hud-streak-days">🔥 Chuỗi ngày: 1 ngày</span>
-                        <span id="hud-badge-label">🥉 Tân binh đảo nhỏ</span>
-                    </div>
+                <div style="display:flex; gap:6px; align-items:center;">
+                    <span style="font-size:12.5px; font-weight:700;">Cỡ chữ:</span>
+                    <button class="btn-prev" style="padding:5px 9px;" onclick="doiCoChu('14px')">Nhỏ</button>
+                    <button class="btn-prev" style="padding:5px 9px;" onclick="doiCoChu('15px')">Vừa</button>
+                    <button class="btn-prev" style="padding:5px 9px;" onclick="doiCoChu('17px')">Lớn</button>
                 </div>
             </div>
 
-            <section class="cosmos-banner">
-                <div>
-                    <h2>🌌 VŨ TRỤ VÔ HẠN TOÀN DIỆN (TRỘN CẢ 18 THẾ GIỚI)</h2>
-                    <p>Trộn ngẫu nhiên không giới hạn cả 18 thế giới giao tiếp & từ vựng — mỗi lượt là một tình huống tươi mới.</p>
-                </div>
-                <button class="btn-cosmos" onclick="batDauVuTruVoHan()">🚀 Vào Vũ trụ 18 Thế giới</button>
-            </section>
-
-            <!-- BOSS ARENA 45s -->
-            <section id="boss-arena">
-                <div class="boss-forge-spark" id="boss-spark"></div>
-                <div class="boss-top">
-                    <strong style="font-size:15.5px; color:#fbbf24;" id="boss-title-label">⚔️ BOSS FORGE — CẤP 1 (45 GIÂY / LƯỢT)</strong>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <span class="timer-badge" id="boss-timer">⏱️ 45.0s</span>
-                        <button class="btn-prev" onclick="thoatBossBattle()">Thoát</button>
-                    </div>
-                </div>
-                <div class="hp-grid">
-                    <div class="hp-box">
-                        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
-                            <span id="boss-name-tag">👹 Boss Idioms & Slang</span>
-                            <span id="boss-hp-label">100 / 100 HP</span>
-                        </div>
-                        <div class="hp-bar-bg"><div class="hp-boss-fill" id="boss-hp-fill"></div></div>
-                    </div>
-                    <div class="hp-box">
-                        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
-                            <span>🛡️ Bạn & Thú cưng</span>
-                            <span id="player-hp-label">100 / 100 HP</span>
-                        </div>
-                        <div class="hp-bar-bg"><div class="hp-player-fill" id="player-hp-fill"></div></div>
-                    </div>
-                </div>
-                <div class="boss-prompt" id="boss-prompt">Sẵn sàng!</div>
-                <div class="boss-opts" id="boss-options"></div>
-            </section>
-
-            <!-- HOME DASHBOARD -->
-            <div id="nhap-du-lieu">
-                <!-- VÙNG ĐẤT BẤM VÀO HỌC ĐƯỢC NGAY -->
-                <section class="cozy-card">
-                    <div class="card-header-row">
-                        <h2>🏝️ Vùng đất trên đảo (Bấm vào để học ngay)</h2>
-                        <span class="mini-link" id="island-progress-pill">1 / 4 vùng đất đã mở</span>
-                    </div>
-                    <div class="island-zones-grid" id="island-zones-grid"></div>
-                </section>
-
-                <!-- NHIỆM VỤ NHỎ HẰNG NGÀY -->
-                <section class="cozy-card">
-                    <div class="card-header-row">
-                        <h2>🌤️ Nhiệm vụ nhỏ hôm nay</h2>
-                        <span class="mini-link">Cập nhật theo lượt học</span>
-                    </div>
-                    <div class="quests-grid" id="daily-quests-grid"></div>
-                </section>
-
-                <div class="bento-grid">
-                    <!-- CARD 1: 3 KỊCH BẢN + VÔ HẠN SLANG/IDIOMS -->
-                    <section class="cozy-card">
-                        <div class="card-header-row">
-                            <h2>🔥 Slang & Idioms</h2>
-                            <span class="mini-link">3 kịch bản + Vô hạn</span>
-                        </div>
-                        <button class="scenario-btn" onclick="batDauKichBan('office')">
-                            <strong>🏢 1. Sinh tồn nơi công sở</strong>
-                            <span>burn the midnight oil • circle back • touch base • on the same page • call it a day</span>
-                        </button>
-                        <button class="scenario-btn" onclick="batDauKichBan('hangout')">
-                            <strong>🍻 2. Tụ tập bạn bè cuối tuần</strong>
-                            <span>rain check • spill the tea • no-brainer • ghost • down to earth</span>
-                        </button>
-                        <button class="scenario-btn" onclick="batDauKichBan('shopping')">
-                            <strong>🛍️ 3. Mua sắm & Săn Sale</strong>
-                            <span>break the bank • rip-off • window shopping • steal • impulse buy</span>
-                        </button>
-                        <button class="btn-slang-inf" onclick="batDauVoHanSlang('all')">
-                            ♾️ Slang & Idioms Vô hạn (Xoay vòng cả 15 cụm)
-                        </button>
-                    </section>
-
-                    <!-- CARD 2: CHỈ GIỮ CHẾ ĐỘ THỰC SỰ KHÁC BIỆT -->
-                    <section class="cozy-card">
-                        <div class="card-header-row">
-                            <h2>✨ Chế độ Khác biệt</h2>
-                            <span class="mini-link">Không trùng lặp</span>
-                        </div>
-                        <button class="mode-action-card" onclick="batDauMicroScene()">
-                            <strong>🎬 Hội thoại nối tiếp</strong>
-                            <span>Luyện từng lượt theo mạch đối thoại thực tế</span>
-                        </button>
-                        <button class="mode-action-card" onclick="batDauSpotNuance()">
-                            <strong>🎯 Sửa lỗi sắc thái</strong>
-                            <span>Nhận diện câu lệch tông / dùng sai ngữ cảnh idiom & slang</span>
-                        </button>
-                        <div style="font-size:12px; font-weight:800; margin-top:4px;">🧩 Sinh câu theo chủ đề tự do</div>
-                        <div class="topic-row">
-                            <input type="text" class="topic-input" id="o-chu-de-dong" placeholder="VD: phỏng vấn, trễ hẹn, săn sale...">
-                            <button class="btn-cozy-green" onclick="batDauChuDeDong()">Sinh câu</button>
-                        </div>
-                    </section>
-
-                    <!-- CARD 3: ĐẤU BOSS 45s & TỔNG QUAN -->
-                    <section class="cozy-card" style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
-                        <div>
-                            <div class="card-header-row">
-                                <h2>⚔️ Thử thách Boss 45s</h2>
-                                <span class="mini-link">Kho câu hỏi mở rộng</span>
-                            </div>
-                            <div class="boss-card-box">
-                                <div style="font-size:13px; line-height:1.45;">
-                                    45s mỗi lượt • Trộn Slang/Idioms, 18 thế giới & từ bạn đã lưu, tránh lặp câu liên tiếp.
-                                </div>
-                                <button class="btn-boss-45" onclick="batDauBossBattle(1)">⚔️ Bắt đầu đấu Boss (45s)</button>
-                            </div>
-                        </div>
-
-                        <div style="background:var(--sub-card); border:1px solid var(--border); border-radius:13px; padding:11px;">
-                            <div style="font-size:12.5px; font-weight:800; margin-bottom:3px;">📌 Trạng thái đảo hiện tại</div>
-                            <div style="font-size:12px; color:var(--muted);" id="home-summary-txt">Đã lưu 0 từ trong sổ tay • Đang ở Cấp 1/4</div>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- 18 THẾ GIỚI NỞ HOA THEO TIẾN ĐỘ -->
-                <section class="cozy-card">
-                    <div class="card-header-row">
-                        <h2>🗺️ 18 Thế giới trên đảo (Làm 3 câu ở thế giới nào sẽ nở hoa 🌸)</h2>
-                        <button class="btn-cozy-green" onclick="batDauVuTruVoHan()">🌌 Trộn cả 18 Thế giới</button>
-                    </div>
-                    <div class="worlds-wrap" id="worlds-grid"></div>
-                </section>
-
-                <!-- DANH SÁCH TỰ NHẬP -->
-                <section class="cozy-card">
-                    <div class="card-header-row">
-                        <h2>📝 Luyện danh sách riêng (2 cột Việt — Anh, cách nhau bằng Tab)</h2>
-                    </div>
-                    <textarea id="du-lieu-excel" placeholder="Ví dụ:&#10;Tối qua mình thức khuya làm nốt file.	I burned the midnight oil to finish the file last night&#10;Món này săn sale quá hời.	Getting this on sale was a real steal"></textarea>
-                    <button class="btn-cozy-green" style="width:100%; padding:11px;" onclick="batDauTuExcel()">Bắt đầu danh sách riêng</button>
-                </section>
+            <div style="display:flex; gap:8px; margin-bottom:12px;">
+                <button class="btn-cozy-green" style="flex:1;" onclick="dongModalCongCu(); moModalXepHang()">🏆 Bảng xếp hạng</button>
+                <button class="btn-audio" style="flex:1;" onclick="dongModalCongCu(); moModalLichSu()">📜 Sổ tay từ</button>
             </div>
 
-            <!-- KHU VỰC HỌC -->
-            <div id="hoc-khu-vuc">
-                <div class="study-top-bar">
-                    <div style="display:flex; gap:7px; align-items:center; flex-wrap:wrap;">
-                        <span class="pill-tag" id="ten-bai-hoc"></span>
-                        <span class="pill-tag" id="tien-do"></span>
-                    </div>
-                    <div style="display:flex; gap:7px; align-items:center; flex-wrap:wrap;">
-                        <span class="pill-tag pill-streak" id="streak-text">🔥 Chuỗi đúng: 0</span>
-                        <button class="pill-tag" onclick="moModalLichSu()">📜 Đã học: <span id="study-hist-cnt">0</span></button>
-                        <button class="btn-prev" onclick="veTrangChu()">⬅️ Về đảo</button>
-                    </div>
+            <div style="background:var(--sub-card); padding:10px; border-radius:12px; border:1px solid var(--border);">
+                <div style="font-size:12.5px; font-weight:800; margin-bottom:6px;">💾 Sao lưu / Khôi phục tiến độ</div>
+                <div style="display:flex; gap:6px; margin-bottom:6px;">
+                    <button class="btn-cozy-green" style="flex:1; font-size:12px;" onclick="xuatDuLieu()">📤 Xuất mã</button>
+                    <button class="btn-audio" style="flex:1; font-size:12px;" onclick="nhapDuLieu()">📥 Nạp mã</button>
                 </div>
-
-                <div class="mode-switch">
-                    <button class="mode-btn active" id="btn-mode-de" onclick="doiCheDo('de')">💡 Việt / IPA → Gõ Anh</button>
-                    <button class="mode-btn" id="btn-mode-reverse" onclick="doiCheDo('reverse')">🔄 Nghe / IPA → Chọn nghĩa Việt</button>
-                    <button class="mode-btn" id="btn-mode-nuance" onclick="doiCheDo('nuance')">🎯 Sửa lỗi sắc thái</button>
-                    <button class="mode-btn" id="btn-mode-mau" onclick="doiCheDo('mau')">⚡ Nhìn mẫu & gõ quen tay</button>
-                </div>
-
-                <div class="calm-bar">
-                    <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-weight:700;">
-                        <input type="checkbox" id="chk-calm-mode" onchange="toggleCalmMode(this.checked)">
-                        🌿 Chế độ Chữa lành (Tắt đếm chuỗi, giảm áp lực báo đỏ)
-                    </label>
-                    <div style="display:flex; gap:6px; align-items:center;">
-                        <span style="color:var(--muted); font-weight:700;">Nhịp độ:</span>
-                        <select class="voice-sel" id="sel-pace" onchange="doiNhipDo(this.value)">
-                            <option value="gentle">🐢 Nhẹ nhàng (Mở sẵn gợi nhớ)</option>
-                            <option value="balanced" selected>🌿 Cân bằng</option>
-                            <option value="fast">⚡ Thử thách nhanh (Ẩn bớt gợi ý)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="flash-card" id="box-cau-hoi">
-                    <div class="card-meta-row">
-                        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                            <span class="tag-pill" id="nhan-kieu-bai"></span>
-                            <span class="tag-kind" id="badge-loai-tu" style="display:none;"></span>
-                            <span class="tag-tone" id="badge-tone" style="display:none;"></span>
-                        </div>
-                        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-                            <select class="voice-sel" id="chon-giong-uk" onchange="doiGiongDocUK(this.value)">
-                                <option value="neural_sonia">🇬🇧 Sonia (AI Nữ UK)</option>
-                                <option value="neural_libby">🇬🇧 Libby (AI Nữ UK)</option>
-                                <option value="neural_ryan">🇬🇧 Ryan (AI Nam UK)</option>
-                                <option value="youdao_uk">🇬🇧 Từ điển UK</option>
-                                <option value="ios_native">📱 Giọng iPhone (en-GB)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="question-line">
-                        <div id="cau-hoi"></div>
-                        <div class="btn-row">
-                            <button class="btn-prev" id="btn-quay-lai-cau-truoc" onclick="quayLaiCauTruoc()">⬅️ Trước</button>
-                            <button class="btn-flip" onclick="latTheGoiNho()">🃏 Hồ sơ & Gợi nhớ</button>
-                            <button class="btn-audio" onclick="phatAm(dapAnChuan, false)">🔊 Nghe UK</button>
-                            <button class="btn-slow" onclick="phatAm(dapAnChuan, true)">🐢 Chậm</button>
-                        </div>
-                    </div>
-
-                    <div class="ipa-box">
-                        <div style="display:flex; align-items:center; gap:9px; flex-wrap:wrap; width:100%;">
-                            <span class="ipa-badge">🗣️ IPA UK</span>
-                            <span class="ipa-text" id="ipa-fixed-text">Đang tạo phiên âm...</span>
-                        </div>
-                        <div class="ipa-guide-chips">
-                            <span style="font-size:11.5px; color:var(--muted); font-weight:700; align-self:center;">Cẩm nang âm khó:</span>
-                            <button class="ipa-chip" onclick="xemIPAGuide('əʊ')">/əʊ/</button>
-                            <button class="ipa-chip" onclick="xemIPAGuide('eə')">/eə/</button>
-                            <button class="ipa-chip" onclick="xemIPAGuide('ɪə')">/ɪə/</button>
-                            <button class="ipa-chip" onclick="xemIPAGuide('θ')">/θ/</button>
-                            <button class="ipa-chip" onclick="xemIPAGuide('ð')">/ð/</button>
-                            <button class="ipa-chip" onclick="xemIPAGuide('ɜː')">/ɜː/</button>
-                            <button class="ipa-chip" onclick="xemIPAGuide('ɒ')">/ɒ/</button>
-                        </div>
-                        <div class="ipa-tip-drawer" id="ipa-tip-drawer"></div>
-                    </div>
-
-                    <div id="choice-zone" style="display:none;"></div>
-                    <div id="nuance-explain"></div>
-                    <div id="goi-y-box"></div>
-
-                    <div class="cue-card">
-                        <div id="tip-main-text"></div>
-                        <div class="cue-hidden" id="cue-reveal-box"></div>
-                    </div>
-                </div>
-
-                <input type="text" id="o-nhap" placeholder="Gõ câu tiếng Anh (không cần dấu câu)..." autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next">
-
-                <div id="banner-enter">
-                    <div style="font-weight:800; color:#1f5c35;">✅ Chính xác (+15 XP)! Nhấn <b>Enter</b> hoặc nút bên cạnh để sang câu mới</div>
-                    <button class="btn-next" onclick="chuyenSangCauTiepTheo()">⏭️ Câu tiếp theo</button>
-                </div>
-
-                <div class="shortcut-note">💡 <b>Enter</b>: Câu tiếp • <b>Ctrl + Space</b>: Nghe lại • <b>Alt + S</b>: Nghe chậm</div>
-            </div>
-        </main>
-    </div>
-
-    <!-- MODALS -->
-    <div class="modal-bg" id="modal-lich-su" onclick="if(event.target===this) dongModalLichSu()">
-        <div class="modal-box">
-            <div class="modal-head">
-                <h3 id="modal-hist-title" style="margin:0;">📜 Sổ tay từ đã học</h3>
-                <div style="display:flex; gap:8px;">
-                    <button class="btn-prev" style="background:#fbe4e0; color:#993524;" onclick="xoaLichSu()">🗑️ Xóa</button>
-                    <button class="btn-prev" onclick="dongModalLichSu()">✖ Đóng</button>
-                </div>
-            </div>
-            <input type="text" class="topic-input" style="width:100%; margin-bottom:12px;" id="o-tim-lich-su" placeholder="🔍 Tìm từ tiếng Anh, idiom hoặc nghĩa tiếng Việt..." oninput="renderLichSu()">
-            <div id="danh-sach-lich-su-ui" style="max-height:60vh; overflow-y:auto;"></div>
-        </div>
-    </div>
-
-    <div class="modal-bg" id="modal-xep-hang" onclick="if(event.target===this) dongModalXepHang()">
-        <div class="modal-box">
-            <div class="modal-head">
-                <h3 style="margin:0;">🏆 Bảng Xếp Hạng Đảo</h3>
-                <button class="btn-prev" onclick="dongModalXepHang()">✖ Đóng</button>
-            </div>
-            <div id="leaderboard-content"></div>
-        </div>
-    </div>
-
-    <div class="modal-bg" id="modal-cong-cu" onclick="if(event.target===this) dongModalCongCu()">
-        <div class="modal-box">
-            <div class="modal-head">
-                <h3 style="margin:0;">⚙️ Hộp công cụ Cá nhân hóa & Đồng bộ Thiết bị</h3>
-                <button class="btn-prev" onclick="dongModalCongCu()">✖ Đóng</button>
-            </div>
-            <div class="tool-grid">
-                <div class="tool-box">
-                    <div style="font-weight:800; margin-bottom:8px;">🔠 Cỡ chữ & Bố cục hiển thị</div>
-                    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;">
-                        <button class="btn-prev" onclick="doiCoChu('14px')">Nhỏ (14px)</button>
-                        <button class="btn-prev" onclick="doiCoChu('15px')">Vừa (15px)</button>
-                        <button class="btn-prev" onclick="doiCoChu('17px')">Lớn (17px)</button>
-                    </div>
-                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; font-weight:700;">
-                        <input type="checkbox" id="chk-compact" onchange="toggleCompact(this.checked)">
-                        📐 Bố cục gọn nhẹ (Compact Layout)
-                    </label>
-                </div>
-                <div class="tool-box">
-                    <div style="font-weight:800; margin-bottom:8px;">💾 Xuất / Nhập dữ liệu tiến độ</div>
-                    <div style="display:flex; gap:6px; margin-bottom:8px;">
-                        <button class="btn-cozy-green" onclick="xuatDuLieu()">📤 Xuất mã lưu trữ</button>
-                        <button class="btn-audio" onclick="nhapDuLieu()">📥 Nạp mã từ máy khác</button>
-                    </div>
-                    <textarea id="backup-box" style="height:64px; font-size:12px;" placeholder="Bấm 'Xuất mã lưu trữ' để sao chép tiến độ sang máy khác..."></textarea>
-                </div>
+                <textarea id="backup-box" style="height:56px; font-size:12px; margin-bottom:0;" placeholder="Mã lưu trữ dùng để chuyển dữ liệu giữa iPhone và máy tính..."></textarea>
             </div>
         </div>
     </div>
@@ -912,7 +946,7 @@
     <script>
         const KICH_BAN_SLANG_IDIOMS = {
             office: {
-                ten: "🏢 Kịch bản 1: Sinh tồn nơi công sở",
+                ten: "🏢 Sinh tồn nơi công sở",
                 items: [
                     {
                         term: "burn the midnight oil", kind: "idiom", tone: "💼 Công sở / Đời thường",
@@ -977,7 +1011,7 @@
                 ]
             },
             hangout: {
-                ten: "🍻 Kịch bản 2: Tụ tập bạn bè cuối tuần",
+                ten: "🍻 Tụ tập bạn bè cuối tuần",
                 items: [
                     {
                         term: "rain check", kind: "idiom", tone: "🌿 Nhẹ nhàng / Khéo léo",
@@ -1042,7 +1076,7 @@
                 ]
             },
             shopping: {
-                ten: "🛍️ Kịch bản 3: Mua sắm & Săn Sale",
+                ten: "🛍️ Mua sắm & Săn Sale",
                 items: [
                     {
                         term: "break the bank", kind: "idiom", tone: "😊 Thân mật / Đời thường",
@@ -1110,7 +1144,7 @@
 
         const MICRO_SCENES = [
             {
-                ten: "🎬 Hội thoại 1: Kiểm tra tiến độ & Chốt nghỉ ngơi",
+                ten: "🎬 Hội thoại 1: Tiến độ & Nghỉ ngơi",
                 steps: [
                     { viet: "Mình nhắn nhanh để xem tiến độ bản báo cáo hôm nay tới đâu rồi.", anh: "Just touching base to see how the report is moving today", term: "touch base", kind: "idiom", tone: "💼 Công sở", cue: "Bước 1: Hỏi thăm tiến độ ngắn gọn.", tip: "<b>Lượt 1/3:</b> Mở đầu nhẹ nhàng bằng <code>touch base</code>." },
                     { viet: "Để tránh lệch ý, hãy đảm bảo cả hai đang cùng chung quan điểm nhé.", anh: "Let's make sure we're on the same page before wrapping up", term: "on the same page", kind: "idiom", tone: "💼 Công sở", cue: "Bước 2: Xác nhận thống nhất đầu việc.", tip: "<b>Lượt 2/3:</b> Chốt sự đồng thuận với <code>on the same page</code>." },
@@ -1126,7 +1160,7 @@
                 ]
             },
             {
-                ten: "🎬 Hội thoại 3: Săn sale & Cân nhắc ngân sách",
+                ten: "🎬 Hội thoại 3: Săn sale & Ngân sách",
                 steps: [
                     { viet: "Chiều nay mình chỉ đi ngắm đồ cho vui mắt chứ không mua đâu.", anh: "I'm just doing some window shopping this afternoon, not buying anything", term: "window shopping", kind: "noun", tone: "😊 Đời thường", cue: "Bước 1: Nói rõ ý định dạo xem.", tip: "<b>Lượt 1/3:</b> Dùng <code>window shopping</code> khi chỉ đi ngắm." },
                     { viet: "Săn được chiếc áo khoác tốt thế này với giá giảm sâu đúng là món hời.", anh: "Getting a jacket this good at half price is a real steal", term: "steal", kind: "slang", tone: "😊 Slang", cue: "Bước 2: Khen món đồ giảm giá tốt.", tip: "<b>Lượt 2/3:</b> Dùng <code>a real steal</code> cho món hời." },
@@ -1136,24 +1170,24 @@
         ];
 
         const THE_GIOI_18 = [
-            { id: 1, icon: "🐾", name: "1. Động vật & Hoang dã", sub: "Thú rừng, thú cưng & biển" },
-            { id: 2, icon: "🌿", name: "2. Thực vật & Rừng cây", sub: "Hoa cỏ, cây lá & thiên nhiên" },
-            { id: 3, icon: "🍎", name: "3. Trái cây, Rau củ & Vị", sub: "Chua ngọt, tươi ngon & vị giác" },
-            { id: 4, icon: "🎨", name: "4. Màu sắc & Chất liệu", sub: "Sắc độ, bề mặt & đồ vật" },
-            { id: 5, icon: "⛈️", name: "5. Tự nhiên & Thời tiết", sub: "Sương mù, gió mưa & thủy triều" },
-            { id: 6, icon: "👩‍⚕️", name: "6. Nghề nghiệp & Xã hội", sub: "Chuyên môn, xưởng & đời sống" },
-            { id: 7, icon: "☕", name: "7. Giao tiếp & Hỏi thăm", sub: "Chào hỏi & trò chuyện tự nhiên" },
-            { id: 8, icon: "💐", name: "8. Lời khen tinh tế", sub: "Ghi nhận gu thẩm mỹ & nỗ lực" },
-            { id: 9, icon: "🥂", name: "9. Lời chúc & Động viên", sub: "Khởi đầu mới & bình an" },
-            { id: 10, icon: "🙅", name: "10. Từ chối khéo & Ranh giới", sub: "Khước từ nhẹ nhàng" },
-            { id: 11, icon: "💛", name: "11. Quan tâm & An ủi", sub: "Sẻ chia lúc mệt & nghỉ ngơi" },
-            { id: 12, icon: "⚡", name: "12. Phản xạ & Xoay trục", sub: "Chuyển ý linh hoạt" },
-            { id: 13, icon: "🗣️", name: "13. Tranh luận & Thương lượng", sub: "Đặt điều kiện & nhượng bộ" },
-            { id: 14, icon: "💼", name: "14. Công sở & Vận hành", sub: "Tiến độ & phối hợp" },
-            { id: 15, icon: "🎭", name: "15. Nghệ thuật & Góc nhìn", sub: "Nhịp điệu & cảm hứng" },
-            { id: 16, icon: "🧭", name: "16. Sự nghiệp & Bước ngoặt", sub: "Lựa chọn & chặng mới" },
-            { id: 17, icon: "🧳", name: "17. Di chuyển & Dịch vụ", sub: "Đổi lịch & đường vòng" },
-            { id: 18, icon: "🩺", name: "18. Sức khỏe & Đời sống", sub: "Nhịp sống cân bằng" }
+            { id: 1, icon: "🐾", name: "1. Động vật", sub: "Hoang dã & thú cưng" },
+            { id: 2, icon: "🌿", name: "2. Thực vật", sub: "Hoa cỏ & rừng cây" },
+            { id: 3, icon: "🍎", name: "3. Trái cây & Vị", sub: "Chua ngọt & tươi ngon" },
+            { id: 4, icon: "🎨", name: "4. Màu & Chất liệu", sub: "Sắc độ & bề mặt" },
+            { id: 5, icon: "⛈️", name: "5. Thời tiết", sub: "Sương mù & gió mưa" },
+            { id: 6, icon: "👩‍⚕️", name: "6. Nghề nghiệp", sub: "Chuyên môn & xã hội" },
+            { id: 7, icon: "☕", name: "7. Hỏi thăm", sub: "Chào hỏi tự nhiên" },
+            { id: 8, icon: "💐", name: "8. Lời khen", sub: "Ghi nhận tinh tế" },
+            { id: 9, icon: "🥂", name: "9. Lời chúc", sub: "Động viên & bình an" },
+            { id: 10, icon: "🙅", name: "10. Từ chối khéo", sub: "Ranh giới nhẹ nhàng" },
+            { id: 11, icon: "💛", name: "11. An ủi", sub: "Sẻ chia lúc mệt" },
+            { id: 12, icon: "⚡", name: "12. Phản xạ", sub: "Xoay trục linh hoạt" },
+            { id: 13, icon: "🗣️", name: "13. Thương lượng", sub: "Đặt điều kiện" },
+            { id: 14, icon: "💼", name: "14. Công sở", sub: "Tiến độ & vận hành" },
+            { id: 15, icon: "🎭", name: "15. Nghệ thuật", sub: "Góc nhìn & cảm hứng" },
+            { id: 16, icon: "🧭", name: "16. Sự nghiệp", sub: "Bước ngoặt mới" },
+            { id: 17, icon: "🧳", name: "17. Di chuyển", sub: "Đổi lịch & dịch vụ" },
+            { id: 18, icon: "🩺", name: "18. Sức khỏe", sub: "Nhịp sống cân bằng" }
         ];
 
         const BO_SINH_CAU = {
@@ -1178,13 +1212,13 @@
         };
 
         const IPA_GUIDES = {
-            "əʊ": { title: "Nguyên âm đôi /əʊ/ (Anh–Anh)", ex: "go /ɡəʊ/, no-brainer /ˈnəʊ breɪnə/, cold /kəʊld/", tip: "Bắt đầu bằng âm /ə/ trung tính rồi khép môi tròn nhẹ sang /ʊ/." },
-            "eə": { title: "Nguyên âm đôi /eə/ (Anh–Anh)", ex: "fair /feə/, there /ðeə/, nowhere /ˈnəʊweə/", tip: "Đọc rõ âm /e/ rồi lướt nhẹ về /ə/, không cong lưỡi chữ r." },
-            "ɪə": { title: "Nguyên âm đôi /ɪə/ (Anh–Anh)", ex: "here /hɪə/, near /nɪə/, real /rɪəl/", tip: "Lướt nhanh từ /ɪ/ ngắn sang /ə/ thả lỏng." },
-            "θ": { title: "Phụ âm vô thanh /θ/", ex: "thanks /θæŋks/, something /ˈsʌmθɪŋ/, earth /ɜːθ/", tip: "Đặt nhẹ đầu lưỡi chạm mép răng cửa trên và thổi hơi, không rung thanh quản." },
-            "ð": { title: "Phụ âm hữu thanh /ð/", ex: "this /ðɪs/, though /ðəʊ/, weather /ˈweðə/", tip: "Vị trí lưỡi giống /θ/ nhưng rung thanh quản tạo tiếng vo nhẹ." },
-            "ɜː": { title: "Nguyên âm dài /ɜː/ (Anh–Anh)", ex: "burn /bɜːn/, circle /ˈsɜːkl/, work /wɜːk/", tip: "Môi thả lỏng, lưỡi ở giữa khoang miệng, kéo dài hơi." },
-            "ɒ": { title: "Nguyên âm ngắn /ɒ/ (Anh–Anh)", ex: "got /ɡɒt/, hot /hɒt/, shopping /ˈʃɒpɪŋ/", tip: "Mở hàm vừa phải, môi hơi tròn nhẹ và phát âm dứt khoát." }
+            "əʊ": { title: "Nguyên âm đôi /əʊ/ (UK)", ex: "go /ɡəʊ/, no-brainer /ˈnəʊ breɪnə/", tip: "Bắt đầu bằng /ə/ trung tính rồi khép môi tròn nhẹ sang /ʊ/." },
+            "eə": { title: "Nguyên âm đôi /eə/ (UK)", ex: "fair /feə/, there /ðeə/", tip: "Đọc rõ /e/ rồi lướt nhẹ về /ə/, không cong lưỡi chữ r." },
+            "ɪə": { title: "Nguyên âm đôi /ɪə/ (UK)", ex: "here /hɪə/, near /nɪə/", tip: "Lướt nhanh từ /ɪ/ ngắn sang /ə/ thả lỏng." },
+            "θ": { title: "Phụ âm vô thanh /θ/", ex: "thanks /θæŋks/, earth /ɜːθ/", tip: "Đặt nhẹ đầu lưỡi chạm mép răng trên và thổi hơi, không rung thanh quản." },
+            "ð": { title: "Phụ âm hữu thanh /ð/", ex: "this /ðɪs/, weather /ˈweðə/", tip: "Vị trí lưỡi giống /θ/ nhưng rung thanh quản." },
+            "ɜː": { title: "Nguyên âm dài /ɜː/ (UK)", ex: "burn /bɜːn/, circle /ˈsɜːkl/", tip: "Môi thả lỏng, lưỡi ở giữa khoang miệng, kéo dài hơi." },
+            "ɒ": { title: "Nguyên âm ngắn /ɒ/ (UK)", ex: "got /ɡɒt/, shopping /ˈʃɒpɪŋ/", tip: "Mở hàm vừa phải, môi hơi tròn nhẹ, phát âm dứt khoát." }
         };
 
         function xemIPAGuide(sym) {
@@ -1192,7 +1226,7 @@
             const box = document.getElementById("ipa-tip-drawer");
             if (!g) return;
             box.style.display = "block";
-            box.innerHTML = `<b>${g.title}</b> • <i>Ví dụ:</i> ${g.ex}<br>👅 <b>Mẹo đặt lưỡi:</b> ${g.tip}`;
+            box.innerHTML = `<b>${g.title}</b> • <i>VD:</i> ${g.ex}<br>👅 <b>Mẹo lưỡi:</b> ${g.tip}`;
         }
 
         const TU_DIEN_IPA_UK = {
@@ -1289,6 +1323,7 @@
             return "/" + arr.join(" ") + "/";
         }
 
+        // iOS AUDIO UNLOCK & TTS
         let giongDaChon = localStorage.getItem("luyenGo_voiceEngine_uk") || "neural_sonia";
         let currentAudio = null, unlockedIOS = false, audioCtx = null;
         let ambientTimer = null, ambientType = "off";
@@ -1321,9 +1356,8 @@
                 } catch (e) {}
             }
         }
-        document.addEventListener("pointerdown", unlockIOS, { passive: true });
         document.addEventListener("touchstart", unlockIOS, { passive: true });
-        document.addEventListener("keydown", unlockIOS, { passive: true });
+        document.addEventListener("pointerdown", unlockIOS, { passive: true });
 
         function batAmbient(type) {
             unlockIOS();
@@ -1427,7 +1461,6 @@
         async function phatAm(txt, slow = false) {
             if (!txt) return;
             unlockIOS();
-            if (slow) setPetReaction("yawn", "😴");
             stopAudio();
             if (giongDaChon === "ios_native") { playIOS(txt.trim(), slow); return; }
             if (giongDaChon === "youdao_uk") { try { await playYoudaoUK(txt.trim(), slow); } catch (e) { playIOS(txt.trim(), slow); } return; }
@@ -1436,24 +1469,24 @@
         }
 
         const PET_STAGES = [
-            { min: 0, max: 60, name: "Trứng ngôn ngữ", icon: "🥚", lvl: "Cấp 1/4: Trứng" },
-            { min: 60, max: 150, name: "Gà con lanh lợi", icon: "🐥", lvl: "Cấp 2/4: Gà con" },
-            { min: 150, max: 300, name: "Rồng lửa từ vựng", icon: "🐉", lvl: "Cấp 3/4: Rồng lửa" },
-            { min: 300, max: 999999, name: "Thần thú ngôn ngữ", icon: "🦄", lvl: "Cấp 4/4: Thần thú" }
+            { min: 0, max: 60, name: "Trứng ngôn ngữ", icon: "🥚", lvl: "Cấp 1/4" },
+            { min: 60, max: 150, name: "Gà con lanh lợi", icon: "🐥", lvl: "Cấp 2/4" },
+            { min: 150, max: 300, name: "Rồng lửa từ vựng", icon: "🐉", lvl: "Cấp 3/4" },
+            { min: 300, max: 999999, name: "Thần thú ngôn ngữ", icon: "🦄", lvl: "Cấp 4/4" }
         ];
 
         const ISLAND_ZONES = [
-            { id: "garden", icon: "🌺", name: "Khu Vườn Hoa Cỏ", req: "Mở sẵn từ đầu", check: a => true, action: () => batDauVuTruVoHan() },
-            { id: "harbor", icon: "⚓", name: "Bến Cảng Giao Tiếp", req: "Đạt 45 XP", check: a => (a.xp || 0) >= 45, action: () => batDauMicroScene() },
-            { id: "teahouse", icon: "🍵", name: "Quán Trà Slang", req: "Lưu 5 cụm vào sổ tay", check: a => (a.history || []).length >= 5, action: () => batDauVoHanSlang('all') },
-            { id: "clocktower", icon: "🕰️", name: "Tháp Đồng Hồ Boss", req: "Thắng 1 lượt Boss", check: a => (a.bossWins || 0) >= 1, action: () => batDauBossBattle(1) }
+            { id: "garden", icon: "🌺", name: "Vườn Hoa Cỏ", req: "Mở sẵn", check: a => true, action: () => batDauVuTruVoHan() },
+            { id: "harbor", icon: "⚓", name: "Bến Cảng", req: "Đạt 45 XP", check: a => (a.xp || 0) >= 45, action: () => batDauMicroScene() },
+            { id: "teahouse", icon: "🍵", name: "Quán Trà Slang", req: "Lưu 5 cụm", check: a => (a.history || []).length >= 5, action: () => batDauVoHanSlang('all') },
+            { id: "clocktower", icon: "🕰️", name: "Tháp Boss", req: "Thắng 1 Boss", check: a => (a.bossWins || 0) >= 1, action: () => batDauBossBattle(1) }
         ];
 
         let vocabApp = {
             xp: 0, dayStreak: 1, lastActiveDate: new Date().toISOString().slice(0, 10),
             bossWins: 0, history: [], worldCounts: {},
             daily: { date: new Date().toISOString().slice(0, 10), slangCount: 0, bossCount: 0, worldsSet: [] },
-            prefs: { theme: "daylight", fontSize: "15px", compact: false, calm: false, pace: "balanced" }
+            prefs: { theme: "daylight", fontSize: "15px", calm: false, pace: "balanced" }
         };
 
         function luuApp() { try { localStorage.setItem("vocabApp", JSON.stringify(vocabApp)); } catch (e) {} capNhatHUD(); }
@@ -1491,15 +1524,12 @@
             if (tb) tb.classList.add("active");
 
             document.documentElement.style.setProperty("--base-font", p.fontSize || "15px");
-            document.body.classList.toggle("compact-mode", !!p.compact);
-            document.getElementById("chk-compact").checked = !!p.compact;
             document.getElementById("chk-calm-mode").checked = !!p.calm;
             document.getElementById("sel-pace").value = p.pace || "balanced";
         }
 
         function doiTheme(t) { vocabApp.prefs.theme = t; apDungPrefs(); luuApp(); }
         function doiCoChu(sz) { vocabApp.prefs.fontSize = sz; apDungPrefs(); luuApp(); }
-        function toggleCompact(v) { vocabApp.prefs.compact = v; apDungPrefs(); luuApp(); }
         function toggleCalmMode(v) {
             vocabApp.prefs.calm = v; luuApp();
             document.getElementById("streak-text").style.display = v ? "none" : "inline-block";
@@ -1511,10 +1541,8 @@
             if (document.getElementById("hoc-khu-vuc").style.display === "block") renderCau();
         }
 
-        function setPetReaction(type, emoji) {
+        function setPetReaction() {
             const wrap = document.getElementById("pet-stage-wrap");
-            const mood = document.getElementById("hud-pet-mood");
-            if (mood) mood.innerText = emoji;
             if (wrap) {
                 wrap.classList.remove("bounce");
                 void wrap.offsetWidth;
@@ -1554,18 +1582,16 @@
             const p = layPet();
             document.getElementById("hud-pet-icon").innerText = p.icon;
             document.getElementById("hud-pet-name").innerText = p.name;
-            document.getElementById("hud-xp-text").innerText = `${p.xp} XP • ${p.lvl}`;
-            document.getElementById("hud-xp-bar").style.width = `${p.pct}%`;
+            document.getElementById("hud-xp-text").innerText = `${p.xp} XP • ${p.lvl} (${p.pct}%)`;
             document.getElementById("hud-pet-acc").innerText = chuoiDung >= 5 ? "👑" : (chuoiDung >= 3 ? "🧣" : "");
 
-            document.getElementById("hud-streak-days").innerText = `🔥 Chuỗi ngày: ${vocabApp.dayStreak || 1} ngày`;
+            document.getElementById("hud-streak-days").innerText = `🔥 ${vocabApp.dayStreak || 1}d`;
             const c = (vocabApp.history || []).length;
             const w = vocabApp.bossWins || 0;
-            document.getElementById("hud-badge-label").innerText = (w >= 2 || c >= 25) ? "🥇 Bậc thầy đảo Slang" : ((c >= 8 || w >= 1) ? "🥈 Thợ săn Idioms" : "🥉 Tân binh đảo nhỏ");
+            document.getElementById("hud-badge-label").innerText = (w >= 2 || c >= 25) ? "🥇 Bậc thầy" : ((c >= 8 || w >= 1) ? "🥈 Thợ săn" : "🥉 Tân binh");
 
             document.getElementById("side-hist-cnt").innerText = c;
-            document.getElementById("study-hist-cnt").innerText = c;
-            document.getElementById("home-summary-txt").innerText = `Đã lưu ${c} từ trong sổ tay • ${p.lvl} (${p.pct}%)`;
+            document.getElementById("home-summary-txt").innerText = `${c} từ đã lưu`;
 
             let unlockedCnt = 0;
             document.getElementById("island-zones-grid").innerHTML = ISLAND_ZONES.map(z => {
@@ -1574,16 +1600,16 @@
                 return `
                     <button class="zone-card ${ok ? "unlocked" : "locked"}" onclick="kichHoatVungDat('${z.id}')">
                         <div class="zone-title"><span>${z.icon} ${z.name}</span><span>${ok ? "▶" : "🔒"}</span></div>
-                        <div class="zone-desc">${ok ? "Bấm để vào luyện ngay" : "Điều kiện: " + z.req}</div>
+                        <div class="zone-desc">${ok ? "Chạm để học ngay" : z.req}</div>
                     </button>
                 `;
             }).join("");
-            document.getElementById("island-progress-pill").innerText = `${unlockedCnt} / 4 vùng đất đã mở`;
+            document.getElementById("island-progress-pill").innerText = `${unlockedCnt} / 4 đã mở`;
 
             const d = vocabApp.daily;
             const quests = [
                 { title: "🔥 Luyện 5 câu Slang / Giao tiếp", cur: Math.min(5, d.slangCount || 0), max: 5 },
-                { title: "⚔️ Thắng 1 lượt đấu Boss 45s", cur: Math.min(1, d.bossCount || 0), max: 1 },
+                { title: "⚔️ Thắng 1 lượt Boss 45s", cur: Math.min(1, d.bossCount || 0), max: 1 },
                 { title: "🗺️ Khám phá 3 thế giới khác nhau", cur: Math.min(3, (d.worldsSet || []).length), max: 3 }
             ];
             document.getElementById("daily-quests-grid").innerHTML = quests.map(q => {
@@ -1604,15 +1630,21 @@
                 const bloomed = cnt >= 3;
                 return `
                     <button class="world-chip ${bloomed ? "bloomed" : ""}" onclick="batDauVoHan(${w.id})">
-                        <strong><span>${w.icon} ${w.name}</span><span>${bloomed ? "🌸" : (cnt > 0 ? `🌱 ${cnt}/3` : "")}</span></strong>
+                        <strong><span>${w.icon} ${w.name}</span><span>${bloomed ? "🌸" : (cnt > 0 ? `🌱${cnt}/3` : "")}</span></strong>
                         <span>${w.sub}</span>
                     </button>
                 `;
             }).join("");
         }
 
+        function setTabActive(id) {
+            document.querySelectorAll(".tab-btn").forEach(t => t.classList.remove("active"));
+            const el = document.getElementById(id);
+            if (el) el.classList.add("active");
+        }
+
         // ============================================================
-        // BOSS ARENA 45s — KHO CÂU HỎI MỞ RỘNG & CHỐNG LẶP LIÊN TIẾP
+        // BOSS ARENA 45s
         // ============================================================
         let bossLevel = 1, bossMaxHp = 100, bossHp = 100, playerHp = 100, bossTimer = null, bossLeft = 45.0, bossTarget = null, bossBusy = false;
         let recentBossKeys = [];
@@ -1642,29 +1674,31 @@
 
         function batDauBossBattle(nextLv = 1) {
             unlockIOS();
+            setTabActive("tab-boss");
             clearInterval(bossTimer); bossTimer = null; bossBusy = false;
             recentBossKeys = [];
             bossLevel = nextLv;
             bossMaxHp = 100 + (bossLevel - 1) * 35;
             bossHp = bossMaxHp;
             playerHp = 100;
-            const bossNames = ["👹 Boss Idioms & Slang", "🐉 Rồng 18 Thế Giới", "🧙‍♂️ Phù Thủy Sắc Thái", "👑 Chúa Tể Vô Hạn"];
-            document.getElementById("boss-title-label").innerText = `⚔️ BOSS FORGE — CẤP ${bossLevel} (45 GIÂY / LƯỢT)`;
+            const bossNames = ["👹 Boss Slang", "🐉 Rồng 18 Thế Giới", "🧙‍♂️ Phù Thủy Sắc Thái", "👑 Chúa Tể Vô Hạn"];
+            document.getElementById("boss-title-label").innerText = `⚔️ BOSS CẤP ${bossLevel} (45s)`;
             document.getElementById("boss-name-tag").innerText = bossNames[(bossLevel - 1) % bossNames.length];
             capNhatHP();
             document.getElementById("boss-arena").style.display = "block";
-            document.getElementById("boss-arena").scrollIntoView({ behavior: "smooth", block: "nearest" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
             luotBoss();
         }
 
         function thoatBossBattle() {
             clearInterval(bossTimer); bossTimer = null; bossBusy = false;
             document.getElementById("boss-arena").style.display = "none";
+            setTabActive("tab-home");
         }
 
         function capNhatHP() {
-            document.getElementById("boss-hp-label").innerText = `${Math.max(0, bossHp)} / ${bossMaxHp} HP`;
-            document.getElementById("player-hp-label").innerText = `${Math.max(0, playerHp)} / 100 HP`;
+            document.getElementById("boss-hp-label").innerText = `${Math.max(0, bossHp)}/${bossMaxHp}`;
+            document.getElementById("player-hp-label").innerText = `${Math.max(0, playerHp)}/100`;
             document.getElementById("boss-hp-fill").style.width = `${Math.max(0, Math.round((bossHp / bossMaxHp) * 100))}%`;
             document.getElementById("player-hp-fill").style.width = `${Math.max(0, playerHp)}%`;
         }
@@ -1677,17 +1711,17 @@
                 vocabApp.bossWins = (vocabApp.bossWins || 0) + 1;
                 vocabApp.daily.bossCount = (vocabApp.daily.bossCount || 0) + 1;
                 congXP(45 + bossLevel * 10);
-                setPetReaction("win", "🥳");
-                qBox.innerHTML = `🎉 HẠ GỤC BOSS CẤP ${bossLevel}! Nhận +${45 + bossLevel * 10} XP!`;
+                setPetReaction();
+                qBox.innerHTML = `🎉 HẠ GỤC BOSS CẤP ${bossLevel}! +${45 + bossLevel * 10} XP!`;
                 oBox.innerHTML = `
                     <button class="boss-opt" onclick="batDauBossBattle(${bossLevel + 1})">🔥 Đấu tiếp Boss Cấp ${bossLevel + 1}</button>
                     <button class="boss-opt" onclick="thoatBossBattle()">🌿 Về học tiếp</button>
                 `;
-                document.getElementById("boss-timer").innerText = "🏆 CHIẾN THẮNG";
+                document.getElementById("boss-timer").innerText = "🏆 THẮNG";
                 return;
             }
             if (playerHp <= 0) {
-                qBox.innerHTML = "💥 Hết HP rồi! Đấu lại ngay hoặc về luyện thêm câu nhé.";
+                qBox.innerHTML = "💥 Hết HP rồi! Thử lại nhé.";
                 oBox.innerHTML = `
                     <button class="boss-opt" onclick="batDauBossBattle(1)">🔄 Đấu lại từ Cấp 1</button>
                     <button class="boss-opt" onclick="thoatBossBattle()">📖 Về trang học</button>
@@ -1706,13 +1740,12 @@
             bossTarget = target;
             const askMeaning = target.isSentence ? false : (Math.random() < 0.5);
             qBox.innerText = askMeaning
-                ? `Cụm "${target.term}" (${target.kind}) có nghĩa là gì?`
-                : `Cách diễn đạt tiếng Anh nào ứng với: "${target.meaningVi}"?`;
+                ? `Cụm "${target.term}" (${target.kind}) nghĩa là gì?`
+                : `Câu tiếng Anh nào ứng với: "${target.meaningVi}"?`;
 
             const others = pool.filter(x => x.term !== target.term);
             shuffle(others);
-            const distractors = others.slice(0, 3);
-            const opts = [target, ...distractors];
+            const opts = [target, ...others.slice(0, 3)];
             shuffle(opts);
 
             oBox.innerHTML = opts.map((o, i) => {
@@ -1728,7 +1761,7 @@
                 if (bossLeft <= 0) {
                     clearInterval(bossTimer); bossTimer = null; bossBusy = true;
                     playerHp -= 25; capNhatHP();
-                    qBox.innerHTML = `⏰ Hết 45s! Đáp án: <b>${esc(target.term)}</b> — ${esc(target.meaningVi)} (-25 HP)`;
+                    qBox.innerHTML = `⏰ Hết 45s! Đáp án: <b>${esc(target.term)}</b> (-25 HP)`;
                     setTimeout(luotBoss, 1400);
                 }
             }, 100);
@@ -1747,34 +1780,28 @@
                 spark.classList.add("flash");
                 setTimeout(() => spark.classList.remove("flash"), 280);
                 btn.style.background = "rgba(34, 197, 94, 0.35)"; btn.style.borderColor = "#22c55e";
-                qBox.innerHTML = `⚡ ĐÒN CHÍ MẠNG! <b>${esc(bossTarget.term)}</b> gây ${dmg} sát thương & +15 XP!`;
+                qBox.innerHTML = `⚡ CHÍ MẠNG! Gây ${dmg} sát thương & +15 XP!`;
             } else {
                 playerHp -= 25;
                 btn.style.background = "rgba(239, 68, 68, 0.35)"; btn.style.borderColor = "#ef4444";
-                qBox.innerHTML = `❌ Chưa đúng! Đáp án: <b>${esc(bossTarget.term)}</b> (${esc(bossTarget.meaningVi)}) • -25 HP`;
+                qBox.innerHTML = `❌ Chưa đúng! Đáp án: <b>${esc(bossTarget.term)}</b> (-25 HP)`;
             }
             capNhatHP();
-            setTimeout(luotBoss, 1300);
+            setTimeout(luotBoss, 1250);
         }
 
         // ============================================================
-        // LUỒNG HỌC CHÍNH & CÁC CHẾ ĐỘ ĐÃ SỬA
+        // LUỒNG HỌC CHÍNH
         // ============================================================
         let danhSach = [], tenBaiHoc = "", cauHienTai = 0, dapAnChuan = "";
         let cheDoXem = "de", kieuCauHienTai = "", cheDoVoHan = false, heThongVoHan = "worlds";
-        let chuDeDong = "", stageSel = 0, chuoiDung = 0, dangChoEnter = false, lichSuPhien = [], startSentenceTime = Date.now();
-
-        function setNavActive(id) {
-            document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
-            const el = document.getElementById(id);
-            if (el) el.classList.add("active");
-        }
+        let chuDeDong = "", stageSel = 0, chuoiDung = 0, dangChoEnter = false, lichSuPhien = [];
 
         function veTrangChu() {
             stopAudio();
             document.getElementById("hoc-khu-vuc").style.display = "none";
             document.getElementById("nhap-du-lieu").style.display = "block";
-            setNavActive("nav-home");
+            setTabActive("tab-home");
             capNhatHUD();
         }
 
@@ -1785,7 +1812,7 @@
             danhSach = kb.items.map(x => ({ ...x, ipa: "" }));
             shuffle(danhSach);
             cauHienTai = 0; chuoiDung = 0; cheDoXem = "de";
-            setNavActive("nav-" + key);
+            setTabActive("tab-slang");
             capNhatModeUI(); moKhuHoc(); loadCau(false, true);
         }
 
@@ -1795,7 +1822,6 @@
             cheDoVoHan = false; lichSuPhien = []; tenBaiHoc = sc.ten;
             danhSach = sc.steps.map(x => ({ ...x, ipa: "" }));
             cauHienTai = 0; chuoiDung = 0; cheDoXem = "de";
-            setNavActive("nav-scene");
             capNhatModeUI(); moKhuHoc(); loadCau(false, true);
         }
 
@@ -1807,11 +1833,10 @@
 
         function batDauSpotNuance() {
             unlockIOS();
-            cheDoVoHan = false; lichSuPhien = []; tenBaiHoc = "🎯 Luyện Sửa lỗi Sắc thái";
+            cheDoVoHan = false; lichSuPhien = []; tenBaiHoc = "🎯 Sửa lỗi Sắc thái";
             danhSach = layPoolSlang("all").map(x => ({ ...x, ipa: "" }));
             shuffle(danhSach);
             cauHienTai = 0; chuoiDung = 0; cheDoXem = "nuance";
-            setNavActive("nav-nuance");
             capNhatModeUI(); moKhuHoc(); loadCau(false, true);
         }
 
@@ -1836,10 +1861,11 @@
 
         function batDauVoHanSlang(sub) {
             unlockIOS();
+            setTabActive("tab-slang");
             cheDoVoHan = true;
             heThongVoHan = "slang_all";
             lichSuPhien = [];
-            tenBaiHoc = "♾️ Slang & Idioms Vô hạn";
+            tenBaiHoc = "♾️ Slang & Idioms";
             danhSach = [sinhCauSlang(sub)];
             cauHienTai = 0; chuoiDung = 0; cheDoXem = "de";
             capNhatModeUI(); moKhuHoc(); loadCau(false, true);
@@ -1863,7 +1889,7 @@
             unlockIOS();
             chuDeDong = document.getElementById("o-chu-de-dong").value.trim() || "giao tiếp đời sống";
             cheDoVoHan = true; heThongVoHan = "topic"; lichSuPhien = [];
-            tenBaiHoc = `🧩 Chủ đề: ${chuDeDong}`;
+            tenBaiHoc = `🧩 ${chuDeDong}`;
             danhSach = [sinhCauChuDe(chuDeDong)];
             cauHienTai = 0; chuoiDung = 0; cheDoXem = "de";
             capNhatModeUI(); moKhuHoc(); loadCau(false, true);
@@ -1887,14 +1913,15 @@
 
         function batDauVuTruVoHan() {
             unlockIOS();
-            setNavActive("nav-cosmos");
+            setTabActive("tab-cosmos");
             batDauVoHan(0);
         }
 
         function batDauVoHan(id) {
             unlockIOS();
+            setTabActive("tab-cosmos");
             cheDoVoHan = true; heThongVoHan = "worlds"; stageSel = id; lichSuPhien = [];
-            tenBaiHoc = (id === 0 || !BO_SINH_CAU[id]) ? "🌌 Vũ trụ Vô hạn Toàn diện (18 Thế giới)" : `♾️ ${BO_SINH_CAU[id].ten}`;
+            tenBaiHoc = (id === 0 || !BO_SINH_CAU[id]) ? "🌌 Vũ trụ 18 Thế giới" : `♾️ ${BO_SINH_CAU[id].ten}`;
             danhSach = [sinhCauTheGioi(id)];
             cauHienTai = 0; chuoiDung = 0; cheDoXem = "de";
             capNhatModeUI(); moKhuHoc(); loadCau(false, true);
@@ -1912,7 +1939,7 @@
                 }
             });
             if (!danhSach.length) { alert("Cần có dấu Tab giữa nghĩa Việt và câu Anh."); return; }
-            cheDoVoHan = false; lichSuPhien = []; tenBaiHoc = `📝 Danh sách riêng (${danhSach.length} câu)`;
+            cheDoVoHan = false; lichSuPhien = []; tenBaiHoc = `📝 Riêng (${danhSach.length} câu)`;
             shuffle(danhSach);
             cauHienTai = 0; chuoiDung = 0; cheDoXem = "de";
             capNhatModeUI(); moKhuHoc(); loadCau(false, true);
@@ -1922,6 +1949,7 @@
             document.getElementById("nhap-du-lieu").style.display = "none";
             document.getElementById("hoc-khu-vuc").style.display = "block";
             document.getElementById("ten-bai-hoc").innerText = tenBaiHoc;
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         function doiCheDo(m) {
@@ -1961,7 +1989,7 @@
 
             if (cheDoXem === "reverse") {
                 document.getElementById("nhan-kieu-bai").innerText = "🔄 NGHE / IPA → CHỌN NGHĨA VIỆT";
-                document.getElementById("cau-hoi").innerHTML = `<span style="color:var(--accent-sky);">🔊 Nghe câu UK & đọc IPA bên dưới, chọn nghĩa Việt sát sắc thái:</span>`;
+                document.getElementById("cau-hoi").innerHTML = `<span style="color:var(--accent-sky); font-size:15px;">🔊 Nghe câu UK & xem IPA, chọn nghĩa Việt sát sắc thái:</span>`;
                 document.getElementById("goi-y-box").style.display = "none";
                 const others = pool.filter(x => x.viet !== item.viet);
                 shuffle(others);
@@ -1973,10 +2001,10 @@
             } else {
                 const nItem = layItemCoNuance(item);
                 dapAnChuan = nItem.anh;
-                document.getElementById("nhan-kieu-bai").innerText = `🎯 SỬA LỖI SẮC THÁI • ${nItem.term.toUpperCase()}`;
+                document.getElementById("nhan-kieu-bai").innerText = `🎯 SỬA SẮC THÁI • ${nItem.term.toUpperCase()}`;
                 document.getElementById("cau-hoi").innerHTML = `
-                    <div style="font-size:15px; color:#dc2626;">⚠️ Câu lệch sắc thái: <i>"${esc(nItem.nuanceBad)}"</i></div>
-                    <div style="margin-top:6px;">Chọn câu dùng <b>${esc(nItem.term)}</b> đúng sắc thái:</div>
+                    <div style="font-size:14px; color:#dc2626;">⚠️ Câu lệch sắc thái: <i>"${esc(nItem.nuanceBad)}"</i></div>
+                    <div style="margin-top:5px; font-size:15.5px;">Chọn câu dùng <b>${esc(nItem.term)}</b> đúng ngữ cảnh:</div>
                 `;
                 document.getElementById("goi-y-box").style.display = "none";
                 const others = pool.filter(x => x.anh !== nItem.anh);
@@ -1996,7 +2024,7 @@
                 if (why) {
                     const ex = document.getElementById("nuance-explain");
                     ex.style.display = "block";
-                    ex.innerHTML = `💡 <b>Giải thích sắc thái:</b> ${esc(why)}`;
+                    ex.innerHTML = `💡 <b>Giải thích:</b> ${esc(why)}`;
                 }
                 xongCau();
             } else {
@@ -2004,11 +2032,11 @@
                 if (why) {
                     const ex = document.getElementById("nuance-explain");
                     ex.style.display = "block";
-                    ex.innerHTML = `⚠️ <b>Gợi ý sửa lỗi:</b> ${esc(why)}`;
+                    ex.innerHTML = `⚠️ <b>Gợi ý:</b> ${esc(why)}`;
                 }
                 if (!vocabApp.prefs.calm) {
                     chuoiDung = 0;
-                    document.getElementById("streak-text").innerText = "🔥 Chuỗi đúng: 0";
+                    document.getElementById("streak-text").innerText = "🔥 0";
                 }
             }
         }
@@ -2035,19 +2063,19 @@
             if (item.tone) { tBadge.style.display = "inline-block"; tBadge.innerText = item.tone; }
             else tBadge.style.display = "none";
 
-            document.getElementById("tip-main-text").innerHTML = pace === "fast" ? "⚡ <b>Nhịp thử thách:</b> Bấm <i>Hồ sơ & Gợi nhớ</i> nếu cần trợ giúp." : (item.tip || "<b>Mẹo đảo nhỏ:</b> Gắn từ với tình huống quen thuộc.");
+            document.getElementById("tip-main-text").innerHTML = pace === "fast" ? "⚡ <b>Nhịp thử thách:</b> Bấm <i>Gợi nhớ</i> nếu cần trợ giúp." : (item.tip || "<b>Mẹo nhỏ:</b> Gắn từ với tình huống quen thuộc.");
 
             rev.style.display = pace === "gentle" ? "block" : "none";
             rev.innerHTML = `
                 <div>🃏 <b>Mẹo nhớ:</b> ${esc(item.cue || item.viet)}</div>
-                ${item.extraEx ? `<div>📌 <b>Ví dụ thêm:</b> <i>${esc(item.extraEx)}</i></div>` : ""}
+                ${item.extraEx ? `<div>📌 <b>Ví dụ:</b> <i>${esc(item.extraEx)}</i></div>` : ""}
                 ${item.collocations ? `<div>🔗 <b>Cụm đi kèm:</b> ${esc(item.collocations)}</div>` : ""}
-                ${item.nuanceWhy ? `<div>🎯 <b>Lưu ý sắc thái:</b> ${esc(item.nuanceWhy)}</div>` : ""}
+                ${item.nuanceWhy ? `<div>🎯 <b>Sắc thái:</b> ${esc(item.nuanceWhy)}</div>` : ""}
             `;
 
             if (item.ipa) iEl.innerText = item.ipa;
             else {
-                iEl.innerText = "Đang tạo phiên âm IPA Anh–Anh...";
+                iEl.innerText = "Đang tạo IPA UK...";
                 layIPACau(dapAnChuan, "").then(res => {
                     item.ipa = res;
                     if (danhSach[cauHienTai]?.anh === dapAnChuan) {
@@ -2070,21 +2098,21 @@
                 cEl.innerText = item.viet;
                 gBox.style.display = "block";
                 gBox.innerHTML = `<div style="color:var(--accent-green); font-weight:800;">${esc(dapAnChuan)}</div>`;
-                inp.placeholder = "Gõ lại câu mẫu ở trên (không cần dấu câu)...";
+                inp.placeholder = "Gõ lại câu mẫu ở trên...";
                 return;
             }
 
             if (kieuCauHienTai === "viet") {
-                nEl.innerText = "💡 NGHĨA TIẾNG VIỆT → TIẾNG ANH";
+                nEl.innerText = "💡 VIỆT → TIẾNG ANH";
                 cEl.innerText = item.viet;
                 gBox.style.display = "none";
-                inp.placeholder = "Gõ câu tiếng Anh tương ứng...";
+                inp.placeholder = "Gõ câu tiếng Anh...";
             } else {
-                nEl.innerText = "🗣️ PHIÊN ÂM IPA UK → TIẾNG ANH";
+                nEl.innerText = "🗣️ IPA UK → TIẾNG ANH";
                 gBox.style.display = pace === "fast" ? "none" : "block";
-                gBox.innerHTML = `<span style="font-size:14.5px; color:var(--muted);">🇻🇳 Gợi ý: <b>${esc(item.viet)}</b></span>`;
-                cEl.innerHTML = item.ipa ? `<span style="color:#5b21b6;">${item.ipa}</span>` : "Đang tạo phiên âm IPA Anh–Anh...";
-                inp.placeholder = "Đọc phiên âm IPA UK ở trên và gõ câu tiếng Anh...";
+                gBox.innerHTML = `<span style="font-size:14px; color:var(--muted);">🇻🇳 Gợi ý: <b>${esc(item.viet)}</b></span>`;
+                cEl.innerHTML = item.ipa ? `<span style="color:#5b21b6;">${item.ipa}</span>` : "Đang tạo IPA UK...";
+                inp.placeholder = "Đọc phiên âm IPA UK và gõ câu tiếng Anh...";
             }
         }
 
@@ -2094,13 +2122,12 @@
             if (dangChoEnter) return;
             dangChoEnter = true;
             const item = danhSach[cauHienTai];
-            const elapsedSec = (Date.now() - startSentenceTime) / 1000;
 
             if (!vocabApp.prefs.calm) {
                 chuoiDung++;
-                document.getElementById("streak-text").innerText = "🔥 Chuỗi đúng: " + chuoiDung;
+                document.getElementById("streak-text").innerText = "🔥 " + chuoiDung;
             }
-            setPetReaction("happy", elapsedSec < 8 ? "🤩" : "😊");
+            setPetReaction();
 
             vocabApp.daily.slangCount = (vocabApp.daily.slangCount || 0) + 1;
             if (item.worldId) {
@@ -2131,8 +2158,12 @@
             gBox.style.display = "block";
             gBox.innerHTML = `<div>🇻🇳 <b>Nghĩa:</b> <span style="color:var(--accent-amber); font-weight:700;">${esc(item.viet)}</span></div>`;
 
-            document.getElementById("o-nhap").readOnly = true;
-            document.getElementById("banner-enter").style.display = "flex";
+            const inp = document.getElementById("o-nhap");
+            inp.blur(); // Hạ bàn phím iPhone để thấy nút Câu tiếp theo rõ ràng
+            inp.readOnly = true;
+            const banner = document.getElementById("banner-enter");
+            banner.style.display = "flex";
+            banner.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
 
         function chuyenSangCauTiepTheo() {
@@ -2165,7 +2196,6 @@
 
         function loadCau(giuKieu = false, autoPlay = true) {
             dangChoEnter = false;
-            startSentenceTime = Date.now();
             document.getElementById("banner-enter").style.display = "none";
             document.getElementById("box-cau-hoi").classList.remove("done");
             document.getElementById("o-nhap").readOnly = false;
@@ -2177,18 +2207,18 @@
                     while (nx.anh === dapAnChuan && g++ < 10) nx = sinhVoHan();
                     danhSach = [nx]; cauHienTai = 0;
                 }
-                document.getElementById("tien-do").innerText = `♾️ Vô hạn • ${vocabApp.xp || 0} XP`;
+                document.getElementById("tien-do").innerText = `♾️ ${vocabApp.xp || 0} XP`;
             } else {
                 if (cauHienTai >= danhSach.length) {
                     alert("🎉 Hoàn thành chặng này! Bạn có thể đấu Boss 45s hoặc tiếp tục khám phá 18 thế giới nhé.");
                     veTrangChu(); return;
                 }
-                document.getElementById("tien-do").innerText = `Câu ${cauHienTai + 1} / ${danhSach.length}`;
+                document.getElementById("tien-do").innerText = `${cauHienTai + 1}/${danhSach.length}`;
             }
 
             dapAnChuan = danhSach[cauHienTai].anh;
             document.getElementById("streak-text").style.display = vocabApp.prefs.calm ? "none" : "inline-block";
-            document.getElementById("streak-text").innerText = "🔥 Chuỗi đúng: " + chuoiDung;
+            document.getElementById("streak-text").innerText = "🔥 " + chuoiDung;
             if (!giuKieu || (kieuCauHienTai !== "viet" && kieuCauHienTai !== "ipa")) kieuCauHienTai = Math.random() < 0.5 ? "viet" : "ipa";
 
             renderCau();
@@ -2196,7 +2226,9 @@
 
             const inp = document.getElementById("o-nhap");
             inp.value = ""; inp.className = "";
-            if (inp.style.display !== "none") inp.focus();
+            if (inp.style.display !== "none") {
+                setTimeout(() => inp.focus(), 80);
+            }
         }
 
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
@@ -2209,18 +2241,18 @@
             const q = (document.getElementById("o-tim-lich-su").value || "").trim().toLowerCase();
             const all = vocabApp.history || [];
             const list = all.filter(x => x.anh.toLowerCase().includes(q) || x.viet.toLowerCase().includes(q) || (x.term && x.term.toLowerCase().includes(q)));
-            document.getElementById("modal-hist-title").innerText = `📜 Sổ tay từ đã học (${list.length} / ${all.length})`;
+            document.getElementById("modal-hist-title").innerText = `📜 Sổ tay (${list.length}/${all.length})`;
             const box = document.getElementById("danh-sach-lich-su-ui");
             if (!list.length) { box.innerHTML = `<div style="text-align:center; padding:24px; color:var(--muted);">Chưa có từ nào trong sổ tay.</div>`; return; }
             box.innerHTML = list.map(it => `
                 <div class="hist-row">
-                    <div>
-                        <div style="font-weight:800; color:var(--accent-green); font-size:15.5px;">${esc(it.anh)} ${it.kind ? `<span style="font-size:11.5px; color:var(--accent-amber);">[${esc(it.kind)}]</span>` : ""}</div>
-                        ${it.ipa ? `<div style="font-size:13px; color:#6d28d9; font-weight:700;">${esc(it.ipa)}</div>` : ""}
-                        <div style="font-size:13.5px;">🇻🇳 ${esc(it.viet)}</div>
-                        <div style="font-size:11px; color:var(--muted); margin-top:3px;">🏷️ ${esc(it.chuDe || "")} • ${esc(it.thoiGian || "")}</div>
+                    <div style="flex:1; min-width:0;">
+                        <div style="font-weight:800; color:var(--accent-green); font-size:14.5px; word-break:break-word;">${esc(it.anh)} ${it.kind ? `<span style="font-size:11px; color:var(--accent-amber);">[${esc(it.kind)}]</span>` : ""}</div>
+                        ${it.ipa ? `<div style="font-size:12.5px; color:#6d28d9; font-weight:700;">${esc(it.ipa)}</div>` : ""}
+                        <div style="font-size:13px;">🇻🇳 ${esc(it.viet)}</div>
+                        <div style="font-size:11px; color:var(--muted); margin-top:2px;">🏷️ ${esc(it.chuDe || "")} • ${esc(it.thoiGian || "")}</div>
                     </div>
-                    <button class="btn-audio" onclick="phatAm('${esc(it.anh).replace(/'/g, "\\'")}', false)">🔊</button>
+                    <button class="btn-audio" style="padding:8px 12px; align-self:center;" onclick="phatAm('${esc(it.anh).replace(/'/g, "\\'")}', false)">🔊</button>
                 </div>
             `).join("");
         }
@@ -2235,7 +2267,7 @@
             ].sort((a, b) => b.xp - a.xp);
             document.getElementById("leaderboard-content").innerHTML = rows.map((r, i) => `
                 <div class="lb-row ${r.me ? "lb-me" : ""}">
-                    <div>#${i + 1} ${r.icon} ${esc(r.name)} <span style="font-size:12px; color:var(--muted);">• 🔥 ${r.streak} ngày</span></div>
+                    <div>#${i + 1} ${r.icon} ${esc(r.name)} <span style="font-size:11.5px; color:var(--muted);">• 🔥 ${r.streak}d</span></div>
                     <div style="color:var(--accent-sky);">${r.xp} XP</div>
                 </div>
             `).join("");
@@ -2249,7 +2281,7 @@
             const box = document.getElementById("backup-box");
             box.value = btoa(unescape(encodeURIComponent(JSON.stringify(vocabApp))));
             box.select();
-            alert("Đã xuất mã lưu trữ! Bạn hãy sao chép chuỗi trong ô để lưu hoặc chuyển sang máy khác.");
+            alert("Đã xuất mã lưu trữ! Hãy sao chép chuỗi trong ô để lưu hoặc chuyển sang máy khác.");
         }
         function nhapDuLieu() {
             const raw = document.getElementById("backup-box").value.trim();
@@ -2265,11 +2297,14 @@
         document.addEventListener("keydown", e => {
             if (e.key === "Escape") { dongModalLichSu(); dongModalXepHang(); dongModalCongCu(); }
             if (e.key === "Enter" && dangChoEnter) { e.preventDefault(); chuyenSangCauTiepTheo(); }
-            if (e.ctrlKey && e.code === "Space") { e.preventDefault(); phatAm(dapAnChuan, false); }
-            if (e.altKey && (e.key === "s" || e.key === "S")) { e.preventDefault(); phatAm(dapAnChuan, true); }
         });
 
-        document.getElementById("o-nhap").addEventListener("input", function() {
+        const oNhapEl = document.getElementById("o-nhap");
+        oNhapEl.addEventListener("focus", () => {
+            setTimeout(() => oNhapEl.scrollIntoView({ behavior: "smooth", block: "center" }), 260);
+        });
+
+        oNhapEl.addEventListener("input", function() {
             playKeyClickSound();
             if (dangChoEnter) return;
             const target = normCmp(dapAnChuan).trim();
@@ -2284,7 +2319,7 @@
                 } else {
                     this.className = "sai";
                     chuoiDung = 0;
-                    document.getElementById("streak-text").innerText = "🔥 Chuỗi đúng: 0";
+                    document.getElementById("streak-text").innerText = "🔥 0";
                 }
             }
         });
