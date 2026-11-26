@@ -455,6 +455,17 @@
         .btn-prev:disabled { opacity: 0.45; cursor: not-allowed; }
         .btn-flip { padding: 8px 11px; background: var(--accent-amber-soft); border: 1px solid #f0d79c; color: var(--accent-amber); font-size: 12.5px; }
 
+        .audio-status-line {
+            margin-top: 8px;
+            font-size: 11.5px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
         .ipa-box {
             margin-top: 11px; background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.25);
             border-radius: 12px; padding: 9px 13px;
@@ -596,6 +607,7 @@
                     <p class="welcome-sub">18 thế giới nở hoa theo tiến độ, Slang & Idioms đa sắc thái, đấu Boss 45s.</p>
                 </div>
                 <div class="top-actions">
+                    <button class="btn-audio" onclick="testAmThanhIOS()">🔊 Test loa iOS</button>
                     <button class="pill-tag" onclick="moModalCongCu()">⚙️ Cỡ chữ & Tốc độ</button>
                     <div class="meta-pill-box">
                         <span id="hud-streak-days">🔥 Chuỗi ngày: 1 ngày</span>
@@ -736,7 +748,9 @@
                     <div class="card-header-row">
                         <h2>📝 Luyện danh sách riêng (2 cột Việt — Anh, cách nhau bằng Tab)</h2>
                     </div>
-                    <textarea id="du-lieu-excel" placeholder="Ví dụ:&#10;Tối qua mình thức khuya làm nốt file.	I burned the midnight oil to finish the file last night&#10;Món này săn sale quá hời.	Getting this on sale was a real steal"></textarea>
+                    <textarea id="du-lieu-excel" placeholder="Ví dụ:
+Tối qua mình thức khuya làm nốt file.	I burned the midnight oil to finish the file last night
+Món này săn sale quá hời.	Getting this on sale was a real steal"></textarea>
                     <button class="btn-cozy-green" style="width:100%; padding:11px;" onclick="batDauTuExcel()">Bắt đầu danh sách riêng</button>
                 </section>
             </div>
@@ -800,9 +814,14 @@
                         <div class="btn-row">
                             <button class="btn-prev" id="btn-quay-lai-cau-truoc" onclick="quayLaiCauTruoc()">⬅️ Trước</button>
                             <button class="btn-flip" onclick="latTheGoiNho()">🃏 Hồ sơ & Gợi nhớ</button>
-                            <button class="btn-audio" onclick="phatAm(dapAnChuan, false)">🔊 Nghe UK</button>
-                            <button class="btn-slow" onclick="phatAm(dapAnChuan, true)">🐢 Chậm</button>
+                            <button class="btn-audio" onclick="phatAm(dapAnChuan, false, true)">🔊 Nghe UK</button>
+                            <button class="btn-slow" onclick="phatAm(dapAnChuan, true, true)">🐢 Chậm</button>
                         </div>
+                    </div>
+
+                    <div class="audio-status-line">
+                        <span id="audio-diag-status">🔈 Sẵn sàng phát âm (Nếu iPhone im tiếng: kiểm tra nút gạt rung & âm lượng Media)</span>
+                        <button class="ipa-chip" onclick="testAmThanhIOS()">🔔 Phát tiếng bíp + đọc thử</button>
                     </div>
 
                     <div class="ipa-box">
@@ -1223,7 +1242,7 @@
             "paying": "ˈpeɪɪŋ", "basic": "ˈbeɪsɪk", "item": "ˈaɪtəm", "feels": "fiːlz",
             "afternoon": "ˌɑːftəˈnuːn", "anything": "ˈeniθɪŋ", "jacket": "ˈdʒækɪt", "good": "ɡʊd",
             "half": "hɑːf", "price": "praɪs", "real": "rɪəl", "bag": "bæɡ", "classic": "ˈklæsɪk",
-            "scrolling": "ˈskrəʊlɪŋ", "late": "leɪt", "night": "naʊt", "report": "rɪˈpɔːt", "done": "dʌn",
+            "scrolling": "ˈskrəʊlɪŋ", "late": "leɪt", "night": "naɪt", "report": "rɪˈpɔːt", "done": "dʌn",
             "next": "nekst", "week": "wiːk", "honestly": "ˈɒnɪstli", "moment": "ˈməʊmənt",
             "fair": "feə", "way": "weɪ", "talking": "ˈtɔːkɪŋ", "use": "juːz", "naturally": "ˈnætʃrəli"
         };
@@ -1282,20 +1301,28 @@
         }
 
         // ============================================================
-        // HỆ THỐNG PHÁT ÂM TỐI ƯU CHO IPHONE SAFARI & CHROME (WEBKIT)
+        // HỆ THỐNG PHÁT ÂM CHUYÊN DỤNG CHO IPHONE SAFARI & CHROME
         // ============================================================
         let giongDaChon = localStorage.getItem("luyenGo_voiceEngine_uk") || "ios_native";
         let currentAudio = null;
         let activeUtterance = null;
-        let unlockedIOS = false;
+        let synthKeepAliveTimer = null;
         let audioCtx = null;
         let ambientTimer = null;
         let ambientType = "off";
+        let speakSeq = 0;
+
+        function setAudioStatus(msg) {
+            const el = document.getElementById("audio-diag-status");
+            if (el) el.innerText = msg;
+        }
 
         function ensureAudioCtx() {
             const AC = window.AudioContext || window.webkitAudioContext;
             if (!AC) return null;
-            if (!audioCtx) audioCtx = new AC();
+            if (!audioCtx) {
+                audioCtx = new AC();
+            }
             if (audioCtx.state === "suspended") {
                 audioCtx.resume().catch(() => {});
             }
@@ -1303,11 +1330,9 @@
         }
 
         function unlockIOS() {
-            if (unlockedIOS) return;
-            unlockedIOS = true;
             try {
                 const ctx = ensureAudioCtx();
-                if (ctx) {
+                if (ctx && ctx.state === "running") {
                     const buf = ctx.createBuffer(1, 1, 22050);
                     const src = ctx.createBufferSource();
                     src.buffer = buf;
@@ -1319,17 +1344,48 @@
             if ("speechSynthesis" in window) {
                 try {
                     window.speechSynthesis.getVoices();
-                    const warmUp = new SpeechSynthesisUtterance(" ");
-                    warmUp.volume = 0;
-                    warmUp.lang = "en-GB";
-                    window.speechSynthesis.speak(warmUp);
+                    if (window.speechSynthesis.paused) {
+                        window.speechSynthesis.resume();
+                    }
                 } catch (e) {}
             }
+        }
+
+        function playBeepTest() {
+            try {
+                const ctx = ensureAudioCtx();
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = "sine";
+                osc.frequency.setValueAtTime(660, ctx.currentTime);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.16);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.17);
+            } catch (e) {}
+        }
+
+        async function testAmThanhIOS() {
+            unlockIOS();
+            playBeepTest();
+            const sample = (typeof dapAnChuan === "string" && dapAnChuan.trim())
+                ? dapAnChuan.trim()
+                : "Let's make sure we're all on the same page";
+            setAudioStatus("🔔 Đang kiểm tra âm thanh trên iPhone...");
+            await phatAm(sample, false, true);
         }
 
         document.addEventListener("pointerdown", unlockIOS, { passive: true });
         document.addEventListener("touchstart", unlockIOS, { passive: true });
         document.addEventListener("keydown", unlockIOS, { passive: true });
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden && "speechSynthesis" in window) {
+                try { window.speechSynthesis.resume(); } catch (e) {}
+            }
+        });
 
         if ("speechSynthesis" in window && typeof window.speechSynthesis.onvoiceschanged !== "undefined") {
             window.speechSynthesis.onvoiceschanged = () => {
@@ -1359,7 +1415,7 @@
                     const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
                     const data = buf.getChannelData(0);
                     for (let i = 0; i < len; i++) {
-                        data[i] = (Math.random() * 2 - 1) * 0.02;
+                        data[i] = (Math.random() * 2 - 1) * 0.025;
                     }
                     const src = audioCtx.createBufferSource();
                     src.buffer = buf;
@@ -1396,10 +1452,18 @@
             unlockIOS();
             giongDaChon = v;
             localStorage.setItem("luyenGo_voiceEngine_uk", v);
-            if (dapAnChuan) phatAm(dapAnChuan, false);
+            if (dapAnChuan) phatAm(dapAnChuan, false, true);
         }
 
-        function stopAudio() {
+        function clearSynthWatchdog() {
+            if (synthKeepAliveTimer) {
+                clearInterval(synthKeepAliveTimer);
+                synthKeepAliveTimer = null;
+            }
+        }
+
+        function stopAudio(cancelSpeech = false) {
+            clearSynthWatchdog();
             if (currentAudio) {
                 try {
                     currentAudio.onplaying = null;
@@ -1410,7 +1474,7 @@
                 } catch (e) {}
                 currentAudio = null;
             }
-            if ("speechSynthesis" in window) {
+            if (cancelSpeech && "speechSynthesis" in window) {
                 try {
                     window.speechSynthesis.cancel();
                 } catch (e) {}
@@ -1430,39 +1494,97 @@
             );
         }
 
-        function playIOS(txt, slow = false) {
-            if (!("speechSynthesis" in window)) return false;
-            try {
-                const synth = window.speechSynthesis;
-                if (synth.speaking || synth.pending) {
-                    synth.cancel();
+        function playIOS(txt, slow = false, seq = 0) {
+            return new Promise((resolve) => {
+                if (!("speechSynthesis" in window)) {
+                    resolve(false);
+                    return;
                 }
-                const u = new SpeechSynthesisUtterance(txt);
-                const voice = pickBestUKVoice();
-                if (voice) {
-                    u.voice = voice;
-                    u.lang = voice.lang;
-                } else {
-                    u.lang = "en-GB";
-                }
-                u.pitch = 1.0;
-                u.rate = slow ? 0.85 : 0.98;
-                u.volume = 1.0;
-                u.onend = () => { activeUtterance = null; };
-                u.onerror = () => { activeUtterance = null; };
+                try {
+                    const synth = window.speechSynthesis;
+                    clearSynthWatchdog();
 
-                activeUtterance = u;
-                synth.speak(u);
-                return true;
-            } catch (e) {
-                activeUtterance = null;
-                return false;
-            }
+                    // Trên iOS WebKit, chỉ gọi cancel() khi thực sự đang kẹt hoặc đang đọc quá lâu
+                    if (synth.paused) {
+                        synth.resume();
+                    }
+
+                    const u = new SpeechSynthesisUtterance(txt);
+                    const voice = pickBestUKVoice();
+                    if (voice) {
+                        u.voice = voice;
+                        u.lang = voice.lang;
+                    } else {
+                        u.lang = "en-GB";
+                    }
+                    u.pitch = 1.0;
+                    u.rate = slow ? 0.82 : 0.96;
+                    u.volume = 1.0;
+
+                    let finished = false;
+                    let started = false;
+
+                    const done = (ok) => {
+                        if (finished) return;
+                        finished = true;
+                        clearSynthWatchdog();
+                        if (activeUtterance === u) activeUtterance = null;
+                        resolve(ok);
+                    };
+
+                    u.onstart = () => {
+                        started = true;
+                        if (seq === speakSeq) {
+                            setAudioStatus(`🔊 Đang đọc (${voice ? voice.name : "en-GB"})...`);
+                        }
+                    };
+                    u.onend = () => done(true);
+                    u.onerror = () => done(false);
+
+                    activeUtterance = u;
+                    synth.speak(u);
+
+                    // Watchdog giữ iOS speechSynthesis không bị ngủ giữa chừng
+                    let ticks = 0;
+                    synthKeepAliveTimer = setInterval(() => {
+                        ticks++;
+                        if (seq !== speakSeq || finished) {
+                            clearSynthWatchdog();
+                            return;
+                        }
+                        if (synth.paused) {
+                            try { synth.resume(); } catch (e) {}
+                        }
+                        // Nếu sau ~1.2s iOS không kích hoạt onstart và không speaking thì thử reset 1 lần
+                        if (!started && ticks === 6 && !synth.speaking) {
+                            try {
+                                synth.cancel();
+                                const retryU = new SpeechSynthesisUtterance(txt);
+                                if (voice) { retryU.voice = voice; retryU.lang = voice.lang; }
+                                else { retryU.lang = "en-GB"; }
+                                retryU.rate = slow ? 0.82 : 0.96;
+                                retryU.volume = 1.0;
+                                retryU.onstart = () => { started = true; };
+                                retryU.onend = () => done(true);
+                                retryU.onerror = () => done(false);
+                                activeUtterance = retryU;
+                                synth.speak(retryU);
+                            } catch (e) {}
+                        }
+                        if (ticks >= 45) {
+                            done(started);
+                        }
+                    }, 200);
+                } catch (e) {
+                    clearSynthWatchdog();
+                    resolve(false);
+                }
+            });
         }
 
         function playRemoteAudio(url, slow, playbackRateFallback = 1.0) {
             return new Promise((resolve, reject) => {
-                const a = new Audio(url);
+                const a = new Audio();
                 a.preload = "auto";
                 a.setAttribute("playsinline", "true");
                 a.setAttribute("webkit-playsinline", "true");
@@ -1475,9 +1597,10 @@
                 const timer = setTimeout(() => {
                     if (!settled) {
                         settled = true;
+                        cleanup();
                         reject(new Error("timeout"));
                     }
-                }, 1800);
+                }, 2600);
 
                 const cleanup = () => {
                     clearTimeout(timer);
@@ -1489,6 +1612,7 @@
                     if (!settled) {
                         settled = true;
                         cleanup();
+                        setAudioStatus("🔊 Đang phát audio chuẩn UK...");
                         resolve();
                     }
                 };
@@ -1501,6 +1625,8 @@
                     }
                 };
 
+                a.src = url;
+                a.load();
                 const p = a.play();
                 if (p && typeof p.catch === "function") {
                     p.catch(err => {
@@ -1531,34 +1657,53 @@
             return playRemoteAudio(url, slow, 0.85);
         }
 
-        async function phatAm(txt, slow = false) {
+        async function phatAm(txt, slow = false, userGesture = false) {
             const clean = (txt || "").trim();
             if (!clean) return;
-            unlockIOS();
+            const mySeq = ++speakSeq;
+            if (userGesture) unlockIOS();
             if (slow) setPetReaction("yawn", "😴");
-            stopAudio();
+
+            stopAudio(false);
 
             if (giongDaChon === "ios_native") {
-                playIOS(clean, slow);
+                const ok = await playIOS(clean, slow, mySeq);
+                if (mySeq !== speakSeq) return;
+                if (!ok) {
+                    setAudioStatus("⚠️ Giọng iOS đang bận, tự chuyển sang audio dự phòng...");
+                    try {
+                        await playYoudaoUK(clean, slow);
+                    } catch (e) {
+                        setAudioStatus("⚠️ Hãy kiểm tra nút gạt rung & âm lượng Media trên iPhone.");
+                    }
+                } else {
+                    setAudioStatus("🔈 Sẵn sàng • Bấm Nghe UK để nghe lại");
+                }
                 return;
             }
 
             if (giongDaChon === "youdao_uk") {
                 try {
                     await playYoudaoUK(clean, slow);
+                    if (mySeq === speakSeq) setAudioStatus("🔈 Đã phát xong (Từ điển UK)");
                 } catch (e) {
-                    playIOS(clean, slow);
+                    if (mySeq !== speakSeq) return;
+                    await playIOS(clean, slow, mySeq);
                 }
                 return;
             }
 
             try {
                 await playNeuralUK(clean, slow, giongDaChon);
+                if (mySeq === speakSeq) setAudioStatus("🔈 Đã phát xong (AI UK)");
             } catch (e1) {
+                if (mySeq !== speakSeq) return;
                 try {
                     await playYoudaoUK(clean, slow);
+                    if (mySeq === speakSeq) setAudioStatus("🔈 Đã phát xong (Từ điển UK dự phòng)");
                 } catch (e2) {
-                    playIOS(clean, slow);
+                    if (mySeq !== speakSeq) return;
+                    await playIOS(clean, slow, mySeq);
                 }
             }
         }
@@ -1899,7 +2044,7 @@
         }
 
         function veTrangChu() {
-            stopAudio();
+            stopAudio(true);
             document.getElementById("hoc-khu-vuc").style.display = "none";
             document.getElementById("nhap-du-lieu").style.display = "block";
             setNavActive("nav-home");
@@ -2236,9 +2381,6 @@
                 if (!vocabApp.daily.worldsSet.includes(item.worldId)) vocabApp.daily.worldsSet.push(item.worldId);
             }
 
-            congXP(15);
-            phatAm(dapAnChuan, false);
-
             const ipaFull = item.ipa || await layIPACau(dapAnChuan, "");
             item.ipa = ipaFull;
             document.getElementById("ipa-fixed-text").innerText = ipaFull;
@@ -2250,7 +2392,7 @@
                 thoiGian: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
             });
             if (vocabApp.history.length > 300) vocabApp.history.pop();
-            luuApp();
+            congXP(15);
 
             document.getElementById("box-cau-hoi").classList.add("done");
             document.getElementById("nhan-kieu-bai").innerText = "✅ HOÀN THÀNH (+15 XP)";
@@ -2261,6 +2403,9 @@
 
             document.getElementById("o-nhap").readOnly = true;
             document.getElementById("banner-enter").style.display = "flex";
+
+            // Phát âm ngay trong luồng tương tác của người dùng
+            phatAm(dapAnChuan, false, true);
         }
 
         function chuyenSangCauTiepTheo() {
@@ -2272,7 +2417,7 @@
             document.getElementById("box-cau-hoi").classList.remove("done");
             document.getElementById("o-nhap").readOnly = false;
             cauHienTai++;
-            loadCau(false, true);
+            loadCau(false, false);
         }
 
         function quayLaiCauTruoc() {
@@ -2282,7 +2427,7 @@
             if (cheDoVoHan) { danhSach = [prev]; cauHienTai = 0; }
             else if (cauHienTai > 0) cauHienTai--;
             else { danhSach.unshift(prev); cauHienTai = 0; }
-            loadCau(false, true);
+            loadCau(false, false);
         }
 
         function sinhVoHan() {
@@ -2291,7 +2436,7 @@
             return sinhCauTheGioi(stageSel);
         }
 
-        function loadCau(giuKieu = false, autoPlay = true) {
+        function loadCau(giuKieu = false, autoPlay = false) {
             dangChoEnter = false;
             startSentenceTime = Date.now();
             document.getElementById("banner-enter").style.display = "none";
@@ -2320,7 +2465,7 @@
             if (!giuKieu || (kieuCauHienTai !== "viet" && kieuCauHienTai !== "ipa")) kieuCauHienTai = Math.random() < 0.5 ? "viet" : "ipa";
 
             renderCau();
-            if (autoPlay && unlockedIOS) phatAm(dapAnChuan, false);
+            if (autoPlay) phatAm(dapAnChuan, false, true);
 
             const inp = document.getElementById("o-nhap");
             inp.value = ""; inp.className = "";
@@ -2328,7 +2473,7 @@
         }
 
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function esc(s) { return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+        function esc(s) { return String(s || "").replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">").replace(/"/g, """); }
 
         function moModalLichSu() { document.getElementById("o-tim-lich-su").value = ""; renderLichSu(); document.getElementById("modal-lich-su").style.display = "block"; }
         function dongModalLichSu() { document.getElementById("modal-lich-su").style.display = "none"; }
@@ -2348,7 +2493,7 @@
                         <div style="font-size:13.5px;">🇻🇳 ${esc(it.viet)}</div>
                         <div style="font-size:11px; color:var(--muted); margin-top:3px;">🏷️ ${esc(it.chuDe || "")} • ${esc(it.thoiGian || "")}</div>
                     </div>
-                    <button class="btn-audio" onclick="phatAm('${esc(it.anh).replace(/'/g, "\\'")}', false)">🔊</button>
+                    <button class="btn-audio" onclick="phatAm('${esc(it.anh).replace(/'/g, "\\'")}', false, true)">🔊</button>
                 </div>
             `).join("");
         }
@@ -2393,8 +2538,8 @@
         document.addEventListener("keydown", e => {
             if (e.key === "Escape") { dongModalLichSu(); dongModalXepHang(); dongModalCongCu(); }
             if (e.key === "Enter" && dangChoEnter) { e.preventDefault(); chuyenSangCauTiepTheo(); }
-            if (e.ctrlKey && e.code === "Space") { e.preventDefault(); phatAm(dapAnChuan, false); }
-            if (e.altKey && (e.key === "s" || e.key === "S")) { e.preventDefault(); phatAm(dapAnChuan, true); }
+            if (e.ctrlKey && e.code === "Space") { e.preventDefault(); phatAm(dapAnChuan, false, true); }
+            if (e.altKey && (e.key === "s" || e.key === "S")) { e.preventDefault(); phatAm(dapAnChuan, true, true); }
         });
 
         document.getElementById("o-nhap").addEventListener("input", function() {
