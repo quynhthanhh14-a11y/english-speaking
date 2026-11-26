@@ -255,7 +255,6 @@
             padding: 11px 16px; font-size: 13.5px; font-weight: 800;
         }
 
-        /* VÙNG ĐẤT TƯƠNG TÁC THẬT */
         .island-zones-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -613,7 +612,6 @@
                 <button class="btn-cosmos" onclick="batDauVuTruVoHan()">🚀 Vào Vũ trụ 18 Thế giới</button>
             </section>
 
-            <!-- BOSS ARENA 45s -->
             <section id="boss-arena">
                 <div class="boss-forge-spark" id="boss-spark"></div>
                 <div class="boss-top">
@@ -643,9 +641,7 @@
                 <div class="boss-opts" id="boss-options"></div>
             </section>
 
-            <!-- HOME DASHBOARD -->
             <div id="nhap-du-lieu">
-                <!-- VÙNG ĐẤT BẤM VÀO HỌC ĐƯỢC NGAY -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>🏝️ Vùng đất trên đảo (Bấm vào để học ngay)</h2>
@@ -654,7 +650,6 @@
                     <div class="island-zones-grid" id="island-zones-grid"></div>
                 </section>
 
-                <!-- NHIỆM VỤ NHỎ HẰNG NGÀY -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>🌤️ Nhiệm vụ nhỏ hôm nay</h2>
@@ -664,7 +659,6 @@
                 </section>
 
                 <div class="bento-grid">
-                    <!-- CARD 1: 3 KỊCH BẢN + VÔ HẠN SLANG/IDIOMS -->
                     <section class="cozy-card">
                         <div class="card-header-row">
                             <h2>🔥 Slang & Idioms</h2>
@@ -687,7 +681,6 @@
                         </button>
                     </section>
 
-                    <!-- CARD 2: CHỈ GIỮ CHẾ ĐỘ THỰC SỰ KHÁC BIỆT -->
                     <section class="cozy-card">
                         <div class="card-header-row">
                             <h2>✨ Chế độ Khác biệt</h2>
@@ -708,7 +701,6 @@
                         </div>
                     </section>
 
-                    <!-- CARD 3: ĐẤU BOSS 45s & TỔNG QUAN -->
                     <section class="cozy-card" style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
                         <div>
                             <div class="card-header-row">
@@ -730,7 +722,6 @@
                     </section>
                 </div>
 
-                <!-- 18 THẾ GIỚI NỞ HOA THEO TIẾN ĐỘ -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>🗺️ 18 Thế giới trên đảo (Làm 3 câu ở thế giới nào sẽ nở hoa 🌸)</h2>
@@ -739,7 +730,6 @@
                     <div class="worlds-wrap" id="worlds-grid"></div>
                 </section>
 
-                <!-- DANH SÁCH TỰ NHẬP -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>📝 Luyện danh sách riêng (2 cột Việt — Anh, cách nhau bằng Tab)</h2>
@@ -749,7 +739,6 @@
                 </section>
             </div>
 
-            <!-- KHU VỰC HỌC -->
             <div id="hoc-khu-vuc">
                 <div class="study-top-bar">
                     <div style="display:flex; gap:7px; align-items:center; flex-wrap:wrap;">
@@ -853,7 +842,6 @@
         </main>
     </div>
 
-    <!-- MODALS -->
     <div class="modal-bg" id="modal-lich-su" onclick="if(event.target===this) dongModalLichSu()">
         <div class="modal-box">
             <div class="modal-head">
@@ -1293,6 +1281,11 @@
         let currentAudio = null, unlockedIOS = false, audioCtx = null;
         let ambientTimer = null, ambientType = "off";
 
+        function isIOSDevice() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        }
+
         function ensureAudioCtx() {
             const AC = window.AudioContext || window.webkitAudioContext;
             if (!AC) return null;
@@ -1315,9 +1308,6 @@
             if ('speechSynthesis' in window) {
                 try {
                     window.speechSynthesis.getVoices();
-                    const silent = new SpeechSynthesisUtterance("");
-                    silent.volume = 0;
-                    window.speechSynthesis.speak(silent);
                 } catch (e) {}
             }
         }
@@ -1383,17 +1373,19 @@
                 try { currentAudio.pause(); currentAudio.removeAttribute("src"); currentAudio.load(); } catch (e) {}
                 currentAudio = null;
             }
-            if ('speechSynthesis' in window) { try { window.speechSynthesis.cancel(); } catch (e) {} }
+            if ('speechSynthesis' in window) {
+                try { window.speechSynthesis.cancel(); } catch (e) {}
+            }
         }
 
         function playNeuralUK(txt, slow, code) {
             return new Promise((res, rej) => {
                 const map = { neural_sonia: "en-GB-SoniaNeural", neural_libby: "en-GB-LibbyNeural", neural_ryan: "en-GB-RyanNeural" };
-                const a = new Audio(`https://tts.travisvn.com/v1/audio/speech?text=${encodeURIComponent(txt)}&voice=${encodeURIComponent(map[code] || "en-GB-SoniaNeural")}&rate=${encodeURIComponent(slow ? "-25%" : "0%")}`);
+                const a = new Audio(`https://tts.travisvn.com/v1/audio/speech?text=${encodeURIComponent(txt)}&voice=${encodeURIComponent(map[code] || "en-GB-SoniaNeural")}&rate=${encodeURIComponent(slow ? "-18%" : "0%")}`);
                 a.preload = "auto"; a.setAttribute("playsinline", "true"); a.setAttribute("webkit-playsinline", "true");
                 currentAudio = a;
                 let done = false;
-                const t = setTimeout(() => { if (!done) { done = true; rej(new Error("t")); } }, 4000);
+                const t = setTimeout(() => { if (!done) { done = true; rej(new Error("t")); } }, 3500);
                 a.onplaying = () => { if (!done) { done = true; clearTimeout(t); res(); } };
                 a.onerror = () => { if (!done) { done = true; clearTimeout(t); rej(new Error("e")); } };
                 a.play().catch(e => { if (!done) { done = true; clearTimeout(t); rej(e); } });
@@ -1404,24 +1396,57 @@
             return new Promise((res, rej) => {
                 const a = new Audio(`https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(txt)}&type=1`);
                 a.setAttribute("playsinline", "true"); a.setAttribute("webkit-playsinline", "true");
-                a.playbackRate = slow ? 0.8 : 1.0; currentAudio = a;
+                a.playbackRate = slow ? 0.85 : 1.0; currentAudio = a;
                 let done = false;
-                const t = setTimeout(() => { if (!done) { done = true; rej(new Error("t")); } }, 3500);
+                const t = setTimeout(() => { if (!done) { done = true; rej(new Error("t")); } }, 3000);
                 a.onplaying = () => { if (!done) { done = true; clearTimeout(t); res(); } };
                 a.onerror = () => { if (!done) { done = true; clearTimeout(t); rej(new Error("e")); } };
                 a.play().catch(e => { if (!done) { done = true; clearTimeout(t); rej(e); } });
             });
         }
 
+        function chonGiongIOSUKTotNhat() {
+            if (!('speechSynthesis' in window)) return null;
+            const voices = window.speechSynthesis.getVoices() || [];
+            const ukVoices = voices.filter(v => /en[-_](GB|UK)/i.test(v.lang));
+            if (!ukVoices.length) return voices.find(v => /^en[-_]/i.test(v.lang)) || null;
+            const preferred = ["Daniel", "Martha", "Arthur", "Kate", "Serena", "Oliver", "Stephanie"];
+            for (const name of preferred) {
+                const hit = ukVoices.find(v => v.name.toLowerCase().includes(name.toLowerCase()));
+                if (hit) return hit;
+            }
+            return ukVoices[0];
+        }
+
         function playIOS(txt, slow) {
             if (!('speechSynthesis' in window)) return;
-            const s = window.speechSynthesis; s.cancel();
-            const u = new SpeechSynthesisUtterance(txt);
-            const vs = (s.getVoices() || []).filter(v => /^en[-_]/i.test(v.lang));
-            const uk = vs.find(v => /en[-_]GB/i.test(v.lang)) || vs[0];
-            if (uk) { u.voice = uk; u.lang = uk.lang; } else u.lang = "en-GB";
-            u.rate = slow ? 0.78 : 0.96;
-            setTimeout(() => s.speak(u), 35);
+            const s = window.speechSynthesis;
+            const speakNow = () => {
+                const u = new SpeechSynthesisUtterance(txt.trim());
+                const chosen = chonGiongIOSUKTotNhat();
+                if (chosen) {
+                    u.voice = chosen;
+                    u.lang = chosen.lang;
+                } else {
+                    u.lang = "en-GB";
+                }
+                u.rate = slow ? 0.88 : 1.0;
+                u.pitch = 1.02;
+                u.volume = 1.0;
+                s.speak(u);
+            };
+
+            if ((s.getVoices() || []).length === 0 && 'onvoiceschanged' in s) {
+                const prev = s.onvoiceschanged;
+                s.onvoiceschanged = function() {
+                    if (typeof prev === "function") prev.apply(this, arguments);
+                    s.onvoiceschanged = null;
+                    speakNow();
+                };
+                setTimeout(speakNow, 180);
+            } else {
+                speakNow();
+            }
         }
 
         async function phatAm(txt, slow = false) {
@@ -1429,10 +1454,46 @@
             unlockIOS();
             if (slow) setPetReaction("yawn", "😴");
             stopAudio();
-            if (giongDaChon === "ios_native") { playIOS(txt.trim(), slow); return; }
-            if (giongDaChon === "youdao_uk") { try { await playYoudaoUK(txt.trim(), slow); } catch (e) { playIOS(txt.trim(), slow); } return; }
-            try { await playNeuralUK(txt.trim(), slow, giongDaChon); }
-            catch (e1) { try { await playYoudaoUK(txt.trim(), slow); } catch (e2) { playIOS(txt.trim(), slow); } }
+
+            const cleanTxt = txt.trim();
+            if (giongDaChon === "ios_native") {
+                playIOS(cleanTxt, slow);
+                return;
+            }
+            if (giongDaChon === "youdao_uk") {
+                try {
+                    await playYoudaoUK(cleanTxt, slow);
+                } catch (e) {
+                    playIOS(cleanTxt, slow);
+                }
+                return;
+            }
+
+            // Trên iPhone ưu tiên thử Youdao UK trước (phản hồi nhanh trên mạng di động), rớt qua Neural UK, cuối cùng mới dùng iOS TTS mượt
+            if (isIOSDevice()) {
+                try {
+                    await playYoudaoUK(cleanTxt, slow);
+                    return;
+                } catch (e1) {
+                    try {
+                        await playNeuralUK(cleanTxt, slow, giongDaChon);
+                        return;
+                    } catch (e2) {
+                        playIOS(cleanTxt, slow);
+                        return;
+                    }
+                }
+            }
+
+            try {
+                await playNeuralUK(cleanTxt, slow, giongDaChon);
+            } catch (e1) {
+                try {
+                    await playYoudaoUK(cleanTxt, slow);
+                } catch (e2) {
+                    playIOS(cleanTxt, slow);
+                }
+            }
         }
 
         const PET_STAGES = [
@@ -1611,9 +1672,6 @@
             }).join("");
         }
 
-        // ============================================================
-        // BOSS ARENA 45s — KHO CÂU HỎI MỞ RỘNG & CHỐNG LẶP LIÊN TIẾP
-        // ============================================================
         let bossLevel = 1, bossMaxHp = 100, bossHp = 100, playerHp = 100, bossTimer = null, bossLeft = 45.0, bossTarget = null, bossBusy = false;
         let recentBossKeys = [];
 
@@ -1757,9 +1815,6 @@
             setTimeout(luotBoss, 1300);
         }
 
-        // ============================================================
-        // LUỒNG HỌC CHÍNH & CÁC CHẾ ĐỘ ĐÃ SỬA
-        // ============================================================
         let danhSach = [], tenBaiHoc = "", cauHienTai = 0, dapAnChuan = "";
         let cheDoXem = "de", kieuCauHienTai = "", cheDoVoHan = false, heThongVoHan = "worlds";
         let chuDeDong = "", stageSel = 0, chuoiDung = 0, dangChoEnter = false, lichSuPhien = [], startSentenceTime = Date.now();
