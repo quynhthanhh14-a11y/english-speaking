@@ -255,6 +255,7 @@
             padding: 11px 16px; font-size: 13.5px; font-weight: 800;
         }
 
+        /* VÙNG ĐẤT TƯƠNG TÁC THẬT */
         .island-zones-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -612,6 +613,7 @@
                 <button class="btn-cosmos" onclick="batDauVuTruVoHan()">🚀 Vào Vũ trụ 18 Thế giới</button>
             </section>
 
+            <!-- BOSS ARENA 45s -->
             <section id="boss-arena">
                 <div class="boss-forge-spark" id="boss-spark"></div>
                 <div class="boss-top">
@@ -641,7 +643,9 @@
                 <div class="boss-opts" id="boss-options"></div>
             </section>
 
+            <!-- HOME DASHBOARD -->
             <div id="nhap-du-lieu">
+                <!-- VÙNG ĐẤT BẤM VÀO HỌC ĐƯỢC NGAY -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>🏝️ Vùng đất trên đảo (Bấm vào để học ngay)</h2>
@@ -650,6 +654,7 @@
                     <div class="island-zones-grid" id="island-zones-grid"></div>
                 </section>
 
+                <!-- NHIỆM VỤ NHỎ HẰNG NGÀY -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>🌤️ Nhiệm vụ nhỏ hôm nay</h2>
@@ -659,6 +664,7 @@
                 </section>
 
                 <div class="bento-grid">
+                    <!-- CARD 1: 3 KỊCH BẢN + VÔ HẠN SLANG/IDIOMS -->
                     <section class="cozy-card">
                         <div class="card-header-row">
                             <h2>🔥 Slang & Idioms</h2>
@@ -681,6 +687,7 @@
                         </button>
                     </section>
 
+                    <!-- CARD 2: CHỈ GIỮ CHẾ ĐỘ THỰC SỰ KHÁC BIỆT -->
                     <section class="cozy-card">
                         <div class="card-header-row">
                             <h2>✨ Chế độ Khác biệt</h2>
@@ -701,6 +708,7 @@
                         </div>
                     </section>
 
+                    <!-- CARD 3: ĐẤU BOSS 45s & TỔNG QUAN -->
                     <section class="cozy-card" style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
                         <div>
                             <div class="card-header-row">
@@ -722,6 +730,7 @@
                     </section>
                 </div>
 
+                <!-- 18 THẾ GIỚI NỞ HOA THEO TIẾN ĐỘ -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>🗺️ 18 Thế giới trên đảo (Làm 3 câu ở thế giới nào sẽ nở hoa 🌸)</h2>
@@ -730,17 +739,17 @@
                     <div class="worlds-wrap" id="worlds-grid"></div>
                 </section>
 
+                <!-- DANH SÁCH TỰ NHẬP -->
                 <section class="cozy-card">
                     <div class="card-header-row">
                         <h2>📝 Luyện danh sách riêng (2 cột Việt — Anh, cách nhau bằng Tab)</h2>
                     </div>
-                    <textarea id="du-lieu-excel" placeholder="Ví dụ:
-Tối qua mình thức khuya làm nốt file.	I burned the midnight oil to finish the file last night
-Món này săn sale quá hời.	Getting this on sale was a real steal"></textarea>
+                    <textarea id="du-lieu-excel" placeholder="Ví dụ:&#10;Tối qua mình thức khuya làm nốt file.	I burned the midnight oil to finish the file last night&#10;Món này săn sale quá hời.	Getting this on sale was a real steal"></textarea>
                     <button class="btn-cozy-green" style="width:100%; padding:11px;" onclick="batDauTuExcel()">Bắt đầu danh sách riêng</button>
                 </section>
             </div>
 
+            <!-- KHU VỰC HỌC -->
             <div id="hoc-khu-vuc">
                 <div class="study-top-bar">
                     <div style="display:flex; gap:7px; align-items:center; flex-wrap:wrap;">
@@ -785,11 +794,11 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
                         </div>
                         <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
                             <select class="voice-sel" id="chon-giong-uk" onchange="doiGiongDocUK(this.value)">
-                                <option value="ios_native">📱 Giọng iPhone / Trình duyệt</option>
-                                <option value="youdao_uk">🇬🇧 Audio từ điển UK</option>
                                 <option value="neural_sonia">🇬🇧 Sonia (AI Nữ UK)</option>
                                 <option value="neural_libby">🇬🇧 Libby (AI Nữ UK)</option>
                                 <option value="neural_ryan">🇬🇧 Ryan (AI Nam UK)</option>
+                                <option value="youdao_uk">🇬🇧 Từ điển UK</option>
+                                <option value="ios_native">📱 Giọng iPhone (en-GB)</option>
                             </select>
                         </div>
                     </div>
@@ -844,6 +853,7 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
         </main>
     </div>
 
+    <!-- MODALS -->
     <div class="modal-bg" id="modal-lich-su" onclick="if(event.target===this) dongModalLichSu()">
         <div class="modal-box">
             <div class="modal-head">
@@ -1279,26 +1289,9 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
             return "/" + arr.join(" ") + "/";
         }
 
-        // ============================================================
-        // PHẦN ÂM THANH TỐI ƯU CHO SAFARI & CHROME TRÊN IPHONE
-        // ============================================================
-        let giongDaChon = localStorage.getItem("luyenGo_voiceEngine_uk") || "ios_native";
+        let giongDaChon = localStorage.getItem("luyenGo_voiceEngine_uk") || "neural_sonia";
         let currentAudio = null, unlockedIOS = false, audioCtx = null;
         let ambientTimer = null, ambientType = "off";
-        let cachedVoices = [];
-
-        function refreshVoices() {
-            if ('speechSynthesis' in window) {
-                try {
-                    const v = window.speechSynthesis.getVoices();
-                    if (v && v.length) cachedVoices = v;
-                } catch (e) {}
-            }
-        }
-        if ('speechSynthesis' in window) {
-            refreshVoices();
-            window.speechSynthesis.onvoiceschanged = refreshVoices;
-        }
 
         function ensureAudioCtx() {
             const AC = window.AudioContext || window.webkitAudioContext;
@@ -1309,7 +1302,6 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
         }
 
         function unlockIOS() {
-            refreshVoices();
             if (unlockedIOS) return;
             unlockedIOS = true;
             try {
@@ -1322,7 +1314,8 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
             } catch (e) {}
             if ('speechSynthesis' in window) {
                 try {
-                    const silent = new SpeechSynthesisUtterance(" ");
+                    window.speechSynthesis.getVoices();
+                    const silent = new SpeechSynthesisUtterance("");
                     silent.volume = 0;
                     window.speechSynthesis.speak(silent);
                 } catch (e) {}
@@ -1380,143 +1373,68 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
         }
 
         function doiGiongDocUK(v) {
-            unlockIOS();
-            giongDaChon = v;
+            unlockIOS(); giongDaChon = v;
             localStorage.setItem("luyenGo_voiceEngine_uk", v);
             if (dapAnChuan) phatAm(dapAnChuan, false);
         }
 
         function stopAudio() {
             if (currentAudio) {
-                try {
-                    currentAudio.onplaying = null;
-                    currentAudio.onerror = null;
-                    currentAudio.pause();
-                    currentAudio.removeAttribute("src");
-                    currentAudio.load();
-                } catch (e) {}
+                try { currentAudio.pause(); currentAudio.removeAttribute("src"); currentAudio.load(); } catch (e) {}
                 currentAudio = null;
             }
-        }
-
-        function playIOS(txt, slow) {
-            if (!('speechSynthesis' in window)) return false;
-            try {
-                const s = window.speechSynthesis;
-                refreshVoices();
-                // Trên iOS Safari/Chrome, gọi cancel() khi đang speaking dễ làm utterance tiếp theo bị nuốt
-                if (s.speaking || s.pending) {
-                    try { s.cancel(); } catch (e) {}
-                }
-                const u = new SpeechSynthesisUtterance(txt);
-                const enVoices = cachedVoices.filter(v => /^en[-_]/i.test(v.lang));
-                const uk = enVoices.find(v => /en[-_]GB/i.test(v.lang)) || enVoices[0];
-                if (uk) {
-                    u.voice = uk;
-                    u.lang = uk.lang;
-                } else {
-                    u.lang = "en-GB";
-                }
-                u.rate = slow ? 0.76 : 0.95;
-                u.pitch = 1.0;
-                u.volume = 1.0;
-                s.speak(u);
-                return true;
-            } catch (e) {
-                return false;
-            }
-        }
-
-        function playAudioUrl(url, playbackRate, timeoutMs) {
-            return new Promise((res, rej) => {
-                const a = new Audio();
-                a.preload = "auto";
-                a.setAttribute("playsinline", "true");
-                a.setAttribute("webkit-playsinline", "true");
-                a.playbackRate = playbackRate;
-                currentAudio = a;
-
-                let settled = false;
-                const finishOk = () => {
-                    if (settled) return;
-                    settled = true;
-                    clearTimeout(timer);
-                    res();
-                };
-                const finishErr = () => {
-                    if (settled) return;
-                    settled = true;
-                    clearTimeout(timer);
-                    rej(new Error("audio_err"));
-                };
-
-                const timer = setTimeout(finishErr, timeoutMs || 1800);
-                a.onplaying = finishOk;
-                a.onerror = finishErr;
-                a.src = url;
-
-                const p = a.play();
-                if (p && typeof p.then === "function") {
-                    p.catch(finishErr);
-                }
-            });
+            if ('speechSynthesis' in window) { try { window.speechSynthesis.cancel(); } catch (e) {} }
         }
 
         function playNeuralUK(txt, slow, code) {
-            const map = {
-                neural_sonia: "en-GB-SoniaNeural",
-                neural_libby: "en-GB-LibbyNeural",
-                neural_ryan: "en-GB-RyanNeural"
-            };
-            const vName = encodeURIComponent(map[code] || "en-GB-SoniaNeural");
-            const rate = encodeURIComponent(slow ? "-25%" : "0%");
-            const url = `https://tts.travisvn.com/v1/audio/speech?text=${encodeURIComponent(txt)}&voice=${vName}&rate=${rate}`;
-            return playAudioUrl(url, 1.0, 1800);
+            return new Promise((res, rej) => {
+                const map = { neural_sonia: "en-GB-SoniaNeural", neural_libby: "en-GB-LibbyNeural", neural_ryan: "en-GB-RyanNeural" };
+                const a = new Audio(`https://tts.travisvn.com/v1/audio/speech?text=${encodeURIComponent(txt)}&voice=${encodeURIComponent(map[code] || "en-GB-SoniaNeural")}&rate=${encodeURIComponent(slow ? "-25%" : "0%")}`);
+                a.preload = "auto"; a.setAttribute("playsinline", "true"); a.setAttribute("webkit-playsinline", "true");
+                currentAudio = a;
+                let done = false;
+                const t = setTimeout(() => { if (!done) { done = true; rej(new Error("t")); } }, 4000);
+                a.onplaying = () => { if (!done) { done = true; clearTimeout(t); res(); } };
+                a.onerror = () => { if (!done) { done = true; clearTimeout(t); rej(new Error("e")); } };
+                a.play().catch(e => { if (!done) { done = true; clearTimeout(t); rej(e); } });
+            });
         }
 
         function playYoudaoUK(txt, slow) {
-            const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(txt)}&type=1`;
-            return playAudioUrl(url, slow ? 0.8 : 1.0, 1600);
+            return new Promise((res, rej) => {
+                const a = new Audio(`https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(txt)}&type=1`);
+                a.setAttribute("playsinline", "true"); a.setAttribute("webkit-playsinline", "true");
+                a.playbackRate = slow ? 0.8 : 1.0; currentAudio = a;
+                let done = false;
+                const t = setTimeout(() => { if (!done) { done = true; rej(new Error("t")); } }, 3500);
+                a.onplaying = () => { if (!done) { done = true; clearTimeout(t); res(); } };
+                a.onerror = () => { if (!done) { done = true; clearTimeout(t); rej(new Error("e")); } };
+                a.play().catch(e => { if (!done) { done = true; clearTimeout(t); rej(e); } });
+            });
+        }
+
+        function playIOS(txt, slow) {
+            if (!('speechSynthesis' in window)) return;
+            const s = window.speechSynthesis; s.cancel();
+            const u = new SpeechSynthesisUtterance(txt);
+            const vs = (s.getVoices() || []).filter(v => /^en[-_]/i.test(v.lang));
+            const uk = vs.find(v => /en[-_]GB/i.test(v.lang)) || vs[0];
+            if (uk) { u.voice = uk; u.lang = uk.lang; } else u.lang = "en-GB";
+            u.rate = slow ? 0.78 : 0.96;
+            setTimeout(() => s.speak(u), 35);
         }
 
         async function phatAm(txt, slow = false) {
-            const clean = (txt || "").trim();
-            if (!clean) return;
+            if (!txt) return;
             unlockIOS();
             if (slow) setPetReaction("yawn", "😴");
             stopAudio();
-
-            if (giongDaChon === "ios_native") {
-                const ok = playIOS(clean, slow);
-                if (!ok) {
-                    try { await playYoudaoUK(clean, slow); } catch (e) {}
-                }
-                return;
-            }
-
-            if (giongDaChon === "youdao_uk") {
-                try {
-                    await playYoudaoUK(clean, slow);
-                } catch (e) {
-                    playIOS(clean, slow);
-                }
-                return;
-            }
-
-            try {
-                await playNeuralUK(clean, slow, giongDaChon);
-            } catch (e1) {
-                try {
-                    await playYoudaoUK(clean, slow);
-                } catch (e2) {
-                    playIOS(clean, slow);
-                }
-            }
+            if (giongDaChon === "ios_native") { playIOS(txt.trim(), slow); return; }
+            if (giongDaChon === "youdao_uk") { try { await playYoudaoUK(txt.trim(), slow); } catch (e) { playIOS(txt.trim(), slow); } return; }
+            try { await playNeuralUK(txt.trim(), slow, giongDaChon); }
+            catch (e1) { try { await playYoudaoUK(txt.trim(), slow); } catch (e2) { playIOS(txt.trim(), slow); } }
         }
 
-        // ============================================================
-        // PET, ISLAND ZONES, QUESTS, BOSS & STUDY LOGIC
-        // ============================================================
         const PET_STAGES = [
             { min: 0, max: 60, name: "Trứng ngôn ngữ", icon: "🥚", lvl: "Cấp 1/4: Trứng" },
             { min: 60, max: 150, name: "Gà con lanh lợi", icon: "🐥", lvl: "Cấp 2/4: Gà con" },
@@ -1693,6 +1611,9 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
             }).join("");
         }
 
+        // ============================================================
+        // BOSS ARENA 45s — KHO CÂU HỎI MỞ RỘNG & CHỐNG LẶP LIÊN TIẾP
+        // ============================================================
         let bossLevel = 1, bossMaxHp = 100, bossHp = 100, playerHp = 100, bossTimer = null, bossLeft = 45.0, bossTarget = null, bossBusy = false;
         let recentBossKeys = [];
 
@@ -1701,11 +1622,21 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
             const worldSamples = [];
             for (let id = 1; id <= 18; id++) {
                 const sample = sinhCauTheGioi(id);
-                worldSamples.push({ term: sample.anh, kind: BO_SINH_CAU[id].ten, meaningVi: sample.viet, isSentence: true });
+                worldSamples.push({
+                    term: sample.anh,
+                    kind: BO_SINH_CAU[id].ten,
+                    meaningVi: sample.viet,
+                    isSentence: true
+                });
             }
             const learned = (vocabApp.history || [])
                 .filter(x => x.viet && x.anh)
-                .map(x => ({ term: x.term || x.anh, kind: x.kind || "Sổ tay", meaningVi: x.viet, isSentence: !x.term }));
+                .map(x => ({
+                    term: x.term || x.anh,
+                    kind: x.kind || "Sổ tay",
+                    meaningVi: x.viet,
+                    isSentence: !x.term
+                }));
             return [...slang, ...worldSamples, ...learned];
         }
 
@@ -1780,7 +1711,8 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
 
             const others = pool.filter(x => x.term !== target.term);
             shuffle(others);
-            const opts = [target, ...others.slice(0, 3)];
+            const distractors = others.slice(0, 3);
+            const opts = [target, ...distractors];
             shuffle(opts);
 
             oBox.innerHTML = opts.map((o, i) => {
@@ -1825,6 +1757,9 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
             setTimeout(luotBoss, 1300);
         }
 
+        // ============================================================
+        // LUỒNG HỌC CHÍNH & CÁC CHẾ ĐỘ ĐÃ SỬA
+        // ============================================================
         let danhSach = [], tenBaiHoc = "", cauHienTai = 0, dapAnChuan = "";
         let cheDoXem = "de", kieuCauHienTai = "", cheDoVoHan = false, heThongVoHan = "worlds";
         let chuDeDong = "", stageSel = 0, chuoiDung = 0, dangChoEnter = false, lichSuPhien = [], startSentenceTime = Date.now();
@@ -2265,7 +2200,7 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
         }
 
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function esc(s) { return String(s || "").replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">").replace(/"/g, """); }
+        function esc(s) { return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
         function moModalLichSu() { document.getElementById("o-tim-lich-su").value = ""; renderLichSu(); document.getElementById("modal-lich-su").style.display = "block"; }
         function dongModalLichSu() { document.getElementById("modal-lich-su").style.display = "none"; }
@@ -2355,7 +2290,6 @@ Món này săn sale quá hời.	Getting this on sale was a real steal"></textare
         });
 
         window.onload = function() {
-            refreshVoices();
             const sel = document.getElementById("chon-giong-uk");
             if (sel && [...sel.options].some(o => o.value === giongDaChon)) sel.value = giongDaChon;
             taiApp();
